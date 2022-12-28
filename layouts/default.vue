@@ -1,9 +1,9 @@
 <template>
     <div class="max-h-full overflow-hidden">
         <ClientOnly>
-            <div class="">
-                <header class="border-b-[1px] border-b-gray-300  mb-2 md:mb-14 ">
-                    <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8 relative w-full ">
+            <div class="fixed top-0 z-20 w-full bg-white">
+                <header class="border-b-[1px] border-b-gray-300">
+                    <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8 relative w-full">
                         <nav class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center">
                             <!--  -->
                             <div class="col-span-1 flex justify-center md:hidden" @click="menuSelect()">
@@ -29,12 +29,12 @@
                 </header>
             </div>
         </ClientOnly>
-        <div id="" class="flex pt-2.5 overflow-y-scroll">
+        <div id="" class="flex pt-2.5 overflow-y-scroll mt-16 md:mt-32">
             <ul class="hidden flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" id="modal">
-                <li class="flex p-1.5" id="note2" @click="menuSelect()">
+                <li class="flex p-1.5" id="note_md" @click="menuSelect()">
                     <NuxtLink to="/note/algorithms">Note</NuxtLink>
                 </li>
-                <li class="flex p-1.5"  id="projects2" @click="menuSelect()">
+                <li class="flex p-1.5"  id="projects_md" @click="menuSelect()">
                     <NuxtLink to="/projects/loltr">Projects</NuxtLink>
                 </li>
                 <li class="p-1.5 ">Resume</li>
@@ -55,12 +55,14 @@ console.log("updated")
 function home() {
     document.querySelector("#note").classList.remove('link');
     document.querySelector("#projects").classList.remove('link');
-    document.querySelector("#modal").classList.add('hidden');
     document.querySelector("#content").classList.remove('hidden');
+    document.querySelector("#modal").classList.add('hidden');
+
 }
 function menuSelect() {
-    document.querySelector("#modal").classList.toggle('hidden');
     document.querySelector("#content").classList.toggle('hidden');
+    document.querySelector("#modal").classList.toggle('hidden');
+
 }
 
 </script>
