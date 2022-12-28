@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="relative grid grid-cols-10 gap-8">
-            <div class="col-span-2 overflow-y-auto max-h-[calc(100vh-64px)]">
-                <AlgorithmsSideBar></AlgorithmsSideBar>
+        <div class="relative grid grid-cols-10 gap-6 md:gap-8">
+            <div class="col-span-10 md:col-span-2 overflow-y-auto max-h-[calc(100vh-64px)]">
+                <NoteSideBar></NoteSideBar>
             </div>
-            <div class="col-span-8">
+            <div class="col-span-10 md:col-span-8">
                 <div v-for="algorithm in algorithms" :key="algorithm">
                     <ContentCard :page-link="algorithm._path" :description="algorithm.description" :title="algorithm.title" :date="algorithm.date"></ContentCard>
                 </div>

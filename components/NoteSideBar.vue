@@ -1,6 +1,6 @@
 <template>
-    <nav class="justify-center items-center font-bold">
-        <ul class="">
+    <nav class="justify-center items-center font-bold ">
+        <ul class="flex gap-x-4 md:block">
             <li class="hover:text-emerald-500 py-1.5" id="algorithms">
                 <NuxtLink to="/note/algorithms">알고리즘</NuxtLink>
             </li>

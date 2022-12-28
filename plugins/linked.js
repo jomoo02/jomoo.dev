@@ -8,9 +8,11 @@ export default defineNuxtPlugin((nuxtApp) => {
             if (routes.value[1]=='projects'){
                 document.querySelector("#projects").classList.add('link');
                 document.querySelector("#note").classList.remove('link');
+                document.querySelector("#note2").classList.remove('link_md');
             }
             else if (routes.value[1]=='note'){
                 document.querySelector("#note").classList.add('link');
+                document.querySelector("#note2").classList.add('link_md');
                 document.querySelector("#projects").classList.remove('link');
             }
         }
