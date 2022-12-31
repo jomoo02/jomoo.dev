@@ -16,13 +16,17 @@
                             </div>
                         </div>
                         <ul class="hidden md:flex justify-center gap-x-10 col-span-4 font-semibold">
-                            <li class="flex p-1.5  border-b-[2px] border-b-white" id="note">
-                                <NuxtLink to="/note/algorithms">Note</NuxtLink>
+                            <li>
+                                <NuxtLink to="/note/algorithms">
+                                    <div class="flex p-1.5  border-b-[2px] border-b-white" :class="check === 1 ? 'link' : '' "  @click="menuSelect()">Note</div>
+                                </NuxtLink>
                             </li>
-                            <li class="flex p-1.5   border-b-[2px] border-b-white"  id="projects" >
-                                <NuxtLink to="/projects/loltr">Projects</NuxtLink>
+                            <li >
+                                <NuxtLink to="/projects/loltr">
+                                    <div class="flex p-1.5  border-b-[2px] border-b-white" :class="check === 2 ? 'link' : '' " @click="menuSelect2()">Projects</div>
+                                </NuxtLink>
                             </li>
-                            <li class="p-1.5 ">Resume</li>
+                            <li><div class="p-1.5">Resume</div></li>
                         </ul>
                     </nav>
                 </div>
@@ -31,10 +35,10 @@
      
         <div id="" class="flex pt-2.5 overflow-y-scroll mt-16 md:mt-32">
             <ul class="hidden flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" id="modal">
-                <li class="flex p-1.5" id="note_md" @click="menuSelect()">
+                <li class="flex p-1.5" :class="check === 1 ? 'link' : '' " @click="menuSelect()">
                     <NuxtLink to="/note/algorithms">Note</NuxtLink>
                 </li>
-                <li class="flex p-1.5"  id="projects_md" @click="menuSelect()">
+                <li class="flex p-1.5" :class="check === 2 ? 'link' : '' " @click="menuSelect()">
                     <NuxtLink to="/projects/loltr">Projects</NuxtLink>
                 </li>
                 <li class="p-1.5 ">Resume</li>
@@ -48,21 +52,29 @@
 </template>
 
 <script setup>
-const route= useRoute();
-
+const route = useRoute();
 const linkes = ['projects','note']
+const check = ref(1);
+const hiddenCheck = ref(1);
 console.log("updated")
 function home() {
-    document.querySelector("#note").classList.remove('link');
-    document.querySelector("#projects").classList.remove('link');
-    document.querySelector("#content").classList.remove('hidden');
-    document.querySelector("#modal").classList.add('hidden');
+    check.value=1;
 
 }
-function menuSelect() {
-    document.querySelector("#content").classList.toggle('hidden');
-    document.querySelector("#modal").classList.toggle('hidden');
+const routes = route.path.split('/');
 
+if(routes[1] === 'note') {
+    check.value=1;
+}
+else if(routes[1] ==='projects') {
+    check.value=2;
+}
+
+function menuSelect() {
+    check.value=1;
+}
+function menuSelect2(){
+    check.value=2;
 }
 
 </script>
