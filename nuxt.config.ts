@@ -13,5 +13,6 @@ export default defineNuxtConfig({
         highlight:{
             preload:['python','py']
         }
-    }
+    },
+    plugins: [{ src: '~/plugins/vercel.js', mode: 'client' }],
 })
