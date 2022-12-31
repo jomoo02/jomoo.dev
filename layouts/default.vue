@@ -6,7 +6,7 @@
                 <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8 relative w-full">
                     <nav class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center">
                         <!--  -->
-                        <div class="col-span-1 flex justify-center md:hidden" @click="menuSelect()">
+                        <div class="col-span-1 flex justify-center cursor-pointer md:hidden" @click="hiddenMenu()">
                             <ListIcon></ListIcon>
                         </div>
 
@@ -33,18 +33,26 @@
             </header>
         </div>
      
-        <div id="" class="flex pt-2.5 overflow-y-scroll mt-16 md:mt-32">
-            <ul class="hidden flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" id="modal">
-                <li class="flex p-1.5" :class="check === 1 ? 'link' : '' " @click="menuSelect()">
-                    <NuxtLink to="/note/algorithms">Note</NuxtLink>
+        <div class="flex  pt-2.5 mt-16 md:mt-32">
+            <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" :class="hiddenCheck === 1 ? 'hidden' : '' ">
+                <li>
+                    <NuxtLink to="/note/algorithms">
+                        <div class="flex p-1.5" :class="check === 1 ? 'link_md' : '' " @click="menuSelect()">
+                            Note
+                        </div>
+                    </NuxtLink>
                 </li>
-                <li class="flex p-1.5" :class="check === 2 ? 'link' : '' " @click="menuSelect()">
-                    <NuxtLink to="/projects/loltr">Projects</NuxtLink>
+                <li >
+                    <NuxtLink to="/projects/loltr">
+                        <div class="flex p-1.5" :class="check === 2 ? 'link_md' : '' " @click="menuSelect2()">
+                            Projects
+                        </div>
+                    </NuxtLink>
                 </li>
                 <li class="p-1.5 ">Resume</li>
             </ul>
         </div>
-        <div id="content" class="">
+        <div :class="hiddenCheck === 2 ? 'hidden' : '' ">
             <slot />
         </div>
         
@@ -56,6 +64,7 @@ const route = useRoute();
 const linkes = ['projects','note']
 const check = ref(1);
 const hiddenCheck = ref(1);
+
 console.log("updated")
 function home() {
     check.value=1;
@@ -72,17 +81,25 @@ else if(routes[1] ==='projects') {
 
 function menuSelect() {
     check.value=1;
+    hiddenCheck.value = 1;
 }
 function menuSelect2(){
     check.value=2;
+    hiddenCheck.value = 1;
+}
+
+function hiddenMenu() {
+    if (hiddenCheck.value === 1){
+        hiddenCheck.value = 2;
+    }
+    else{
+        hiddenCheck.value = 1;
+    }
 }
 
 </script>
 <style scoped>
 .link {
-    /* background-color: rgb(244 244 245);
-    box-shadow: 0 0 #0000, 0 0 #0000, var(inset 0 2px 4px 0 rgb(0 0 0 / 0.05));
-    box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05), 0 0 #0000, 0 0 #0000; */
     border-bottom-width: 2px;
     --tw-border-opacity: 1;
     border-bottom-color: rgb(5 150 105 / var(--tw-border-opacity));
@@ -91,7 +108,5 @@ function menuSelect2(){
 .link_md {
     color:#047857;
 }
-
-
 
 </style>
