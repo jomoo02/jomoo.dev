@@ -10,7 +10,8 @@
 </template>
 
 <script setup>
-const route = useRoute()
+const { data: page } = await useAsyncData('my-page', queryContent('/').findOne)
 
-console.log(route.params.id)
+useContentHead(page)
+
 </script>

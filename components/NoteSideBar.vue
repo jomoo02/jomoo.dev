@@ -1,12 +1,21 @@
 <template>
     <nav class="justify-center items-center font-bold ">
         <ul class="flex gap-x-4 md:block">
-            <li class="hover:text-emerald-500 py-1.5" id="algorithms">
-                <NuxtLink to="/note/algorithms">알고리즘</NuxtLink>
+            <li>
+                <NuxtLink to="/note/algorithms">
+                    <div class="hover:text-emerald-500 py-1.5" id="algorithms">
+                        알고리즘
+                    </div>
+                </NuxtLink>
             </li>
-            <li class=" hover:text-emerald-500 py-1.5" id="programmers">
-                <NuxtLink to="/note/programmers">프로그래머스</NuxtLink>
+            <li>
+                <NuxtLink to="/note/programmers">
+                    <div class=" hover:text-emerald-500 py-1.5" id="programmers">
+                        프로그래머스
+                    </div>
+                </NuxtLink>
             </li>
+
         </ul>
     </nav>
 </template>

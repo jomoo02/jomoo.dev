@@ -1,8 +1,10 @@
 <template>
     <nav class="justify-center items-center font-bold">
         <ul class="">
-            <li class="hover:text-emerald-500 py-1.5" id="loltr">
-                <NuxtLink to="/Projects/loltr">lol.tr</NuxtLink>
+            <li>
+                <NuxtLink to="/Projects/loltr">
+                    <div class="hover:text-emerald-500 py-1.5" id="loltr">lol.tr</div>
+                </NuxtLink>
             </li>
         </ul>
     </nav>
