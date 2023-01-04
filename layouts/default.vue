@@ -3,10 +3,10 @@
 
         <div class="fixed top-0 z-20 w-full bg-white">
             <header class="border-b-[1px] border-b-gray-300">
-                <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8 relative w-full">
+                <div class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 relative w-full">
                     <nav class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center">
                         <!--  -->
-                        <div class="col-span-1 flex justify-center cursor-pointer md:hidden" @click="hiddenMenu()">
+                        <div class="col-span-1 flex justify-start cursor-pointer md:hidden" @click="hiddenMenu()">
                             <ListIcon></ListIcon>
                         </div>
 
@@ -33,7 +33,7 @@
             </header>
         </div>
      
-        <div class="flex  pt-2.5 mt-16 md:mt-32">
+        <div class="flex pt-2.5 mt-16 md:mt-32">
             <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" :class="hiddenCheck === 1 ? 'hidden' : '' ">
                 <li>
                     <NuxtLink to="/note/algorithms">
