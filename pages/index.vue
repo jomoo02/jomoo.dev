@@ -4,5 +4,5 @@
 
 <script setup>
 definePageMeta({
-    middleware:'test'
+    middleware:["test"]
 })</script>

@@ -18,7 +18,7 @@ const loltrs = await queryContent('projects/loltr').only(['title','_path','descr
 loltrs.reverse();
 
 useHead({
-    title: 'jomoo.dev',
+    title: 'jomoo.dev 프로젝트',
     meta:[
         { name: 'description', content: '프로젝트 lol.tr 노트'}
     ],
