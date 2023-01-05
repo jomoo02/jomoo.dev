@@ -18,15 +18,15 @@
                         <ul class="hidden md:flex justify-center gap-x-10 col-span-4 font-semibold">
                             <li>
                                 <NuxtLink to="/note/algorithms">
-                                    <div class="flex p-1.5  border-b-[2px] border-b-white" :class="check === 1 ? 'link' : '' "  @click="menuSelect()">Note</div>
+                                    <div class="flex p-1.5  border-b-[2px] border-b-white hover:text-emerald-500" :class="check === 1 ? 'link' : '' "  @click="menuSelect()">Note</div>
                                 </NuxtLink>
                             </li>
                             <li >
                                 <NuxtLink to="/projects/loltr">
-                                    <div class="flex p-1.5  border-b-[2px] border-b-white" :class="check === 2 ? 'link' : '' " @click="menuSelect2()">Projects</div>
+                                    <div class="flex p-1.5  border-b-[2px] border-b-white hover:text-emerald-500" :class="check === 2 ? 'link' : '' " @click="menuSelect2()">Projects</div>
                                 </NuxtLink>
                             </li>
-                            <li><div class="p-1.5">Resume</div></li>
+                            <li><div class="p-1.5 cursor-not-allowed">Resume</div></li>
                         </ul>
                     </nav>
                 </div>
@@ -37,19 +37,19 @@
             <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" :class="hiddenCheck === 1 ? 'hidden' : '' ">
                 <li>
                     <NuxtLink to="/note/algorithms">
-                        <div class="flex p-1.5" :class="check === 1 ? 'link_md' : '' " @click="menuSelect()">
+                        <div class="flex p-1.5 hover:text-emerald-500" :class="check === 1 ? 'link_md' : '' " @click="menuSelect()">
                             Note
                         </div>
                     </NuxtLink>
                 </li>
                 <li >
                     <NuxtLink to="/projects/loltr">
-                        <div class="flex p-1.5" :class="check === 2 ? 'link_md' : '' " @click="menuSelect2()">
+                        <div class="flex p-1.5 hover:text-emerald-500" :class="check === 2 ? 'link_md' : '' " @click="menuSelect2()">
                             Projects
                         </div>
                     </NuxtLink>
                 </li>
-                <li class="p-1.5 ">Resume</li>
+                <li class="p-1.5 cursor-not-allowed">Resume</li>
             </ul>
         </div>
         <div :class="hiddenCheck === 2 ? 'hidden' : '' ">

@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-const { data: page } = await useAsyncData('my-page', queryContent('/').findOne)
+// const { data: page } = await useAsyncData('my-page', queryContent('/').findOne)
 
-useContentHead(page)
+// useContentHead(page)
 </script>

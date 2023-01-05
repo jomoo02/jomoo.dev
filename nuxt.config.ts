@@ -9,7 +9,7 @@ export default defineNuxtConfig({
             ]
         }
     },
-    modules: ['@nuxtjs/tailwindcss','@nuxt/content'],
+    modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@pinia/nuxt','nuxt-icon'],
     content:{
         highlight:{
             preload:['python','py']
