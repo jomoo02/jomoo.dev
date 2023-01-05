@@ -6,9 +6,3 @@
     </NuxtLayout>
   </div>
 </template>
-
-<script setup>
-import { usePostDataStore } from '~~/store/postData';
-const postStore = usePostDataStore();
-await postStore.programmersPostUpdate();
-</script>

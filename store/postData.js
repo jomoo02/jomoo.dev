@@ -5,10 +5,10 @@ export const usePostDataStore = defineStore('post', {
         programmersPostsIdx: ref({}),
     }),
     actions:{
-        async programmersPostUpdate() {
+        programmersPostUpdate(programmers) {
             let posts = new Array();
             let postIdx = {};
-            posts =  await queryContent('note/programmers').only(['title','_path','description','date']).find();
+            posts = programmers;
             posts.reverse();
             posts.forEach((post,idx) => {
                 let title = post.title;
