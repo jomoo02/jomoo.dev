@@ -10,21 +10,5 @@
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
-postStore.programmersPostUpdate();
-// postStore.programmersPosts.value = await queryContent('note/programmers').only(['title','_path','description','date']).find();
-// postStore.programmersPosts.value.reverse();
-
-// // console.log( (postStore.programmersPosts.value.length))
-// // postStore.programmersPosts.value.foreach((post, idx) => {
-// //   let title = post.title;
-// //   postStore.programmersPostsIdx.value[title] = idx;
-// // });
-
-// for(let i = 0; i<postStore.programmersPosts.value.length; i++) {
-//   let title = postStore.programmersPosts.value[i].title;
-//   console.log(title)
-//   postStore.programmersPostsIdx[title] = i;
-// }
-
-// console.log(postStore.programmersPostsIdx);
+await postStore.programmersPostUpdate();
 </script>
