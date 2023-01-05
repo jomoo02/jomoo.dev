@@ -3,8 +3,9 @@
         <div class="col-span-10 md:col-span-2 overflow-y-auto max-h-[calc(100vh-64px)]">
             <NoteSideBar></NoteSideBar>
         </div>
-        <div class="prose min-w-full col-span-10 md:col-span-8 pb-8" >
-            <ContentDoc></ContentDoc>
+        <div class="min-w-full col-span-10 md:col-span-8 pb-8" >
+            <div class="prose"><ContentDoc></ContentDoc></div>
+
 
             <div class="flex flex-col gap-2.5 md:flex-row w-full" :class="pageNumber < postStore.programmersPosts.length-1 ? 'justify-between':'justify-end'">
                 <div v-if="pageNumber < postStore.programmersPosts.length-1" class="md:w-1/3">
@@ -14,7 +15,6 @@
                     <PostMoveCard :postDirection="AFTER" :pageNumber="pageNumber-1"></PostMoveCard>
                 </div>
             </div>
-  
         </div>
     </div>
 </template>
