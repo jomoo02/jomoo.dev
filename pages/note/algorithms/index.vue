@@ -5,7 +5,7 @@
                 <NoteSideBar></NoteSideBar>
             </div>
             <div class="col-span-10 md:col-span-8">
-                <div v-for="algorithm in algorithms" :key="algorithm">
+                <div v-for="algorithm in postStore.algorithmsPosts" :key="algorithm">
                     <ContentCard :page-link="algorithm._path" :description="algorithm.description" :title="algorithm.title" :date="algorithm.date"></ContentCard>
                 </div>
             </div>
@@ -14,14 +14,8 @@
 </template>
 
 <script setup>
-const algorithms = await queryContent('note','algorithms').only(['title','_path','description','date']).find();
-algorithms.reverse();
-// useHead({
-//     title: 'jomoo.dev 알고리즘',
-//     meta:[
-//         { name: 'description', content: '알고리즘 정리'}
-//     ],
-// })
+import { usePostDataStore } from '~~/store/postData';
+const postStore = usePostDataStore();
 </script>
 
 <style scoped>

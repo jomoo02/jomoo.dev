@@ -4,7 +4,7 @@
             <ProjectsSideBar></ProjectsSideBar>
         </div>
         <div class="col-span-10 md:col-span-8">
-            <div v-for="loltr in loltrs" :key="loltr">
+            <div v-for="loltr in postStore.loltrPosts" :key="loltr">
                 <div>
                     <ContentCard :page-link="loltr._path" :description="loltr.description" :title="loltr.title" :date="loltr.date" ></ContentCard>
                 </div>
@@ -14,8 +14,8 @@
 </template>
 
 <script setup>
-const loltrs = await queryContent('projects/loltr').only(['title','_path','description','date']).find();
-loltrs.reverse();
+import { usePostDataStore } from '~~/store/postData';
+const postStore = usePostDataStore();
 
 useHead({
     title: 'jomoo.dev 프로젝트',

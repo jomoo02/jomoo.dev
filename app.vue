@@ -10,6 +10,14 @@
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
-const posts =  await queryContent('note','programmers').only(['title','_path','description','date']).find();
-postStore.programmersPostUpdate(posts);
+const postsProgrammers =  await queryContent('note','programmers').only(['title','_path','description','date']).sort({ date: -1 }).find();
+const postsAlgorithms = await queryContent('note','algorithms').only(['title','_path','description','date']).sort({ date: -1 }).find();
+const postsLottr = await queryContent('projects','loltr').only(['title','_path','description','date']).sort({ date: -1 }).find();
+
+postStore.programmersPostUpdate(postsProgrammers);
+postStore.algorithmsPostsUpdate(postsAlgorithms);
+postStore.loltrPostsUpdate(postsLottr);
+
+
+
 </script>
