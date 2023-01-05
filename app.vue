@@ -10,6 +10,6 @@
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
-const posts =  await queryContent('note/programmers').only(['title','_path','description','date']).find();
+const posts =  await queryContent('note','programmers').only(['title','_path','description','date']).find();
 postStore.programmersPostUpdate(posts);
 </script>

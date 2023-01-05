@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-const algorithms = await queryContent('note/algorithms').only(['title','_path','description','date']).find();
+const algorithms = await queryContent('note','algorithms').only(['title','_path','description','date']).find();
 algorithms.reverse();
 // useHead({
 //     title: 'jomoo.dev 알고리즘',
