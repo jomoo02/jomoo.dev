@@ -18,5 +18,10 @@
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
-
+useHead({
+    title: 'jomoo.dev',
+    meta:[
+        { name: 'description', content: '프로그래머스 풀이'}
+    ],
+})
 </script>

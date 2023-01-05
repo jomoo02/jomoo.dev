@@ -16,6 +16,12 @@
 <script setup>
 const algorithms = await queryContent('note/algorithms').only(['title','_path','description','date']).find();
 algorithms.reverse();
+useHead({
+    title: 'jomoo.dev',
+    meta:[
+        { name: 'description', content: '알고리즘 정리'}
+    ],
+})
 </script>
 
 <style scoped>
