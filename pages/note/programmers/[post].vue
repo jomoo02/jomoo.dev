@@ -4,7 +4,7 @@
             <NoteSideBar></NoteSideBar>
         </div>
         <div class="min-w-full col-span-10 md:col-span-8 pb-8" >
-            <div class="prose"><ContentDoc></ContentDoc></div>
+            <div class="prose min-w-full"><ContentDoc></ContentDoc></div>
 
 
             <div class="flex flex-col gap-2.5 md:flex-row w-full" :class="pageNumber < postStore.programmersPosts.length-1 ? 'justify-between':'justify-end'">
