@@ -1,17 +1,30 @@
 <template>
     <div>
-        <div>
-            <div>programmers</div>
-            <div class="flex">
-                <ClientOnly>
-                    <div v-for="idx in randomProgrammers" class="w-1/2" >
-                        <IndexContentCard :category="text" :postIdx="idx"></IndexContentCard>
-                    </div>
-                </ClientOnly>
+        <div class="mt-8 md:mt-0">
+            <div class="text-4xl text-zinc-900 font-extrabold mb-5">programmers</div>
+            <div class="flex gap-x-2.5 md:gap-x-4 w-full py-1 overflow-x-auto">
+                <div v-for="idx in 4" class="min-w-full xs:min-w-[187px] md:min-w-[288px] md:w-[288px] md:max-w-[288px]" >
+                    <IndexContentCard :category="programmers" :postIdx="idx-1"></IndexContentCard>
+                </div>
             </div>
         </div>
-        <div>
-            Projects
+
+        <div class="mt-14">
+            <div class="text-4xl text-zinc-900 font-extrabold mb-5">note</div>
+            <div class="flex gap-x-2.5 md:gap-x-4 w-full py-1 overflow-x-auto">
+                <div v-for="idx in 1" class="min-w-full xs:min-w-[187px] xs:max-w-[187px] max-w-[290px] md:max-w[288px] md:min-w-[288px] md:w-[288px]" >
+                    <IndexContentCard :category="algorithms" :postIdx="idx-1"></IndexContentCard>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-14">
+            <div class="text-4xl text-zinc-900 font-extrabold mb-5">projects</div>
+            <div class="flex gap-x-2.5 md:gap-x-4 w-full py-1 overflow-x-auto">
+                <div v-for="idx in 1" class="min-w-full xs:min-w-[187px] xs:max-w-[187px] max-w-[290px] md:max-w[288px] md:min-w-[288px] md:w-[288px]" >
+                    <IndexContentCard :category="projects" :postIdx="idx-1"></IndexContentCard>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -19,16 +32,8 @@
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
-const randomProgrammers = randomProgrammersSelect();
-const text = ref("programmers");
-console.log(randomProgrammers)
-function randomProgrammersSelect() {
-    const randomArr = new Array();
-    let postRange = postStore.programmersPosts.length;
-    console.log(postRange)
-    for(let i = 0; i<4; i++) {
-        randomArr.push(Math.floor(Math.random()*postRange));
-    }
-    return randomArr
-}
+const programmers = ref("programmers");
+const algorithms = ref('algorithms');
+const projects = ref('projects');
+
 </script>

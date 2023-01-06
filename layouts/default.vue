@@ -1,6 +1,5 @@
 <template>
     <div class="max-h-full overflow-hidden">
-
         <div class="fixed top-0 z-20 w-full bg-white">
             <header class="border-b-[1px] border-b-gray-300">
                 <div class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 relative w-full">
@@ -11,22 +10,22 @@
                         </div>
 
                         <div class="flex justify-center  md:justify-start col-span-4 md:col-span-1 ">
-                            <div class="text-2xl font-extrabold ">
+                            <div class="text-2xl font-extrabold text-stone-800">
                                 <NuxtLink to="/" @click="home()">JOMOO.DEV</NuxtLink>
                             </div>
                         </div>
                         <ul class="hidden md:flex justify-center gap-x-10 col-span-4 font-semibold">
                             <li>
-                                <NuxtLink to="/note/algorithms">
-                                    <div class="flex p-1.5  border-b-[2px] border-b-white hover:text-emerald-500" :class="check === 1 ? 'link' : '' "  @click="menuSelect()">Note</div>
+                                <NuxtLink to="/note/programmers">
+                                    <div class="flex p-1.5 text-zinc-600 border-b-[2px] border-b-white hover:text-emerald-500" :class="check === 1 ? 'link' : '' "  @click="menuSelect()">Note</div>
                                 </NuxtLink>
                             </li>
                             <li >
                                 <NuxtLink to="/projects/loltr">
-                                    <div class="flex p-1.5  border-b-[2px] border-b-white hover:text-emerald-500" :class="check === 2 ? 'link' : '' " @click="menuSelect2()">Projects</div>
+                                    <div class="flex p-1.5 text-zinc-600  border-b-[2px] border-b-white hover:text-emerald-500" :class="check === 2 ? 'link' : '' " @click="menuSelect2()">Projects</div>
                                 </NuxtLink>
                             </li>
-                            <li><div class="p-1.5 cursor-not-allowed">Resume</div></li>
+                            <li><div class="p-1.5 cursor-not-allowed text-zinc-600 ">Resume</div></li>
                         </ul>
                     </nav>
                 </div>
@@ -37,19 +36,19 @@
             <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" :class="hiddenCheck === 1 ? 'hidden' : '' ">
                 <li>
                     <NuxtLink to="/note/algorithms">
-                        <div class="flex p-1.5 hover:text-emerald-500" :class="check === 1 ? 'link_md' : '' " @click="menuSelect()">
+                        <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="check === 1 ? 'link_md' : '' " @click="menuSelect()">
                             Note
                         </div>
                     </NuxtLink>
                 </li>
                 <li >
                     <NuxtLink to="/projects/loltr">
-                        <div class="flex p-1.5 hover:text-emerald-500" :class="check === 2 ? 'link_md' : '' " @click="menuSelect2()">
+                        <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="check === 2 ? 'link_md' : '' " @click="menuSelect2()">
                             Projects
                         </div>
                     </NuxtLink>
                 </li>
-                <li class="p-1.5 cursor-not-allowed">Resume</li>
+                <li class="p-1.5 cursor-not-allowed text-zinc-600">Resume</li>
             </ul>
         </div>
         <div :class="hiddenCheck === 2 ? 'hidden' : '' ">
@@ -62,12 +61,13 @@
 <script setup>
 const route = useRoute();
 const linkes = ['projects','note']
-const check = ref(1);
+const check = ref(0);
 const hiddenCheck = ref(1);
 
 console.log("updated")
 function home() {
-    check.value=1;
+    check.value=0;
+    hiddenCheck.value = 1;
 
 }
 const routes = route.path.split('/');
