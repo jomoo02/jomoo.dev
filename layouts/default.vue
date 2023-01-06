@@ -31,27 +31,7 @@
                 </div>
             </header>
         </div>
-     
-        <!-- <div class="flex pt-2.5 mt-16 md:mt-32">
-            <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" :class="hiddenCheck === 1 ? 'hidden' : '' ">
-                <li>
-                    <NuxtLink to="/note/programmers">
-                        <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 1 ? 'link_md' : '' " @click="menuSelect()">
-                            Note
-                        </div>
-                    </NuxtLink>
-                </li>
-                <li >
-                    <NuxtLink to="/projects/loltr">
-                        <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 2 ? 'link_md' : '' " @click="menuSelect2()">
-                            Projects
-                        </div>
-                    </NuxtLink>
-                </li>
-                <li class="p-1.5 cursor-not-allowed text-zinc-600">Resume</li>
-            </ul>
-        </div> -->
-        <!-- <div :class="hiddenCheck === 2 ? 'hidden' : '' "> -->
+  
         <div class="mt-16 pt-2.5 md:mt-32">
             <slot />
         </div>
