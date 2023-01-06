@@ -18,7 +18,7 @@ import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
 
 useHead({
-    title: 'jomoo.dev 프로젝트',
+    title: '프로젝트 lot.tr 노트',
     meta:[
         { name: 'description', content: '프로젝트 lol.tr 노트'}
     ],

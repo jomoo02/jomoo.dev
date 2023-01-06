@@ -35,5 +35,10 @@ const postStore = usePostDataStore();
 const programmers = ref("programmers");
 const algorithms = ref('algorithms');
 const projects = ref('projects');
-
+useHead({
+    title: 'jomoo.dev',
+    meta:[
+        { name: 'description', content: 'jomoo.dev 메인 페이지'}
+    ],
+})
 </script>

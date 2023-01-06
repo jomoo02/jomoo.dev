@@ -16,6 +16,12 @@
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
+useHead({
+    title: '알고리즘',
+    meta:[
+        { name: 'description', content: '알고리즘 노트'}
+    ],
+})
 </script>
 
 <style scoped>
