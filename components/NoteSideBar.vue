@@ -19,8 +19,11 @@
     </nav>
 </template>
 <script setup>
+import { useMainStateStore } from '~~/store/mainState';
+const mainStore = useMainStateStore();
 const route= useRoute();
 const check = ref(1);
+
 
 const routes = route.path.split('/');
 if (routes[2]=='algorithms'){

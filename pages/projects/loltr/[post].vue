@@ -10,5 +10,7 @@
 </template>
 
 <script setup>
-
+import { useMainStateStore } from '~~/store/mainState';
+const mainStore = useMainStateStore();
+mainStore.defaultLayoutIdx = 2;
 </script>

@@ -5,7 +5,7 @@
                 <div class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 relative w-full">
                     <nav class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center">
                         <!--  -->
-                        <div class="col-span-1 flex justify-start cursor-pointer md:hidden" @click="hiddenMenu()">
+                        <div class="col-span-1 flex justify-start cursor-pointer md:hidden" @click="hiddenMenuOperation">
                             <ListIcon></ListIcon>
                         </div>
 
@@ -17,12 +17,12 @@
                         <ul class="hidden md:flex justify-center gap-x-10 col-span-4 font-semibold">
                             <li>
                                 <NuxtLink to="/note/programmers">
-                                    <div class="flex p-1.5 text-zinc-600 border-b-[2px] border-b-white hover:text-emerald-500" :class="check === 1 ? 'link' : '' "  @click="menuSelect()">Note</div>
+                                    <div class="flex p-1.5 text-zinc-600 border-b-[2px] border-b-white hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 1 ? 'link' : '' "  @click="menuSelectNote()">Note</div>
                                 </NuxtLink>
                             </li>
                             <li >
                                 <NuxtLink to="/projects/loltr">
-                                    <div class="flex p-1.5 text-zinc-600  border-b-[2px] border-b-white hover:text-emerald-500" :class="check === 2 ? 'link' : '' " @click="menuSelect2()">Projects</div>
+                                    <div class="flex p-1.5 text-zinc-600  border-b-[2px] border-b-white hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 2 ? 'link' : '' " @click="menuSelectProjects()">Projects</div>
                                 </NuxtLink>
                             </li>
                             <li><div class="p-1.5 cursor-not-allowed text-zinc-600 ">Resume</div></li>
@@ -32,68 +32,90 @@
             </header>
         </div>
      
-        <div class="flex pt-2.5 mt-16 md:mt-32">
+        <!-- <div class="flex pt-2.5 mt-16 md:mt-32">
             <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold" :class="hiddenCheck === 1 ? 'hidden' : '' ">
                 <li>
-                    <NuxtLink to="/note/algorithms">
-                        <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="check === 1 ? 'link_md' : '' " @click="menuSelect()">
+                    <NuxtLink to="/note/programmers">
+                        <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 1 ? 'link_md' : '' " @click="menuSelect()">
                             Note
                         </div>
                     </NuxtLink>
                 </li>
                 <li >
                     <NuxtLink to="/projects/loltr">
-                        <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="check === 2 ? 'link_md' : '' " @click="menuSelect2()">
+                        <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 2 ? 'link_md' : '' " @click="menuSelect2()">
                             Projects
                         </div>
                     </NuxtLink>
                 </li>
                 <li class="p-1.5 cursor-not-allowed text-zinc-600">Resume</li>
             </ul>
-        </div>
-        <div :class="hiddenCheck === 2 ? 'hidden' : '' ">
+        </div> -->
+        <!-- <div :class="hiddenCheck === 2 ? 'hidden' : '' "> -->
+        <div class="mt-16 pt-2.5 md:mt-32">
             <slot />
         </div>
+        <!-- </div> -->
+        <Teleport to="body">
+            <div v-if="mainStore.modalCheck === true " class="fixed inset-0 z-[999] mt-16 w-full bg-white">
+                <div class="flex pt-2.5">
+                    <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold">
+                        <li>
+                            <NuxtLink to="/note/programmers">
+                                <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 1 ? 'link_md' : '' " @click="menuSelectNote()">
+                                    Note
+                                </div>
+                            </NuxtLink>
+                        </li>
+                        <li >
+                            <NuxtLink to="/projects/loltr">
+                                <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 2 ? 'link_md' : '' " @click="menuSelectProjects()">
+                                    Projects
+                                </div>
+                            </NuxtLink>
+                        </li>
+                        <li class="p-1.5 cursor-not-allowed text-zinc-600">Resume</li>
+                    </ul>
+                </div>
+            </div>
+        </Teleport>
         
     </div>
 </template>
 
 <script setup>
+import { useMainStateStore } from '~~/store/mainState';
+const mainStore = useMainStateStore();
 const route = useRoute();
-const linkes = ['projects','note']
-const check = ref(0);
-const hiddenCheck = ref(1);
-
-console.log("updated")
-function home() {
-    check.value=0;
-    hiddenCheck.value = 1;
-
-}
 const routes = route.path.split('/');
 
 if(routes[1] === 'note') {
-    check.value=1;
+    mainStore.defaultLayoutIdx=1;
 }
 else if(routes[1] ==='projects') {
-    check.value=2;
+    mainStore.defaultLayoutIdx=2;
+}
+console.log("updated")
+
+function home() {
+    mainStore.defaultLayoutIdx=0;
+    mainStore.modalCheck = false;
+}
+function menuSelectNote() {
+    mainStore.defaultLayoutIdx = 1;
+    mainStore.modalCheck = false;
+}
+function menuSelectProjects(){
+    mainStore.defaultLayoutIdx = 2;
+    mainStore.modalCheck = false;
 }
 
-function menuSelect() {
-    check.value=1;
-    hiddenCheck.value = 1;
-}
-function menuSelect2(){
-    check.value=2;
-    hiddenCheck.value = 1;
-}
-
-function hiddenMenu() {
-    if (hiddenCheck.value === 1){
-        hiddenCheck.value = 2;
+function hiddenMenuOperation() {
+    if (mainStore.modalCheck === true){
+        mainStore.modalCheck = false;
     }
     else{
-        hiddenCheck.value = 1;
+        mainStore.modalCheck = true;
     }
 }
 

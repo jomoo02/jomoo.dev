@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-// const { data: page } = await useAsyncData('my-page', queryContent('/').findOne)
-
-// useContentHead(page)
+import { useMainStateStore } from '~~/store/mainState';
+const mainStore = useMainStateStore();
+mainStore.defaultLayoutIdx = 1;
 </script>
