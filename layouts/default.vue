@@ -1,5 +1,5 @@
 <template>
-    <div class="max-h-full overflow-hidden">
+    <div class="max-h-full">
         <div class="fixed top-0 z-20 w-full bg-white">
             <header class="border-b-[1px] border-b-gray-300">
                 <div class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 relative w-full">

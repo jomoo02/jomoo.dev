@@ -1,6 +1,6 @@
 <template>
     <nav class="justify-center items-center font-bold ">
-        <ul class="flex gap-x-4 md:block">
+        <ul class="flex gap-x-4 md:block ">
             <li>
                 <NuxtLink to="/note/programmers">
                     <div class=" hover:text-emerald-500 py-1.5" :class="check === 2 ? 'text-emerald-600' : 'text-black'">
