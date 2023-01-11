@@ -30,8 +30,6 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
-const postStore = usePostDataStore();
 const programmers = ref("programmers");
 const algorithms = ref('algorithms');
 const projects = ref('projects');

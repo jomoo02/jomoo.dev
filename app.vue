@@ -20,6 +20,4 @@ postStore.programmersPostUpdate(postsProgrammers);
 postStore.algorithmsPostsUpdate(postsAlgorithms);
 postStore.loltrPostsUpdate(postsLottr);
 
-
-
 </script>

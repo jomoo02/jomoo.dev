@@ -1,49 +1,45 @@
 import { defineStore } from 'pinia';
 export const usePostDataStore = defineStore('post', {
     state: () => ({
-        programmersPosts: ref([]),
-        programmersPostsIdx: ref({}),
-        algorithmsPosts: ref([]),
-        algorithmsPostsIdx: ref({}),
-        loltrPosts: ref([]),
-        loltrPostsIdx: ref([]),
+        programmersPosts: [],
+        programmersPostsIdx: {},
+        algorithmsPosts: [],
+        algorithmsPostsIdx: {},
+        loltrPosts: [],
+        loltrPostsIdx: [],
     }),
     actions:{
         programmersPostUpdate(programmers) {
-            let posts = new Array();
-            let postIdx = {};
-            posts = programmers;
-    
-            posts.forEach((post,idx) => {
-                let title = post.title;
+            const posts = [...programmers];
+            const postIdx = {};    
+            posts.forEach((post, idx) => {
+                const title = post.title;
                 postIdx[title] = idx;
             })
-            this.programmersPosts = posts;
-            this.programmersPostsIdx = postIdx;
+            this.programmersPosts = [...posts];
+            this.programmersPostsIdx = {...postIdx};
         },
         algorithmsPostsUpdate(algorithms) {
-            let posts = new Array();
-            let postIdx = {};
-            posts = algorithms;
-    
-            posts.forEach((post,idx) => {
-                let title = post.title;
+            const posts = [...algorithms];
+            const postIdx = {};
+            
+            posts.forEach((post, idx) => {
+                const title = post.title;
                 postIdx[title] = idx;
             })
-            this.algorithmsPosts = posts;
-            this.algorithmsPostsIdx = postIdx;
+            this.algorithmsPosts = [...posts];
+            this.algorithmsPostsIdx = {...postIdx};
         },
         loltrPostsUpdate(loltr) {
-            let posts = new Array();
-            let postIdx = {};
-            posts = loltr;
+            const posts = [...loltr];
+            const postIdx = {};
  
-            posts.forEach((post,idx) => {
-                let title = post.title;
+            posts.forEach((post, idx) => {
+                const title = post.title;
                 postIdx[title] = idx;
             })
-            this.loltrPosts = posts;
-            this.loltrPostsIdx = postIdx;
+            this.loltrPosts = [...posts];
+            this.loltrPostsIdx = {...postIdx};
         },
     }
 })
