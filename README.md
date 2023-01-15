@@ -1,42 +1,17 @@
-# Nuxt 3 Minimal Starter
+# Blog JOMOO.DEV
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+`nuxt3`와 `nuxt-content`를 이용해 만든 블로그입니다.  
+nuxt를 공부하던 중 nuxt3의 stable version이 나와 평소에 만들어 보고 싶었던 나만의 블로그를 제작했습니다.
+주로 프로그래머스 문제, 알고리즘, 해왔던 프로젝트에 관한 내용을 다룹니다.
 
-## Setup
+> [jomoo.dev](https://jomoo-dev.vercel.app/)
 
-Make sure to install the dependencies:
 
-```bash
-# yarn
-yarn install
+## 사용된 기술
+- Language: JavaScript
+- Framework: Nuxt3
+- Content: nuxt-content
+- Extensions: Pinia
+- UI: tailwindcss, nuxt-icon
+- Deploy: Vercel
 
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
