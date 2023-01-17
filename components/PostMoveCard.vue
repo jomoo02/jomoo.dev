@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="w-full border rounded-xl py-2.5 px-3.5 cursor-pointer hover:ring-2 ring-emerald-400 " @click="movePost">
-            <div v-if="props.postDirection === -1" class="flex  items-center gap-x-1.5">
+            <div v-if="props.postDirection === -1" class="flex items-center gap-x-1.5">
                 <div class="md:w-2/12 flex justify-start"><Icon name="icon-park:arrow-left" size="32" /></div>
                 <div class="w-10/12">
                     <div class="flex justify-start text-sm font-semibold text-zinc-500 ">
@@ -36,12 +36,20 @@ const props = defineProps({
         type: Number
     },
     pageNumber:{
-        type:Number,
+        type: Number,
     },
+    dataKind: {
+        type: String,
+    }
 })
-const pageData = postStore.programmersPosts[props.pageNumber];
-
+const pageData = ref('');
+if (props.dataKind === 'programmers') {
+    pageData.value = postStore.programmersPosts[props.pageNumber];
+}
+else if(props.dataKind === 'algorithms') {
+    pageData.value = postStore.algorithmsPosts[props.pageNumber];
+}
 function movePost() {
-    router.push({path:`${pageData._path}`})
+    router.push({path:`${pageData.value._path}`})
 }
 </script>
