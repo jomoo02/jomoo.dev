@@ -49,6 +49,9 @@ if (props.dataKind === 'programmers') {
 else if(props.dataKind === 'algorithms') {
     pageData.value = postStore.algorithmsPosts[props.pageNumber];
 }
+else if(props.dataKind === 'voca') {
+    pageData.value = postStore.vocaPosts[props.pageNumber];
+}
 function movePost() {
     router.push({path:`${pageData.value._path}`})
 }
