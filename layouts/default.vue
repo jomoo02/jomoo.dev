@@ -93,9 +93,15 @@ function menuSelectProjects(){
 function hiddenMenuOperation() {
     if (mainStore.modalCheck === true){
         mainStore.modalCheck = false;
+        if(process.client) {
+            document.body.classList.remove('overflow-y-hidden');
+        }
     }
     else{
         mainStore.modalCheck = true;
+        if(process.client) {
+            document.body.classList.add('overflow-y-hidden');
+        }
     }
 }
 
