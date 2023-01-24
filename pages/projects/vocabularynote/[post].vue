@@ -29,4 +29,5 @@ const AFTER = 1;
 
 const post = await queryContent(route.fullPath).findOne();
 const pageNumber = postStore.vocaPostsIdx[post.title];
+
 </script>
