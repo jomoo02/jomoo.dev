@@ -69,6 +69,7 @@ const mainStore = useMainStateStore();
 const route = useRoute();
 const routes = route.path.split('/');
 
+
 if(routes[1] === 'note') {
     mainStore.defaultLayoutIdx=1;
 }
@@ -79,29 +80,32 @@ console.log("updated")
 
 function home() {
     mainStore.defaultLayoutIdx=0;
-    mainStore.modalCheck = false;
+    overflowYRemove();
 }
 function menuSelectNote() {
     mainStore.defaultLayoutIdx = 1;
-    mainStore.modalCheck = false;
+    overflowYRemove();
 }
 function menuSelectProjects(){
     mainStore.defaultLayoutIdx = 2;
-    mainStore.modalCheck = false;
+    overflowYRemove();
 }
 
 function hiddenMenuOperation() {
     if (mainStore.modalCheck === true){
-        mainStore.modalCheck = false;
-        if(process.client) {
-            document.body.classList.remove('overflow-y-hidden');
-        }
+        overflowYRemove();
     }
     else{
         mainStore.modalCheck = true;
         if(process.client) {
             document.body.classList.add('overflow-y-hidden');
         }
+    }
+}
+function overflowYRemove() {
+    mainStore.modalCheck = false;
+    if(process.client) {
+        document.body.classList.remove('overflow-y-hidden');
     }
 }
 
