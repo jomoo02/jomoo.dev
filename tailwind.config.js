@@ -8,7 +8,26 @@ module.exports = {
       'xs':'281px',
       ...defaultTheme.screens,
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            'code': {
+                  color: "#333",
+            // You can also use @apply to inline existing utility classes
+            "@apply bg-gray-100 text-gray-700 p-1 rounded font-medium": "",
+                },
+                'code::before': {
+                  content: '""'
+                },
+                'code::after': {
+                  content: '""'
+                }
+              }
+        }
+      }
     },
   },
+
+
   plugins: [require('@tailwindcss/typography')],
 }
