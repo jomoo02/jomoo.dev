@@ -32,4 +32,7 @@ else if(props.category === 'algorithms') {
 else if(props.category === 'projects') {
     post.value = postStore.loltrPosts[props.postIdx];
 }
+else if(props.category === 'voca') {
+    post.value = postStore.vocaPosts[props.postIdx];
+}
 </script>
