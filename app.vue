@@ -12,10 +12,11 @@ import { usePostDataStore } from '~~/store/postData';
 import { useMainStateStore } from './store/mainState';
 const mainStore = useMainStateStore();
 const postStore = usePostDataStore();
-const postsProgrammers =  await queryContent('note','programmers').only(['title','_path','description','date']).sort({ date: -1 }).find();
-const postsAlgorithms = await queryContent('note','algorithms').only(['title','_path','description','date']).sort({ date: -1 }).find();
-const postsLottr = await queryContent('projects','loltr').only(['title','_path','description','date']).sort({ date: -1 }).find();
-const postsVoca = await queryContent('projects', 'vocabularynote').only(['title','_path','description','date']).sort({ date: -1 }).find();
+
+const postsProgrammers =  await (await queryContent('note','programmers').only(['title','_path','description','date']).find()).reverse();
+const postsAlgorithms = await queryContent('note','algorithms').only(['title','_path','description','date']).sort(1).find();
+const postsLottr = await queryContent('projects','loltr').only(['title','_path','description','date']).sort(1).find();
+const postsVoca = await queryContent('projects', 'vocabularynote').only(['title','_path','description','date']).sort(1).find();
 postStore.programmersPostUpdate(postsProgrammers);
 postStore.algorithmsPostsUpdate(postsAlgorithms);
 postStore.loltrPostsUpdate(postsLottr);
