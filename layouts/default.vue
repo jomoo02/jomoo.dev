@@ -21,11 +21,11 @@
                                 </NuxtLink>
                             </li>
                             <li >
-                                <NuxtLink to="/projects/loltr">
+                                <NuxtLink to="/projects/vocabularynote">
                                     <div class="flex p-1.5 text-zinc-600  border-b-[2px] border-b-white hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 2 ? 'link' : '' " @click="menuSelectProjects()">Projects</div>
                                 </NuxtLink>
                             </li>
-                            <li><div class="p-1.5 cursor-not-allowed text-zinc-600 ">Resume</div></li>
+                            <li><div class="p-1.5 cursor-not-allowed text-zinc-600 ">etc</div></li>
                         </ul>
                     </nav>
                 </div>
@@ -48,13 +48,13 @@
                             </NuxtLink>
                         </li>
                         <li >
-                            <NuxtLink to="/projects/loltr">
+                            <NuxtLink to="/projects/vocabularynote">
                                 <div class="flex p-1.5 text-zinc-600 hover:text-emerald-500" :class="mainStore.defaultLayoutIdx === 2 ? 'link_md' : '' " @click="menuSelectProjects()">
                                     Projects
                                 </div>
                             </NuxtLink>
                         </li>
-                        <li class="p-1.5 cursor-not-allowed text-zinc-600">Resume</li>
+                        <li class="p-1.5 cursor-not-allowed text-zinc-600">etc</li>
                     </ul>
                 </div>
             </div>
