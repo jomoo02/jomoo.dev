@@ -71,15 +71,15 @@ const routes = route.path.split('/');
 
 
 if(routes[1] === 'note') {
-    mainStore.defaultLayoutIdx=1;
+    mainStore.defaultLayoutIdx = 1;
 }
 else if(routes[1] ==='projects') {
-    mainStore.defaultLayoutIdx=2;
+    mainStore.defaultLayoutIdx = 2;
 }
 console.log("updated")
 
 function home() {
-    mainStore.defaultLayoutIdx=0;
+    mainStore.defaultLayoutIdx = 0;
     overflowYRemove();
 }
 function menuSelectNote() {
