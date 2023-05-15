@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent } from '#imports'
-import { client } from 'process';
 
 export default defineComponent({
   props: {
@@ -37,8 +36,8 @@ export default defineComponent({
 
 
 <template>
-    <div class="relative tett">
-        <button class="absolute top-2 right-2 text-sm  hover:text-white rounded-md px-1.5 py-0.5 hover:bg-gray-500" @click="copy_click">copy</button>
+    <div class="relative">
+        <button class="absolute top-2 right-2 text-gray-100 font-bold text-sm hover:text-white rounded-md px-1.5 py-0.5 hover:bg-gray-500" @click="copy_click">copy</button>
         <slot />
     </div>
 </template>
