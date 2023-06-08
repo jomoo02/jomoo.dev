@@ -25,10 +25,8 @@ export default defineComponent({
     }
   },
   methods: {
-    copy_click() {
-        window.navigator.clipboard.writeText(this.$props.code).then(() => {
-            console.log(this.$props.code);
-        });
+    clickCopyBtn() {
+        window.navigator.clipboard.writeText(this.$props.code);
     }
   }
 })
@@ -37,7 +35,7 @@ export default defineComponent({
 
 <template>
     <div class="relative">
-        <button class="absolute top-2 right-2 text-gray-100 font-bold text-sm hover:text-white rounded-md px-1.5 py-0.5 hover:bg-gray-500" @click="copy_click">copy</button>
+        <button class="absolute top-2 right-2 text-gray-100 font-bold text-sm hover:text-white rounded-md px-1.5 py-0.5 hover:bg-gray-500" @click="clickCopyBtn">copy</button>
         <slot />
     </div>
 </template>

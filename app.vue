@@ -17,10 +17,12 @@ const postsProgrammers = (await queryContent('note','programmers').only(['title'
 const postsAlgorithms = (await queryContent('note','algorithms').only(['title','_path','description','date']).find()).reverse();
 const postsLottr = (await queryContent('projects','loltr').only(['title','_path','description','date']).find()).reverse();
 const postsVoca = (await queryContent('projects', 'vocabularynote').only(['title','_path','description','date']).find()).reverse();
+const postsJomoodev = (await queryContent('projects', 'jomoodev').only(['title','_path','description','date']).find()).reverse();
 postStore.programmersPostUpdate(postsProgrammers);
 postStore.algorithmsPostsUpdate(postsAlgorithms);
 postStore.loltrPostsUpdate(postsLottr);
 postStore.vocaPostsUpdate(postsVoca);
+postStore.jomoodevPostsUpdate(postsJomoodev);
 
 
 </script>

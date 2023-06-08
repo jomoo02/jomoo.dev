@@ -31,6 +31,7 @@
 import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
 const router = useRouter();
+console.log(props);
 const props = defineProps({
     postDirection: {
         type: Number
@@ -51,6 +52,9 @@ else if(props.dataKind === 'algorithms') {
 }
 else if(props.dataKind === 'voca') {
     pageData.value = postStore.vocaPosts[props.pageNumber];
+}
+else if(props.dateKind === 'jomoodev') {
+    pageData.value = postStore.jomoodevPosts[props.pageNumber];
 }
 function movePost() {
     router.push({path:`${pageData.value._path}`})

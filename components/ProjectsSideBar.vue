@@ -11,6 +11,11 @@
                     <div class="hover:text-emerald-500 py-1.5" :class="check === 1 ? 'text-emerald-600' : 'text-black'">lol.tr</div>
                 </NuxtLink>
             </li> -->
+            <li>
+                <NuxtLink to="/projects/jomoodev">
+                    <div class="hover:text-emerald-500 py-1.5" :class="check === 3 ? 'text-emerald-600' : 'text-black'">jomoo.dev</div>
+                </NuxtLink>
+            </li>
 
         </ul>
     </nav>
@@ -21,11 +26,14 @@ const route= useRoute();
 const check = ref(1);
 const routes = route.path.split('/');
 
-if (routes[2]==='loltr') {
+if (routes[2] === 'loltr') {
     check.value = 1;
 }
-else if (routes[2]==='vocabularynote') {
+else if (routes[2] === 'vocabularynote') {
     check.value = 2;
+}
+else if (routes[2] === 'jomoodev') {
+    check.value = 3;
 }
 
 </script>

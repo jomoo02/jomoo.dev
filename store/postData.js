@@ -9,36 +9,43 @@ export const usePostDataStore = defineStore('post', {
         loltrPostsIdx: {},
         vocaPosts: [],
         vocaPostsIdx: {},
+        jomoodevPosts: [],
+        jomoodevPostsIdx: {},
     }),
     actions:{
         postSet(post) {
             const posts = [...post];
-            const postIdx = {};    
+            const postsIdx = {};    
             posts.forEach((post, idx) => {
                 const title = post.title;
-                postIdx[title] = idx;
+                postsIdx[title] = idx;
             });
-            return {posts, postIdx};
+            return { posts, postsIdx };
         },
         programmersPostUpdate(programmers) {
-            const {posts, postIdx} = this.postSet(programmers);
+            const { posts, postsIdx } = this.postSet(programmers);
             this.programmersPosts = [...posts];
-            this.programmersPostsIdx = {...postIdx};
+            this.programmersPostsIdx = { ...postsIdx };
         },
         algorithmsPostsUpdate(algorithms) {
-            const {posts, postIdx} = this.postSet(algorithms);
+            const { posts, postsIdx } = this.postSet(algorithms);
             this.algorithmsPosts = [...posts];
-            this.algorithmsPostsIdx = {...postIdx};
+            this.algorithmsPostsIdx = { ...postsIdx };
         },
         loltrPostsUpdate(loltr) {
-            const {posts, postIdx} = this.postSet(loltr);
+            const { posts, postsIdx } = this.postSet(loltr);
             this.loltrPosts = [...posts];
-            this.loltrPostsIdx = {...postIdx};
+            this.loltrPostsIdx = { ...postsIdx };
         },
         vocaPostsUpdate(voca) {
-            const {posts, postIdx} = this.postSet(voca);
+            const { posts, postsIdx } = this.postSet(voca);
             this.vocaPosts = [...posts];
-            this.vocaPostsIdx = {...postIdx};
+            this.vocaPostsIdx = { ...postsIdx };
+        },
+        jomoodevPostsUpdate(jomoodev) {
+            const { posts, postsIdx } = this.postSet(jomoodev);
+            this.jomoodevPosts = [...posts];
+            this.jomoodevPostsIdx = { ...postsIdx };
         }
     }
 })

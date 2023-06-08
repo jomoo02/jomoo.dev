@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@pinia/nuxt','nuxt-icon'],
     content:{
         highlight:{
-            preload:['python','py','vue'],
+            preload:['python','py','vue','md'],
             theme: 'dracula',
         }
     },

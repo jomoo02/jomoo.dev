@@ -19,11 +19,11 @@
 
 <script setup>
 const props = defineProps({
-    pageLink:String,
-    title:String,
-    description:String,
-    date:String
-})
+    pageLink: String,
+    title: String,
+    description: String,
+    date: String
+});
 const router = useRouter();
 function contentCardDetail(url) {
     // router.push({path:`~/${props.pageLink}`});
