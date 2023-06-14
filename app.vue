@@ -9,8 +9,6 @@
 
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
-import { useMainStateStore } from './store/mainState';
-const mainStore = useMainStateStore();
 const postStore = usePostDataStore();
 
 const postsProgrammers = (await queryContent('note','programmers').only(['title','_path','description','date']).find()).reverse();
@@ -23,6 +21,5 @@ postStore.algorithmsPostsUpdate(postsAlgorithms);
 postStore.loltrPostsUpdate(postsLottr);
 postStore.vocaPostsUpdate(postsVoca);
 postStore.jomoodevPostsUpdate(postsJomoodev);
-
 
 </script>
