@@ -15,6 +15,13 @@
                     </div>
                 </NuxtLink>
             </li>
+            <li>
+                <NuxtLink to="/note/wootecos">
+                    <div class="hover:text-emerald-500 py-1.5" :class="check === 3 ? 'text-emerald-600' : 'text-black'" >
+                        우테코
+                    </div>
+                </NuxtLink>
+            </li>
         </ul>
     </nav>
 </template>
@@ -22,15 +29,16 @@
 const route= useRoute();
 const check = ref(0);
 
-
 const routes = route.path.split('/');
 
-
-if (routes[2] == 'programmers'){
+if (routes[2] == 'programmers') {
     check.value = 1;
 }
 else if (routes[2] == 'algorithms'){
     check.value = 2;
+}
+else if (routes[2] === 'wootecos') {
+    check.value = 3;
 }
     
 </script>

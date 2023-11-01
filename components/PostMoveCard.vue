@@ -44,19 +44,23 @@ const props = defineProps({
     }
 })
 const pageData = ref('');
+
 if (props.dataKind === 'programmers') {
     pageData.value = postStore.programmersPosts[props.pageNumber];
 }
-else if(props.dataKind === 'algorithms') {
+else if (props.dataKind === 'algorithms') {
     pageData.value = postStore.algorithmsPosts[props.pageNumber];
 }
-else if(props.dataKind === 'voca') {
+else if (props.dataKind === 'voca') {
     pageData.value = postStore.vocaPosts[props.pageNumber];
 }
-else if(props.dateKind === 'jomoodev') {
+else if (props.dateKind === 'jomoodev') {
     pageData.value = postStore.jomoodevPosts[props.pageNumber];
 }
+else if (props.dataKind === 'wooteco') {
+    pageData.value = postStore.wootecoPosts[props.pageNumber];
+}
 function movePost() {
-    router.push({path:`${pageData.value._path}`})
+    router.push({ path:`${pageData.value._path }`});
 }
 </script>
