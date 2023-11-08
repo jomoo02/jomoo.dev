@@ -4,7 +4,7 @@
             <NoteSideBar />
         </div>
         <div class="min-w-full col-span-10 md:col-span-8 pb-8" >
-            <div class="prose min-w-full prose-a: no-underline"><ContentDoc class=""/></div>
+            <div class="prose min-w-full prose-a: no-underline"><ContentDoc /></div>
             <div class="flex flex-col gap-2.5 md:flex-row w-full" :class="pageNumber < postStore.wootecoPosts.length-1 ? 'justify-between' : 'justify-end'">
             <div v-if="pageNumber < postStore.wootecoPosts.length - 1" class="md:w-1/3">
                 <PostMoveCard :postDirection="BEFORE" :pageNumber="pageNumber + 1" dataKind="wooteco" />

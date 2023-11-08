@@ -65,10 +65,10 @@
 
 <script setup>
 import { useMainStateStore } from '~~/store/mainState';
+
 const mainStore = useMainStateStore();
 const route = useRoute();
 const routes = route.path.split('/');
-
 
 if(routes[1] === 'note') {
     mainStore.defaultLayoutIdx = 1;
@@ -76,16 +76,17 @@ if(routes[1] === 'note') {
 else if(routes[1] ==='projects') {
     mainStore.defaultLayoutIdx = 2;
 }
-console.log("updated")
 
 function home() {
     mainStore.defaultLayoutIdx = 0;
     overflowYRemove();
 }
+
 function menuSelectNote() {
     mainStore.defaultLayoutIdx = 1;
     overflowYRemove();
 }
+
 function menuSelectProjects(){
     mainStore.defaultLayoutIdx = 2;
     overflowYRemove();

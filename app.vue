@@ -9,14 +9,20 @@
 
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
+
 const postStore = usePostDataStore();
 
-const postsProgrammers = (await queryContent('note','programmers').only(['title','_path','description','date']).find()).reverse();
-const postsAlgorithms = (await queryContent('note','algorithms').only(['title','_path','description','date']).find()).reverse();
-const postsLottr = (await queryContent('projects','loltr').only(['title','_path','description','date']).find()).reverse();
-const postsVoca = (await queryContent('projects', 'vocabularynote').only(['title','_path','description','date']).find()).reverse();
-const postsJomoodev = (await queryContent('projects', 'jomoodev').only(['title','_path','description','date']).find()).reverse();
-const postsWooteco = (await queryContent('note', 'wooteco').only(['title','_path','description','date']).find()).reverse();
+async function getPosts(title, detail) {
+  const posts = (await queryContent(title, detail).only(['title', '_path', 'description', 'date']).find());
+  return posts.reverse();
+}
+// const postsProgrammers = (await queryContent('note','programmers');
+const postsProgrammers = await getPosts('note', 'programmers');
+const postsAlgorithms = await getPosts('note','algorithms');
+const postsLottr = await getPosts('projects','loltr');
+const postsVoca = await getPosts('projects', 'vocabularynote');
+const postsJomoodev = await getPosts('projects', 'jomoodev');
+const postsWooteco = await getPosts('note', 'wooteco');
 postStore.programmersPostUpdate(postsProgrammers);
 postStore.algorithmsPostsUpdate(postsAlgorithms);
 postStore.loltrPostsUpdate(postsLottr);
