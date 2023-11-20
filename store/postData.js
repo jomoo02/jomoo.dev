@@ -13,6 +13,8 @@ export const usePostDataStore = defineStore('post', {
         jomoodevPostsIdx: {},
         wootecoPosts: [],
         wootecoPostsIdx: {},
+        jsPosts: [],
+        jsPostsIdx: {},
     }),
     actions:{
         postSet(post) {
@@ -53,6 +55,11 @@ export const usePostDataStore = defineStore('post', {
             const { posts, postsIdx } = this.postSet(wooteco);
             this.wootecoPosts = [...posts];
             this.wootecoPostsIdx = { ...postsIdx };
+        },
+        jsPostsUpdate(js) {
+            const { posts, postsIdx } = this.postSet(js);
+            this.jsPosts = [...posts];
+            this.jsPostsIdx = { ...postsIdx };
         }
     }
 })

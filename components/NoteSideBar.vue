@@ -22,6 +22,13 @@
                     </div>
                 </NuxtLink>
             </li>
+            <li>
+                <NuxtLink to="/note/js">
+                    <div class="hover:text-emerald-500 py-1.5" :class="check === 4 ? 'text-emerald-600' : 'text-black'" >
+                        자바스크립트
+                    </div>
+                </NuxtLink>
+            </li>
         </ul>
     </nav>
 </template>
@@ -39,6 +46,9 @@ else if (routes[2] == 'algorithms'){
 }
 else if (routes[2] === 'wootecos') {
     check.value = 3;
+}
+else if (routes[2] === 'js') {
+    check.value = 4;
 }
     
 </script>

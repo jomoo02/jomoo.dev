@@ -16,18 +16,21 @@ async function getPosts(title, detail) {
   const posts = (await queryContent(title, detail).only(['title', '_path', 'description', 'date']).find());
   return posts.reverse();
 }
-// const postsProgrammers = (await queryContent('note','programmers');
+
 const postsProgrammers = await getPosts('note', 'programmers');
 const postsAlgorithms = await getPosts('note','algorithms');
 const postsLottr = await getPosts('projects','loltr');
 const postsVoca = await getPosts('projects', 'vocabularynote');
 const postsJomoodev = await getPosts('projects', 'jomoodev');
 const postsWooteco = await getPosts('note', 'wooteco');
+const postsJs = await getPosts('note', 'js');
+
 postStore.programmersPostUpdate(postsProgrammers);
 postStore.algorithmsPostsUpdate(postsAlgorithms);
 postStore.loltrPostsUpdate(postsLottr);
 postStore.vocaPostsUpdate(postsVoca);
 postStore.jomoodevPostsUpdate(postsJomoodev);
 postStore.wootecoPostsUptae(postsWooteco);
+postStore.jsPostsUpdate(postsJs);
 
 </script>

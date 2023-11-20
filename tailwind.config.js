@@ -17,12 +17,17 @@ module.exports = {
             "@apply bg-gray-100 text-gray-700 p-1 rounded font-medium": "",
             },
             'code::before': {
-              content: '""'
+              content: '',
             },
             'code::after': {
-              content: '""'
+              content: '',
             },
-            
+            'blockquote p:first-of-type::before': {
+              content: '',
+            },
+            'blockquote p:last-of-type::after': {
+              content: '',
+            },
           }
         }
       }

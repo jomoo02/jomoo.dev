@@ -31,7 +31,11 @@
 import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
 const router = useRouter();
-console.log(props);
+
+function movePost() {
+    router.push({ path:`${pageData.value._path }`});
+}
+
 const props = defineProps({
     postDirection: {
         type: Number
@@ -60,7 +64,7 @@ else if (props.dateKind === 'jomoodev') {
 else if (props.dataKind === 'wooteco') {
     pageData.value = postStore.wootecoPosts[props.pageNumber];
 }
-function movePost() {
-    router.push({ path:`${pageData.value._path }`});
+else if (props.dataKind === 'js') {
+    pageData.value = postStore.jsPosts[props.pageNumber];
 }
 </script>
