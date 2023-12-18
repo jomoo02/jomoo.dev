@@ -11,9 +11,7 @@
                     </NuxtLink>
                 </div>
                 <div v-for="voca in postStore.vocaPosts" :key="voca">
-                    <div>
-                        <ContentCard :page-link="voca._path" :description="voca.description" :title="voca.title" :date="voca.date" />
-                    </div>
+                    <ContentCard :page-link="voca._path" :description="voca.description" :title="voca.title" :date="voca.date" />
                 </div>
             </div>
         </div>
@@ -22,6 +20,7 @@
 
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
+
 const postStore = usePostDataStore();
 
 useHead({
