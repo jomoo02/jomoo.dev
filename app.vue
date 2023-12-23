@@ -1,8 +1,9 @@
 <template>
   <div>
     <NuxtLayout>
-      <NuxtPage class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 min-h-full mb-16">
-      </NuxtPage>
+      <NuxtPage
+        class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 min-h-full mb-16"
+      />
     </NuxtLayout>
   </div>
 </template>
@@ -13,13 +14,15 @@ import { usePostDataStore } from '~~/store/postData';
 const postStore = usePostDataStore();
 
 async function getPosts(title, detail) {
-  const posts = (await queryContent(title, detail).only(['title', '_path', 'description', 'date']).find());
+  const posts = await queryContent(title, detail)
+    .only(['title', '_path', 'description', 'date'])
+    .find();
   return posts.reverse();
 }
 
 const postsProgrammers = await getPosts('note', 'programmers');
-const postsAlgorithms = await getPosts('note','algorithms');
-const postsLottr = await getPosts('projects','loltr');
+const postsAlgorithms = await getPosts('note', 'algorithms');
+const postsLottr = await getPosts('projects', 'loltr');
 const postsVoca = await getPosts('projects', 'vocabularynote');
 const postsJomoodev = await getPosts('projects', 'jomoodev');
 const postsWooteco = await getPosts('note', 'wooteco');
@@ -32,5 +35,4 @@ postStore.vocaPostsUpdate(postsVoca);
 postStore.jomoodevPostsUpdate(postsJomoodev);
 postStore.wootecoPostsUptae(postsWooteco);
 postStore.jsPostsUpdate(postsJs);
-
 </script>
