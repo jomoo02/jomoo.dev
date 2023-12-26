@@ -3,25 +3,19 @@
     <div class="fixed top-0 z-20 w-full bg-white">
       <header class="border-b-[1px] border-b-gray-300">
         <div class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 relative w-full">
-          <nav
-            class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center"
-          >
+          <nav class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center">
             <div
               class="col-span-1 flex justify-start cursor-pointer md:hidden"
               @click="hiddenMenuOperation"
             >
               <ListIcon />
             </div>
-            <div
-              class="flex justify-center md:justify-start col-span-4 md:col-span-1"
-            >
+            <div class="flex justify-center md:justify-start col-span-4 md:col-span-1">
               <div class="text-2xl font-extrabold text-stone-800">
                 <NuxtLink to="/" @click="home()">JOMOO.DEV</NuxtLink>
               </div>
             </div>
-            <ul
-              class="hidden md:flex justify-center gap-x-10 col-span-4 font-semibold"
-            >
+            <ul class="hidden md:flex justify-center gap-x-10 col-span-4 font-semibold">
               <li>
                 <NuxtLink to="/note/programmers">
                   <div
@@ -56,14 +50,9 @@
       <slot />
     </div>
     <Teleport to="body">
-      <div
-        v-if="mainStore.modalCheck === true"
-        class="fixed inset-0 z-[999] mt-16 w-full bg-white"
-      >
+      <div v-if="mainStore.modalCheck === true" class="fixed inset-0 z-[999] mt-16 w-full bg-white">
         <div class="flex pt-2.5">
-          <ul
-            class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold"
-          >
+          <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold">
             <li>
               <NuxtLink to="/note/programmers">
                 <div
@@ -115,17 +104,17 @@ function overflowYRemove() {
 }
 
 function home() {
-  mainStore.defaultLayoutIdx = 0;
+  // mainStore.defaultLayoutIdx = 0;
   overflowYRemove();
 }
 
 function menuSelectNote() {
-  mainStore.defaultLayoutIdx = 1;
+  // mainStore.defaultLayoutIdx = 1;
   overflowYRemove();
 }
 
 function menuSelectProjects() {
-  mainStore.defaultLayoutIdx = 2;
+  // mainStore.defaultLayoutIdx = 2;
   overflowYRemove();
 }
 

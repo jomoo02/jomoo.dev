@@ -18,14 +18,14 @@
             >
           </NuxtLink>
         </div>
-        <div v-for="voca in postStore.vocaPosts" :key="voca">
-          <ContentCard
-            :page-link="voca._path"
-            :description="voca.description"
-            :title="voca.title"
-            :date="voca.date"
-          />
-        </div>
+        <ContentCard
+          v-for="voca in postStore.vocaPosts"
+          :key="voca"
+          :page-link="voca._path"
+          :description="voca.description"
+          :title="voca.title"
+          :date="voca.date"
+        />
       </div>
     </div>
   </div>

@@ -8,14 +8,12 @@
       </div>
       <div class="col-span-10 md:col-span-8">
         <div v-for="jomoodev in postStore.jomoodevPosts" :key="jomoodev">
-          <div>
-            <ContentCard
-              :page-link="jomoodev._path"
-              :description="jomoodev.description"
-              :title="jomoodev.title"
-              :date="jomoodev.date"
-            ></ContentCard>
-          </div>
+          <ContentCard
+            :page-link="jomoodev._path"
+            :description="jomoodev.description"
+            :title="jomoodev.title"
+            :date="jomoodev.date"
+          />
         </div>
       </div>
     </div>

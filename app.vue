@@ -1,9 +1,7 @@
 <template>
   <div>
-    <NuxtLayout>
-      <NuxtPage
-        class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 min-h-full mb-16"
-      />
+    <NuxtLayout :name="name">
+      <NuxtPage class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 min-h-full mb-16" />
     </NuxtLayout>
   </div>
 </template>
@@ -19,6 +17,10 @@ async function getPosts(title, detail) {
     .find();
   return posts.reverse();
 }
+
+//
+const name = 'default-v2';
+//
 
 const postsProgrammers = await getPosts('note', 'programmers');
 const postsAlgorithms = await getPosts('note', 'algorithms');
