@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-8 md:mt-0">
+    <div class="mt-8 md:mt-4">
       <div class="text-4xl text-zinc-900 font-extrabold mb-5">programmers</div>
       <div class="flex gap-x-2.5 md:gap-x-4 w-full py-1 overflow-x-auto">
         <div

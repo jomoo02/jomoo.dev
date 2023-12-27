@@ -9,16 +9,9 @@
       <div class="prose min-w-full"><ContentDoc /></div>
       <div
         class="flex flex-col gap-2.5 md:flex-row w-full"
-        :class="
-          pageNumber < postStore.jomoodevPosts.length - 1
-            ? 'justify-between'
-            : 'justify-end'
-        "
+        :class="pageNumber < postStore.jomoodevPosts.length - 1 ? 'justify-between' : 'justify-end'"
       >
-        <div
-          v-if="pageNumber < postStore.jomoodevPosts.length - 1"
-          class="md:w-1/3"
-        >
+        <div v-if="pageNumber < postStore.jomoodevPosts.length - 1" class="md:w-1/3">
           <PostMoveCard
             :post-direction="BEFORE"
             :page-number="pageNumber + 1"

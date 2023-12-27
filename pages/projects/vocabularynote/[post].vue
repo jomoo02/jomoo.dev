@@ -9,28 +9,13 @@
       <div class="prose min-w-full"><ContentDoc /></div>
       <div
         class="flex flex-col gap-2.5 md:flex-row w-full"
-        :class="
-          pageNumber < postStore.vocaPosts.length - 1
-            ? 'justify-between'
-            : 'justify-end'
-        "
+        :class="pageNumber < postStore.vocaPosts.length - 1 ? 'justify-between' : 'justify-end'"
       >
-        <div
-          v-if="pageNumber < postStore.vocaPosts.length - 1"
-          class="md:w-1/3"
-        >
-          <PostMoveCard
-            :post-direction="BEFORE"
-            :page-number="pageNumber + 1"
-            data-kind="voca"
-          />
+        <div v-if="pageNumber < postStore.vocaPosts.length - 1" class="md:w-1/3">
+          <PostMoveCard :post-direction="BEFORE" :page-number="pageNumber + 1" data-kind="voca" />
         </div>
         <div v-if="pageNumber > 0" class="md:w-1/3">
-          <PostMoveCard
-            :post-direction="AFTER"
-            :page-number="pageNumber - 1"
-            data-kind="voca"
-          />
+          <PostMoveCard :post-direction="AFTER" :page-number="pageNumber - 1" data-kind="voca" />
         </div>
       </div>
     </div>

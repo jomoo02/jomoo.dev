@@ -3,6 +3,8 @@ import { HOME, NOTE, PROJECTS } from '../constants/categories';
 
 export const useCategoriesStore = defineStore('categories', () => {
   const categoriesState = ref(HOME);
+  const isSelectedNote = computed(() => categoriesState.value === NOTE);
+  const isSelectedProjects = computed(() => categoriesState.value === PROJECTS);
 
   function selectHome() {
     categoriesState.value = HOME;
@@ -18,6 +20,8 @@ export const useCategoriesStore = defineStore('categories', () => {
 
   return {
     categoriesState,
+    isSelectedNote,
+    isSelectedProjects,
     selectHome,
     selectNote,
     selectProject,
