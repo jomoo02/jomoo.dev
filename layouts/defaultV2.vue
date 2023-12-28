@@ -9,19 +9,24 @@ const { categoriesOpenState, toggleCategories, closeCategories } = useCategories
 provide('categoriesMenu', closeCategories);
 
 function clickCategoriesMenu() {
-  toggleCategories();
+  if (process.client) {
+    if (categoriesOpenState.value) {
+      document.documentElement.classList.remove('overflow-y-hidden');
+    } else {
+      document.documentElement.classList.add('overflow-y-hidden');
+    }
+    toggleCategories();
+  }
 }
 
 function clickHome() {
   closeCategories();
 }
-
-const testc = computed(() => (categoriesOpenState.value ? 'testcl' : ''));
 </script>
 
 <template>
-  <div :class="testc">
-    <div class="fixed top-0 z-20 w-full bg-white">
+  <div>
+    <div class="sticky top-0 z-20 w-full bg-white">
       <header class="border-b-[1px] border-b-gray-300">
         <nav
           class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 relative w-full"
@@ -55,12 +60,10 @@ const testc = computed(() => (categoriesOpenState.value ? 'testcl' : ''));
         </nav>
       </header>
     </div>
-    <div class="mt-[4.5rem] pt-2.5 md:mt-24">
+    <main class="pt-5 md:pt-8 min-h-[calc(100vh-65px)]">
       <slot />
-    </div>
-    <Teleport to="body">
-      <CategoriesMenu v-if="categoriesOpenState" />
-    </Teleport>
+    </main>
+    <Teleport to="body"><CategoriesMenu v-if="categoriesOpenState" /></Teleport>
   </div>
 </template>
 

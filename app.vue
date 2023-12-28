@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <NuxtLayout :name="name">
-      <NuxtPage class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 min-h-screen mb-16" />
-    </NuxtLayout>
-  </div>
+  <NuxtLayout :name="name">
+    <NuxtPage class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8" />
+  </NuxtLayout>
 </template>
 
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
+// import
 
 const postStore = usePostDataStore();
 
