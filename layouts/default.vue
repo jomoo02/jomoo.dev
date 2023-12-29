@@ -1,142 +1,72 @@
+<script setup>
+import { storeToRefs } from 'pinia';
+import { useCategoriesStore } from '~~/store/categoriesStore';
+
+const TARGET_SIZE = 768;
+const categoriesStore = useCategoriesStore();
+const { activeCategories } = storeToRefs(categoriesStore);
+const { isSreenUnderTargetSize } = useCheckScreenSize(TARGET_SIZE);
+const { categoriesMenuOpenState, toggleCategoriesMenu, closeCategoriesMenu } =
+  useCategoriesMenuControls();
+
+provide('closeCategoriesMenu', closeCategoriesMenu);
+</script>
+
 <template>
-  <div class="max-h-full">
-    <div class="fixed top-0 z-20 w-full bg-white">
+  <div>
+    <div class="sticky top-0 z-20 w-full bg-white">
       <header class="border-b-[1px] border-b-gray-300">
-        <div class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 relative w-full">
-          <nav class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center">
-            <div
-              class="col-span-1 flex justify-start cursor-pointer md:hidden"
-              @click="hiddenMenuOperation"
-            >
+        <nav
+          class="grid grid-cols-6 min-h-16 max-h-20 items-center h-16 lg:h-20 justify-center mx-auto max-w-7xl px-6 sm:px-4 lg:px-8 relative w-full"
+        >
+          <div class="col-span-1 flex justify-start md:hidden">
+            <div class="cursor-pointer" @click="toggleCategoriesMenu">
               <ListIcon />
             </div>
-            <div class="flex justify-center md:justify-start col-span-4 md:col-span-1">
-              <div class="text-2xl font-extrabold text-stone-800">
-                <NuxtLink to="/" @click="home()">JOMOO.DEV</NuxtLink>
-              </div>
-            </div>
-            <ul class="hidden md:flex justify-center gap-x-10 col-span-4 font-semibold">
-              <li>
-                <NuxtLink to="/note/programmers">
-                  <div
-                    class="flex p-1.5 text-zinc-600 border-b-[2px] border-b-white hover:text-emerald-500"
-                    :class="mainStore.defaultLayoutIdx === 1 ? 'link' : ''"
-                    @click="menuSelectNote()"
-                  >
-                    Note
-                  </div>
-                </NuxtLink>
-              </li>
-              <li>
-                <NuxtLink to="/projects/vocabularynote">
-                  <div
-                    class="flex p-1.5 text-zinc-600 border-b-[2px] border-b-white hover:text-emerald-500"
-                    :class="mainStore.defaultLayoutIdx === 2 ? 'link' : ''"
-                    @click="menuSelectProjects()"
-                  >
-                    Projects
-                  </div>
-                </NuxtLink>
-              </li>
-              <li>
-                <div class="p-1.5 cursor-not-allowed text-zinc-600">etc</div>
-              </li>
-            </ul>
-          </nav>
-        </div>
+          </div>
+          <div class="flex justify-center md:justify-start col-span-4 md:col-span-1">
+            <NuxtLink
+              to="/"
+              class="select-none text-2xl font-extrabold text-stone-800"
+              @click="closeCategoriesMenu"
+            >
+              JOMOO.DEV
+            </NuxtLink>
+          </div>
+          <ul class="hidden md:flex px-4 justify-center gap-x-10 col-span-4 font-semibold">
+            <li v-for="{ path, active, category } in activeCategories" :key="category" class="p-1">
+              <NuxtLink :to="path" class="link" :class="{ link_active: active }">
+                {{ category }}
+              </NuxtLink>
+            </li>
+            <li class="p-1">
+              <span class="flex p-1.5 cursor-not-allowed text-zinc-600 select-none">etc</span>
+            </li>
+          </ul>
+        </nav>
       </header>
     </div>
-    <div class="mt-16 pt-2.5 md:mt-32">
+    <main class="pt-5 md:pt-8 min-h-[calc(100vh-65px)]">
       <slot />
-    </div>
+    </main>
+    <footer class="mt-16 h-10 border-t-[1px] border-t-gray-300">
+      <div></div>
+    </footer>
     <Teleport to="body">
-      <div v-if="mainStore.modalCheck === true" class="fixed inset-0 z-[999] mt-16 w-full bg-white">
-        <div class="flex pt-2.5">
-          <ul class="flex-col px-4 justify-center gap-x-10 col-span-4 font-semibold">
-            <li>
-              <NuxtLink to="/note/programmers">
-                <div
-                  class="flex p-1.5 text-zinc-600 hover:text-emerald-500"
-                  :class="mainStore.defaultLayoutIdx === 1 ? 'link_md' : ''"
-                  @click="menuSelectNote()"
-                >
-                  Note
-                </div>
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/projects/vocabularynote">
-                <div
-                  class="flex p-1.5 text-zinc-600 hover:text-emerald-500"
-                  :class="mainStore.defaultLayoutIdx === 2 ? 'link_md' : ''"
-                  @click="menuSelectProjects()"
-                >
-                  Projects
-                </div>
-              </NuxtLink>
-            </li>
-            <li class="p-1.5 cursor-not-allowed text-zinc-600">etc</li>
-          </ul>
-        </div>
-      </div>
+      <CategoriesMenu v-if="categoriesMenuOpenState && isSreenUnderTargetSize" />
     </Teleport>
   </div>
 </template>
 
-<script setup>
-import { useMainStateStore } from '~~/store/mainState';
-
-const mainStore = useMainStateStore();
-const route = useRoute();
-const routes = route.path.split('/');
-
-if (routes[1] === 'note') {
-  mainStore.defaultLayoutIdx = 1;
-} else if (routes[1] === 'projects') {
-  mainStore.defaultLayoutIdx = 2;
-}
-
-function overflowYRemove() {
-  mainStore.modalCheck = false;
-  if (process.client) {
-    document.body.classList.remove('overflow-y-hidden');
-  }
-}
-
-function home() {
-  // mainStore.defaultLayoutIdx = 0;
-  overflowYRemove();
-}
-
-function menuSelectNote() {
-  // mainStore.defaultLayoutIdx = 1;
-  overflowYRemove();
-}
-
-function menuSelectProjects() {
-  // mainStore.defaultLayoutIdx = 2;
-  overflowYRemove();
-}
-
-function hiddenMenuOperation() {
-  if (mainStore.modalCheck === true) {
-    overflowYRemove();
-  } else {
-    mainStore.modalCheck = true;
-    if (process.client) {
-      document.body.classList.add('overflow-y-hidden');
-    }
-  }
-}
-</script>
 <style scoped>
 .link {
+  @apply flex p-1.5 text-zinc-600 hover:text-emerald-500 select-none;
+}
+.link_active {
   border-bottom-width: 2px;
+  padding-bottom: 4px;
   --tw-border-opacity: 1;
   border-bottom-color: rgb(5 150 105 / var(--tw-border-opacity));
-  color: #047857;
-}
-.link_md {
   color: #047857;
 }
 </style>

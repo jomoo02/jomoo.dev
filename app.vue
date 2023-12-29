@@ -1,12 +1,11 @@
 <template>
-  <NuxtLayout :name="name">
+  <NuxtLayout>
     <NuxtPage class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8" />
   </NuxtLayout>
 </template>
 
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
-// import
 
 const postStore = usePostDataStore();
 
@@ -16,10 +15,6 @@ async function getPosts(title, detail) {
     .find();
   return posts.reverse();
 }
-
-//
-const name = 'default-v2';
-//
 
 const postsProgrammers = await getPosts('note', 'programmers');
 const postsAlgorithms = await getPosts('note', 'algorithms');

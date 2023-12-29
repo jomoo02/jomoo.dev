@@ -1,18 +1,16 @@
 import { useCategoriesStore } from '~~/store/categoriesStore';
 import { NOTE, PROJECTS } from '../constants/categories';
 
-export default defineNuxtRouteMiddleware((to, from) => {
-  // if (from.path === to.path) return;
-
+export default defineNuxtRouteMiddleware((to) => {
   const categoriesStore = useCategoriesStore();
   const { selectHome, selectNote, selectProject } = categoriesStore;
-  const toPath = to.path.split('/')[1];
+  const category = to.path.split('/')[1];
 
-  if (toPath === '') {
+  if (category === '') {
     selectHome();
-  } else if (toPath === NOTE) {
+  } else if (category === NOTE) {
     selectNote();
-  } else if (toPath === PROJECTS) {
+  } else if (category === PROJECTS) {
     selectProject();
   }
 });

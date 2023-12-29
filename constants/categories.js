@@ -1,5 +1,3 @@
-const HOME = 'home';
-const NOTE = 'note';
-const PROJECTS = 'projects';
-
-export { HOME, NOTE, PROJECTS };
+export const HOME = 'home';
+export const NOTE = 'note';
+export const PROJECTS = 'projects';
