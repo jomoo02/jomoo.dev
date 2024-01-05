@@ -5,9 +5,8 @@ import { useCategoriesStore } from '~~/store/categoriesStore';
 const TARGET_SIZE = 768;
 const categoriesStore = useCategoriesStore();
 const { activeCategories } = storeToRefs(categoriesStore);
-const { isSreenUnderTargetSize } = useCheckScreenSize(TARGET_SIZE);
-const { categoriesMenuOpenState, toggleCategoriesMenu, closeCategoriesMenu } =
-  useCategoriesMenuControls();
+const { isCategoriesMenuOpenOnTargetSize, toggleCategoriesMenu, closeCategoriesMenu } =
+  useCategoriesMenuControls(TARGET_SIZE);
 
 provide('closeCategoriesMenu', closeCategoriesMenu);
 </script>
@@ -53,7 +52,7 @@ provide('closeCategoriesMenu', closeCategoriesMenu);
       <div></div>
     </footer>
     <Teleport to="body">
-      <CategoriesMenu v-if="categoriesMenuOpenState && isSreenUnderTargetSize" />
+      <CategoriesMenu v-if="isCategoriesMenuOpenOnTargetSize" />
     </Teleport>
   </div>
 </template>

@@ -13,7 +13,7 @@ onUnmounted(() => document.documentElement.classList.remove('overflow-y-hidden')
 <template>
   <div class="fixed inset-0 z-[999] top-[65px] pt-3 w-full bg-white">
     <nav class="flex flex-col px-4 gap-y-px col-span-4 font-semibold">
-      <div v-for="{ path, active, category } in activeCategories" :key="category">
+      <div v-for="{ path, active, category } in activeCategories" :key="category" class="flex">
         <NuxtLink
           class="link"
           :to="path"

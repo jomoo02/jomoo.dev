@@ -10,15 +10,10 @@
       <div
         class="flex flex-col gap-2.5 md:flex-row w-full"
         :class="
-          pageNumber < postStore.algorithmsPosts.length - 1
-            ? 'justify-between'
-            : 'justify-end'
+          pageNumber < postStore.algorithmsPosts.length - 1 ? 'justify-between' : 'justify-end'
         "
       >
-        <div
-          v-if="pageNumber < postStore.algorithmsPosts.length - 1"
-          class="md:w-1/3"
-        >
+        <div v-if="pageNumber < postStore.algorithmsPosts.length - 1" class="md:w-1/3">
           <PostMoveCard
             :post-direction="BEFORE"
             :page-number="pageNumber + 1"
@@ -39,13 +34,9 @@
 
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
-import { useMainStateStore } from '~~/store/mainState';
 
-const mainStore = useMainStateStore();
 const postStore = usePostDataStore();
 const route = useRoute();
-
-mainStore.defaultLayoutIdx = 1;
 
 const BEFORE = -1;
 const AFTER = 1;

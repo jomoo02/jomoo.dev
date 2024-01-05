@@ -24,10 +24,7 @@
 
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
-import { useMainStateStore } from '~~/store/mainState';
 
-const mainStore = useMainStateStore();
-mainStore.defaultLayoutIdx = 2;
 const postStore = usePostDataStore();
 const route = useRoute();
 const BEFORE = -1;

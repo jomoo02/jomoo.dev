@@ -1,5 +1,10 @@
-function useCategoriesMenuControls() {
+function useCategoriesMenuControls(targetSize) {
   const categoriesMenuOpenState = ref(false);
+  const { isSreenUnderTargetSize } = useCheckScreenSize(targetSize);
+
+  const isCategoriesMenuOpenOnTargetSize = computed(
+    () => categoriesMenuOpenState.value && isSreenUnderTargetSize.value,
+  );
 
   function openCategoriesMenu() {
     categoriesMenuOpenState.value = true;
@@ -15,6 +20,7 @@ function useCategoriesMenuControls() {
 
   return {
     categoriesMenuOpenState,
+    isCategoriesMenuOpenOnTargetSize,
     openCategoriesMenu,
     closeCategoriesMenu,
     toggleCategoriesMenu,
