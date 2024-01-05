@@ -8,9 +8,7 @@
         <Icon name="icon-park:arrow-left" size="32" />
       </div>
       <div class="w-10/12">
-        <div class="flex justify-start text-sm font-semibold text-zinc-500">
-          이전 포스트
-        </div>
+        <div class="flex justify-start text-sm font-semibold text-zinc-500">이전 포스트</div>
         <div class="flex items-center">
           <p class="m-0 text-lg font-bold text-zinc-700 truncate">
             {{ pageData.title }}
@@ -20,9 +18,7 @@
     </div>
     <div v-else class="flex items-center justify-end gap-x-1.5">
       <div class="w-10/12">
-        <div class="flex justify-end text-sm font-semibold text-zinc-500">
-          이후 포스트
-        </div>
+        <div class="flex justify-end text-sm font-semibold text-zinc-500">이후 포스트</div>
         <div class="flex justify-end items-center">
           <p class="m-0 text-lg font-bold text-zinc-700 truncate">
             {{ pageData.title }}

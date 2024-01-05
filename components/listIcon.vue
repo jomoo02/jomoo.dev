@@ -9,11 +9,7 @@
   >
     <title>menu_line</title>
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <g
-        id="Editor"
-        transform="translate(-1248.000000, 0.000000)"
-        fill-rule="nonzero"
-      >
+      <g id="Editor" transform="translate(-1248.000000, 0.000000)" fill-rule="nonzero">
         <g id="menu_line" transform="translate(1248.000000, 0.000000)">
           <path
             id="MingCute"

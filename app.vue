@@ -6,6 +6,7 @@
 
 <script setup>
 import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~~/store/postStore';
 
 const postStore = usePostDataStore();
 
@@ -31,4 +32,10 @@ postStore.vocaPostsUpdate(postsVoca);
 postStore.jomoodevPostsUpdate(postsJomoodev);
 postStore.wootecoPostsUptae(postsWooteco);
 postStore.jsPostsUpdate(postsJs);
+
+const testStore = usePostStore();
+
+await testStore.setPost();
+
+console.log(testStore.totalPosts);
 </script>

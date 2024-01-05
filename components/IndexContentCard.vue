@@ -10,9 +10,7 @@
       {{ post.description }}
     </div>
     <div class="w-full">
-      <div
-        class="flex justify-end text-sm text-zinc-400 overflow-hidden text-ellipsis"
-      >
+      <div class="flex justify-end text-sm text-zinc-400 overflow-hidden text-ellipsis">
         {{ post.date }}
       </div>
     </div>
