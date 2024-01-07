@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const usePostDataStore = defineStore('post', {
+export const usePostDataStore = defineStore('postt', {
   state: () => ({
     programmersPosts: [],
     programmersPostsIdx: {},

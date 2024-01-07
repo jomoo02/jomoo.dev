@@ -1,25 +1,32 @@
 import { defineStore } from 'pinia';
 import { CATEGORIES_DETAIL } from '~~/constants/categoriesDetail';
 
-export const usePostStore = defineStore('postt', () => {
+export const usePostStore = defineStore('post', () => {
   const totalPosts = ref({});
 
-  async function setProjectsPosts(category, detail) {
-    const posts = await queryContent(category, detail)
-      .only(['title', '_path', 'description', 'date'])
-      .find();
+  async function setPost() {
+    const queryPost = async ({ category, detail }) => {
+      const post = await queryContent(category, detail)
+        .only(['title', '_path', 'description', 'date'])
+        .find();
+      return { key: detail, data: post.reverse() };
+    };
 
-    totalPosts.value[detail] = posts.reverse();
+    const posts = await Promise.all(CATEGORIES_DETAIL.map(queryPost));
+
+    totalPosts.value = posts.reduce((acc, { key, data }) => {
+      acc[key] = data;
+      return acc;
+    }, {});
   }
 
-  async function setPost() {
-    await Promise.all(
-      CATEGORIES_DETAIL.map(({ category, detail }) => setProjectsPosts(category, detail)),
-    );
+  function pickPosts(detail) {
+    return totalPosts.value[detail];
   }
 
   return {
     totalPosts,
     setPost,
+    pickPosts,
   };
 });

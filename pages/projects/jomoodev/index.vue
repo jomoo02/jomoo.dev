@@ -9,7 +9,7 @@
       </div>
       <div class="col-span-10 md:col-span-8">
         <ContentCard
-          v-for="jomoodev in postStore.jomoodevPosts"
+          v-for="jomoodev in jomoodevPosts"
           :key="jomoodev"
           :page-link="jomoodev._path"
           :description="jomoodev.description"
@@ -22,9 +22,10 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~/store/postStore';
 
-const postStore = usePostDataStore();
+const postStore = usePostStore();
+const jomoodevPosts = postStore.pickPosts('jomoodev');
 
 useHead({
   title: 'jomoo.dev',

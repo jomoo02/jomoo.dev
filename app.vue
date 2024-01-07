@@ -34,8 +34,7 @@ postStore.wootecoPostsUptae(postsWooteco);
 postStore.jsPostsUpdate(postsJs);
 
 const testStore = usePostStore();
-
-await testStore.setPost();
-
-console.log(testStore.totalPosts);
+// testStore.setPost();
+// await callOnce(testStore.setPost);
+await callOnce(testStore.setPost);
 </script>

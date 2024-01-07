@@ -9,9 +9,9 @@
       <div class="prose min-w-full"><ContentDoc /></div>
       <div
         class="flex flex-col gap-2.5 md:flex-row w-full"
-        :class="pageNumber < postStore.jomoodevPosts.length - 1 ? 'justify-between' : 'justify-end'"
+        :class="pageNumber < jomoodevPosts.length - 1 ? 'justify-between' : 'justify-end'"
       >
-        <div v-if="pageNumber < postStore.jomoodevPosts.length - 1" class="md:w-1/3">
+        <div v-if="pageNumber < jomoodevPosts.length - 1" class="md:w-1/3">
           <PostMoveCard
             :post-direction="BEFORE"
             :page-number="pageNumber + 1"
@@ -31,13 +31,16 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
+// import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~/store/postStore';
 
-const postStore = usePostDataStore();
+const postStore = usePostStore();
 const route = useRoute();
 const BEFORE = -1;
 const AFTER = 1;
 
 const post = await queryContent(route.fullPath).findOne();
-const pageNumber = postStore.jomoodevPostsIdx[post.title];
+// const pageNumber = postStore.jomoodevPostsIdx[post.title];
+const jomoodevPosts = postStore.pickPosts('jomoodev');
+const pageNumber = jomoodevPosts.findIndex((postInfo) => postInfo.title === post.title);
 </script>
