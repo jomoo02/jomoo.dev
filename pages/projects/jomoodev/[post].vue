@@ -31,7 +31,6 @@
 </template>
 
 <script setup>
-// import { usePostDataStore } from '~~/store/postData';
 import { usePostStore } from '~/store/postStore';
 
 const postStore = usePostStore();

@@ -6,14 +6,14 @@
       <ProjectsSideBar />
     </div>
     <div class="col-span-10 md:col-span-8">
-      <div v-for="loltr in postStore.loltrPosts" :key="loltr">
+      <div v-for="loltr in loltrPosts" :key="loltr">
         <div>
           <ContentCard
             :page-link="loltr._path"
             :description="loltr.description"
             :title="loltr.title"
             :date="loltr.date"
-          ></ContentCard>
+          />
         </div>
       </div>
     </div>
@@ -21,9 +21,10 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~/store/postStore';
 
-const postStore = usePostDataStore();
+const postStore = usePostStore();
+const loltrPosts = postStore.pickPosts('loltr');
 
 useHead({
   title: '프로젝트 lot.tr 노트',

@@ -6,7 +6,7 @@
       <NoteSideBar />
     </div>
     <div class="col-span-10 md:col-span-8">
-      <div v-for="algorithm in postStore.algorithmsPosts" :key="algorithm">
+      <div v-for="algorithm in algorithmsPosts" :key="algorithm">
         <ContentCard
           :page-link="algorithm._path"
           :description="algorithm.description"
@@ -19,9 +19,10 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~/store/postStore';
 
-const postStore = usePostDataStore();
+const postStore = usePostStore();
+const algorithmsPosts = postStore.pickPosts('algorithms');
 
 useHead({
   title: '알고리즘',

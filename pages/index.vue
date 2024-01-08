@@ -32,7 +32,7 @@
           :key="idx"
           class="flex min-w-full xs:min-w-[187px] xs:max-w-[187px] max-w-[290px] md:max-w[288px] md:min-w-[288px] md:w-[288px]"
         >
-          <IndexContentCard category="voca" :post-idx="idx - 1" />
+          <IndexContentCard category="vocabularynote" :post-idx="idx - 1" />
         </div>
       </div>
     </div>

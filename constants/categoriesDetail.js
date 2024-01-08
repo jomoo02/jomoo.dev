@@ -4,6 +4,7 @@ export const CATEGORIES_DETAIL = [
   { category: NOTE, detail: 'programmers' },
   { category: NOTE, detail: 'algorithms' },
   { category: NOTE, detail: 'js' },
+  { category: NOTE, detail: 'wootecos' },
   { category: PROJECTS, detail: 'jomoodev' },
   { category: PROJECTS, detail: 'loltr' },
   { category: PROJECTS, detail: 'vocabularynote' },

@@ -48,7 +48,7 @@ provide('closeCategoriesMenu', closeCategoriesMenu);
     <main class="pt-5 md:pt-8 min-h-[calc(100vh-65px)]">
       <slot />
     </main>
-    <footer class="mt-16 h-10 border-t-[1px] border-t-gray-300">
+    <footer class="mt-8 h-10 border-t-[1px] border-t-gray-300">
       <div></div>
     </footer>
     <Teleport to="body">

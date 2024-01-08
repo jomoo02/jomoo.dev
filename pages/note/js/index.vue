@@ -6,7 +6,7 @@
       <NoteSideBar />
     </div>
     <div class="col-span-10 md:col-span-8">
-      <div v-for="jsPost in postStore.jsPosts" :key="jsPost">
+      <div v-for="jsPost in jsPosts" :key="jsPost">
         <ContentCard
           :page-link="jsPost._path"
           :description="jsPost.description"
@@ -19,9 +19,10 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~/store/postStore';
 
-const postStore = usePostDataStore();
+const postStore = usePostStore();
+const jsPosts = postStore.pickPosts('js');
 
 useHead({
   title: '자바스크립트 노트',

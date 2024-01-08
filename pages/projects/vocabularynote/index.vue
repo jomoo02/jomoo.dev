@@ -16,7 +16,7 @@
       </div>
       <div class="col-span-10 md:col-span-8">
         <ContentCard
-          v-for="voca in postStore.vocaPosts"
+          v-for="voca in vocabularyNotePosts"
           :key="voca"
           :page-link="voca._path"
           :description="voca.description"
@@ -29,9 +29,10 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~/store/postStore';
 
-const postStore = usePostDataStore();
+const postStore = usePostStore();
+const vocabularyNotePosts = postStore.pickPosts('vocabularynote');
 
 useHead({
   title: 'vocabulary note',

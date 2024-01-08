@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~/store/postStore';
 
 const props = defineProps({
   postDirection: {
@@ -50,23 +50,25 @@ const props = defineProps({
   },
 });
 
-const postStore = usePostDataStore();
+const postStore = usePostStore();
 const router = useRouter();
 const pageData = ref(null);
 
-if (props.dataKind === 'programmers') {
-  pageData.value = postStore.programmersPosts[props.pageNumber];
-} else if (props.dataKind === 'algorithms') {
-  pageData.value = postStore.algorithmsPosts[props.pageNumber];
-} else if (props.dataKind === 'voca') {
-  pageData.value = postStore.vocaPosts[props.pageNumber];
-} else if (props.dataKind === 'jomoodev') {
-  pageData.value = postStore.jomoodevPosts[props.pageNumber];
-} else if (props.dataKind === 'wooteco') {
-  pageData.value = postStore.wootecoPosts[props.pageNumber];
-} else if (props.dataKind === 'js') {
-  pageData.value = postStore.jsPosts[props.pageNumber];
-}
+pageData.value = postStore.pickPosts(props.dataKind)[props.pageNumber];
+
+// if (props.dataKind === 'programmers') {
+//   pageData.value = postStore.programmersPosts[props.pageNumber];
+// } else if (props.dataKind === 'algorithms') {
+//   pageData.value = postStore.algorithmsPosts[props.pageNumber];
+// } else if (props.dataKind === 'voca') {
+//   pageData.value = postStore.vocaPosts[props.pageNumber];
+// } else if (props.dataKind === 'jomoodev') {
+//   pageData.value = postStore.jomoodevPosts[props.pageNumber];
+// } else if (props.dataKind === 'wooteco') {
+//   pageData.value = postStore.wootecoPosts[props.pageNumber];
+// } else if (props.dataKind === 'js') {
+//   pageData.value = postStore.jsPosts[props.pageNumber];
+// }
 
 function movePost() {
   router.push({ path: pageData.value._path });

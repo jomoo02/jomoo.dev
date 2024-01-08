@@ -26,8 +26,8 @@
     "sitemap": "^7.1.1"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.4.6",
+    "@pinia/nuxt": "^0.5.1",
     "@vercel/analytics": "^0.1.6",
-    "pinia": "^2.0.28"
+    "pinia": "^2.1.7"
   }
 }

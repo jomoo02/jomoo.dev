@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { usePostDataStore } from '~~/store/postData';
+import { usePostStore } from '~/store/postStore';
 
 const props = defineProps({
   postIdx: {
@@ -32,20 +32,22 @@ const props = defineProps({
 });
 
 const router = useRouter();
-const postStore = usePostDataStore();
+const postStore = usePostStore();
 const post = ref(null);
 
 function contentCardDetail(url) {
   router.push({ path: `${url}` });
 }
 
-if (props.category === 'programmers') {
-  post.value = postStore.programmersPosts[props.postIdx];
-} else if (props.category === 'algorithms') {
-  post.value = postStore.algorithmsPosts[props.postIdx];
-} else if (props.category === 'projects') {
-  post.value = postStore.loltrPosts[props.postIdx];
-} else if (props.category === 'voca') {
-  post.value = postStore.vocaPosts[props.postIdx];
-}
+post.value = postStore.pickPosts(props.category)[props.postIdx];
+
+// if (props.category === 'programmers') {
+//   post.value = postStore.programmersPosts[props.postIdx];
+// } else if (props.category === 'algorithms') {
+//   post.value = postStore.algorithmsPosts[props.postIdx];
+// } else if (props.category === 'projects') {
+//   post.value = postStore.loltrPosts[props.postIdx];
+// } else if (props.category === 'voca') {
+//   post.value = postStore.vocaPosts[props.postIdx];
+// }
 </script>
