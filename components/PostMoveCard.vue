@@ -3,7 +3,7 @@
     class="w-full border rounded-xl py-2.5 px-3.5 cursor-pointer hover:ring-2 ring-emerald-400"
     @click="movePost"
   >
-    <div v-if="props.postDirection === -1" class="flex items-center gap-x-1.5">
+    <div v-if="props.direction === 'previous'" class="flex items-center gap-x-1.5">
       <div class="md:w-2/12 flex justify-start">
         <Icon name="icon-park:arrow-left" size="32" />
       </div>
@@ -11,7 +11,7 @@
         <div class="flex justify-start text-sm font-semibold text-zinc-500">이전 포스트</div>
         <div class="flex items-center">
           <p class="m-0 text-lg font-bold text-zinc-700 truncate">
-            {{ pageData.title }}
+            {{ props.title }}
           </p>
         </div>
       </div>
@@ -21,7 +21,7 @@
         <div class="flex justify-end text-sm font-semibold text-zinc-500">이후 포스트</div>
         <div class="flex justify-end items-center">
           <p class="m-0 text-lg font-bold text-zinc-700 truncate">
-            {{ pageData.title }}
+            {{ props.title }}
           </p>
         </div>
       </div>
@@ -33,44 +33,27 @@
 </template>
 
 <script setup>
-import { usePostStore } from '~/store/postStore';
-
 const props = defineProps({
-  postDirection: {
-    type: Number,
+  direction: {
+    type: String,
     required: true,
   },
-  pageNumber: {
-    type: Number,
-    default: 0,
-  },
-  dataKind: {
+
+  path: {
     type: String,
-    default: 'voca',
+    required: true,
+  },
+
+  title: {
+    type: String,
+    required: true,
   },
 });
 
-const postStore = usePostStore();
 const router = useRouter();
-const pageData = ref(null);
-
-pageData.value = postStore.pickPosts(props.dataKind)[props.pageNumber];
-
-// if (props.dataKind === 'programmers') {
-//   pageData.value = postStore.programmersPosts[props.pageNumber];
-// } else if (props.dataKind === 'algorithms') {
-//   pageData.value = postStore.algorithmsPosts[props.pageNumber];
-// } else if (props.dataKind === 'voca') {
-//   pageData.value = postStore.vocaPosts[props.pageNumber];
-// } else if (props.dataKind === 'jomoodev') {
-//   pageData.value = postStore.jomoodevPosts[props.pageNumber];
-// } else if (props.dataKind === 'wooteco') {
-//   pageData.value = postStore.wootecoPosts[props.pageNumber];
-// } else if (props.dataKind === 'js') {
-//   pageData.value = postStore.jsPosts[props.pageNumber];
-// }
 
 function movePost() {
-  router.push({ path: pageData.value._path });
+  router.push({ path: props.path });
+  // await navigateTo(path);
 }
 </script>

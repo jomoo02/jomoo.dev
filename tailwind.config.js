@@ -2,12 +2,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  content: [
-    'content/**/*.md',
-    'pages/**/*.vue',
-    'layouts/**/*.vue',
-    'components/**/*.vue',
-  ],
+  content: ['content/**/*.md', 'pages/**/*.vue', 'layouts/**/*.vue', 'components/**/*.vue'],
   theme: {
     extend: {
       screens: {

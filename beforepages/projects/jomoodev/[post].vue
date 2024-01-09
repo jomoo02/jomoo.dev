@@ -40,6 +40,7 @@ const AFTER = 1;
 
 const post = await queryContent(route.fullPath).findOne();
 // const pageNumber = postStore.jomoodevPostsIdx[post.title];
+console.log(route.fullPath);
 const jomoodevPosts = postStore.pickPosts('jomoodev');
 const pageNumber = jomoodevPosts.findIndex((postInfo) => postInfo.title === post.title);
 </script>

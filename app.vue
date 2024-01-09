@@ -9,4 +9,6 @@ import { usePostStore } from '~~/store/postStore';
 
 const postStore = usePostStore();
 await callOnce(postStore.setPost);
+
+// console.log(await queryContent('note').find());
 </script>
