@@ -34,5 +34,5 @@ export default defineNuxtConfig({
       theme: 'dracula-soft',
     },
   },
-  plugins: [{ src: '~/plugins/vercel.js', mode: 'client' }],
+  // plugins: [{ src: '~/plugins/vercel.js', mode: 'client' }],
 });

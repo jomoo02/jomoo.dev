@@ -1,19 +1,18 @@
 <script setup>
 const route = useRoute();
-const { detail } = route.params;
+const { detail, post } = route.params;
 
 const { data: surrounds } = await useAsyncData(
-  `${route.path}-post-surrounds`,
+  `post-${post}-surrounds`,
   () => {
     return queryContent().only(['_path', 'title', '_dir']).findSurround(route.path);
   },
   {
     transform: (surrounds) => {
-      return surrounds.map((surround) => (surround._dir === detail ? surround : null));
+      return surrounds.map((surround) => (surround && surround._dir === detail ? surround : null));
     },
   },
 );
-console.log(surrounds);
 </script>
 
 <template>
