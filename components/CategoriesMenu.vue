@@ -4,7 +4,6 @@ import { useCategoriesStore } from '~~/store/categoriesStore';
 
 const categoriesStore = useCategoriesStore();
 const { activeCategories } = storeToRefs(categoriesStore);
-const closeCategoriesMenu = inject('closeCategoriesMenu');
 
 onMounted(() => document.documentElement.classList.add('overflow-y-hidden'));
 onUnmounted(() => document.documentElement.classList.remove('overflow-y-hidden'));
@@ -14,12 +13,7 @@ onUnmounted(() => document.documentElement.classList.remove('overflow-y-hidden')
   <div class="fixed inset-0 z-[999] top-[65px] pt-3 w-full bg-white">
     <nav class="flex flex-col px-4 gap-y-px col-span-4 font-semibold">
       <div v-for="{ path, active, category } in activeCategories" :key="category" class="flex">
-        <NuxtLink
-          class="link"
-          :to="path"
-          :class="{ link: path, link_active: active }"
-          @click="closeCategoriesMenu"
-        >
+        <NuxtLink class="link" :to="path" :class="{ link: path, link_active: active }">
           {{ category }}
         </NuxtLink>
       </div>

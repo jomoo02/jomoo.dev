@@ -1,6 +1,9 @@
 <script setup>
+import { PREVIOUS, NEXT } from '~/constants/postDirection';
+
 const route = useRoute();
 const { detail, post } = route.params;
+const directions = [PREVIOUS, NEXT];
 
 const { data: surrounds } = await useAsyncData(
   `post-${post}-surrounds`,
@@ -21,20 +24,12 @@ const { data: surrounds } = await useAsyncData(
       <ContentDoc />
     </div>
     <div v-if="surrounds?.length" class="flex flex-col md:flex-row w-full gap-2.5 justify-between">
-      <div class="md:w-1/3">
+      <div v-for="(surround, index) in surrounds" :key="surround" class="md:w-1/3">
         <PostMoveCard
-          v-if="surrounds[0]"
-          direction="previous"
-          :title="surrounds[0].title"
-          :path="surrounds[0]._path"
-        />
-      </div>
-      <div class="md:w-1/3">
-        <PostMoveCard
-          v-if="surrounds[1]"
-          direction="next"
-          :title="surrounds[1].title"
-          :path="surrounds[1]._path"
+          v-if="surround"
+          :direction="directions[index]"
+          :title="surround.title"
+          :path="surround._path"
         />
       </div>
     </div>

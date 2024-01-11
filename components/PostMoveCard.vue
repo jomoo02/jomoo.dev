@@ -1,38 +1,6 @@
-<template>
-  <div
-    class="w-full border rounded-xl py-2.5 px-3.5 cursor-pointer hover:ring-2 ring-emerald-400"
-    @click="movePost"
-  >
-    <div v-if="props.direction === 'previous'" class="flex items-center gap-x-1.5">
-      <div class="md:w-2/12 flex justify-start">
-        <Icon name="icon-park:arrow-left" size="32" />
-      </div>
-      <div class="w-10/12">
-        <div class="flex justify-start text-sm font-semibold text-zinc-500">이전 포스트</div>
-        <div class="flex items-center">
-          <p class="m-0 text-lg font-bold text-zinc-700 truncate">
-            {{ props.title }}
-          </p>
-        </div>
-      </div>
-    </div>
-    <div v-else class="flex items-center justify-end gap-x-1.5">
-      <div class="w-10/12">
-        <div class="flex justify-end text-sm font-semibold text-zinc-500">이후 포스트</div>
-        <div class="flex justify-end items-center">
-          <p class="m-0 text-lg font-bold text-zinc-700 truncate">
-            {{ props.title }}
-          </p>
-        </div>
-      </div>
-      <div class="md:w-2/12 flex justify-end">
-        <Icon name="icon-park:arrow-right" size="32" />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
+import { PREVIOUS, PREVIOUS_POST_TEXT, NEXT_POST_TEXT } from '~/constants/postDirection';
+
 const props = defineProps({
   direction: {
     type: String,
@@ -52,8 +20,44 @@ const props = defineProps({
 
 const router = useRouter();
 
+const iconName = computed(() =>
+  props.direction === PREVIOUS ? 'icon-park:arrow-left' : 'icon-park:arrow-right',
+);
+
+const directionText = computed(() =>
+  props.direction === PREVIOUS ? PREVIOUS_POST_TEXT : NEXT_POST_TEXT,
+);
+
+const directionJustify = computed(() =>
+  props.direction === PREVIOUS ? 'justify-start' : 'justify-end',
+);
+
+const directionFlexRow = computed(() =>
+  props.direction === PREVIOUS ? 'flex-row' : 'flex-row-reverse',
+);
+
 function movePost() {
   router.push({ path: props.path });
-  // await navigateTo(path);
 }
 </script>
+
+<template>
+  <div
+    class="w-full border rounded-xl py-2.5 px-3.5 cursor-pointer hover:ring-2 ring-emerald-400"
+    @click="movePost"
+  >
+    <div class="flex items-center gap-x-5 md:gap-x-1.5" :class="directionFlexRow">
+      <div class="md:w-2/12 flex" :class="directionJustify">
+        <Icon :name="iconName" size="32" />
+      </div>
+      <div class="w-10/12">
+        <div class="flex text-sm font-semibold text-zinc-500" :class="directionJustify">
+          {{ directionText }}
+        </div>
+        <div class="flex items-center" :class="directionJustify">
+          <span class="text-lg font-bold text-zinc-700 truncate">{{ props.title }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
