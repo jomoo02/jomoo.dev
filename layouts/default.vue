@@ -1,5 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia';
+import { SpeedInsights } from '@vercel/speed-insights/vue';
 import { useCategoriesStore } from '~~/store/categoriesStore';
 
 const TARGET_SIZE = 768;
@@ -13,6 +14,7 @@ provide('closeCategoriesMenu', closeCategoriesMenu);
 
 <template>
   <div>
+    <SpeedInsights />
     <div class="sticky top-0 z-20 w-full bg-white">
       <header class="border-b-[1px] border-b-gray-300">
         <nav
