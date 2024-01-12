@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full border-b mb-4 flex flex-col h-[150px] max-h-[150px] min-h-[150px] cursor-pointer"
+    class="w-full border-b mb-4 flex flex-col max-h-[150px] min-h-[150px] cursor-pointer"
     @click="contentCardDetail"
   >
     <div class="font-bold text-3xl py-1.5 truncate">
