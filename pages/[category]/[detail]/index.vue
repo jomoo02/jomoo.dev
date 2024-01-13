@@ -26,13 +26,14 @@ useHead({
 
 <template>
   <NuxtLayout name="side-bar">
-    <ContentCard
+    <PostCard
       v-for="{ _path, description, title, date } in posts"
       :key="title"
-      :page-link="_path"
+      :path="_path"
       :description="description"
       :title="title"
       :date="date"
+      :is-wide="true"
     />
   </NuxtLayout>
 </template>

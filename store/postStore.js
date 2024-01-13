@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { CATEGORIES_DETAIL } from '~~/constants/categoriesDetail';
+import { CATEGORIES_DETAILS } from '~~/constants/categoriesDetail';
 
 export const usePostStore = defineStore('post', () => {
   const totalPosts = ref({});
@@ -12,7 +12,7 @@ export const usePostStore = defineStore('post', () => {
       return { key: detail, data: post.reverse() };
     };
 
-    const posts = await Promise.all(CATEGORIES_DETAIL.map(queryPost));
+    const posts = await Promise.all(CATEGORIES_DETAILS.map(queryPost));
 
     totalPosts.value = posts.reduce((acc, { key, data }) => {
       acc[key] = data;

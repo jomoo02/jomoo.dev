@@ -22,7 +22,7 @@ provide('closeCategoriesMenu', closeCategoriesMenu);
         >
           <div class="col-span-1 flex justify-start md:hidden">
             <div class="cursor-pointer" @click="toggleCategoriesMenu">
-              <ListIcon />
+              <Icon name="mingcute:menu-line" size="32" />
             </div>
           </div>
           <div class="flex justify-center md:justify-start col-span-4 md:col-span-1">

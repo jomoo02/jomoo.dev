@@ -1,10 +1,13 @@
 <script setup>
-const ProjectsSideBar = resolveComponent('ProjectsSideBar');
-const NoteSideBar = resolveComponent('NoteSideBar');
+import { CATEGORIES_DETAILS_PATHS } from '~/constants/categoriesDetail';
 
 const route = useRoute();
 const { category } = route.params;
-const sideBar = { projects: ProjectsSideBar, note: NoteSideBar };
+
+const categoriesDetailsItems = CATEGORIES_DETAILS_PATHS[category].map((items) => {
+  const targetDetail = items.path === route.path;
+  return { ...items, targetDetail };
+});
 </script>
 
 <template>
@@ -16,8 +19,22 @@ const sideBar = { projects: ProjectsSideBar, note: NoteSideBar };
       <div
         class="col-span-10 md:col-span-2 flex md:sticky top-[7rem] lg:top-[8.6rem] overflow-y-auto max-h-[calc(100vh-220px)] justify-between"
       >
-        <component :is="sideBar[category]" />
+        <!-- <component :is="sideBar[category]" /> -->
         <!-- <slot name="codeLinkMd" /> -->
+        <nav>
+          <ul class="font-bold flex gap-x-4 md:block">
+            <li v-for="{ path, text, targetDetail } in categoriesDetailsItems" :key="path">
+              <NuxtLink :to="path">
+                <div
+                  class="hover:text-emerald-500 py-1.5"
+                  :class="targetDetail ? 'text-emerald-600' : 'text-black'"
+                >
+                  {{ text }}
+                </div>
+              </NuxtLink>
+            </li>
+          </ul>
+        </nav>
       </div>
       <div class="col-span-10 md:col-span-8">
         <slot />
