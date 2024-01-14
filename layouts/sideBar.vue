@@ -2,10 +2,10 @@
 import { CATEGORIES_DETAILS_PATHS } from '~/constants/categoriesDetail';
 
 const route = useRoute();
-const { category } = route.params;
+const { category, detail } = route.params;
 
 const categoriesDetailsItems = CATEGORIES_DETAILS_PATHS[category].map((items) => {
-  const targetDetail = items.path === route.path;
+  const targetDetail = items.detail === detail;
   return { ...items, targetDetail };
 });
 </script>

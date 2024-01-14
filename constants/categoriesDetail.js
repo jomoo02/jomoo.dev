@@ -20,15 +20,15 @@ export const CATEGORIES_DETAILS = [
 ];
 
 const NOTE_DETAILS_PATHS = [
-  { path: `/${NOTE}/${PROGRAMMERS}`, text: '프로그래머스' },
-  { path: `/${NOTE}/${ALGORITHMS}`, text: '알고리즘' },
-  { path: `/${NOTE}/${WOOTECOS}`, text: '우테코' },
-  { path: `/${NOTE}/${JS}`, text: '자바스크립트' },
+  { path: `/${NOTE}/${PROGRAMMERS}`, text: '프로그래머스', detail: PROGRAMMERS },
+  { path: `/${NOTE}/${ALGORITHMS}`, text: '알고리즘', detail: ALGORITHMS },
+  { path: `/${NOTE}/${WOOTECOS}`, text: '우테코', detail: WOOTECOS },
+  { path: `/${NOTE}/${JS}`, text: '자바스크립트', detail: JS },
 ];
 
 const PROJECTS_DETAILS_PATHS = [
-  { path: `/${PROJECTS}/${VOCABULARYNOTE}`, text: 'vocabulary' },
-  { path: `/${PROJECTS}/${JOMOODEV}`, text: 'jomoo.dev' },
+  { path: `/${PROJECTS}/${VOCABULARYNOTE}`, text: 'vocabulary', detail: VOCABULARYNOTE },
+  { path: `/${PROJECTS}/${JOMOODEV}`, text: 'jomoo.dev', detail: JOMOODEV },
 ];
 
 export const CATEGORIES_DETAILS_PATHS = {
