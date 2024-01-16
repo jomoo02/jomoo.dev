@@ -1,4 +1,6 @@
 <script setup>
+import { POST_CARD_SIZE } from '~/constants/postCardSize';
+
 const route = useRoute();
 const { category, detail } = route.params;
 
@@ -33,7 +35,7 @@ useHead({
       :description="description"
       :title="title"
       :date="date"
-      :is-wide="true"
+      :size="POST_CARD_SIZE.wide"
     />
   </NuxtLayout>
 </template>

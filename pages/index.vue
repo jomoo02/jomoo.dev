@@ -1,5 +1,6 @@
 <script setup>
 import { usePostStore } from '~/store/postStore';
+import { POST_CARD_SIZE } from '~/constants/postCardSize';
 
 const postStore = usePostStore();
 const details = ['programmers', 'algorithms', 'vocabularynote'];
@@ -40,6 +41,7 @@ useHead({
             :title="post.title"
             :description="post.description"
             :date="post.date"
+            :size="POST_CARD_SIZE.small"
           />
         </div>
       </div>

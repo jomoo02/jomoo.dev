@@ -25,7 +25,7 @@ const { data: surrounds } = await useAsyncData(
     </div>
     <div v-if="surrounds?.length" class="flex flex-col md:flex-row w-full gap-2.5 justify-between">
       <div v-for="(surround, index) in surrounds" :key="surround" class="md:w-1/3">
-        <PostMoveCard
+        <PostNavigationCard
           v-if="surround"
           :direction="directions[index]"
           :title="surround.title"

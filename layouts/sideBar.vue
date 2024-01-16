@@ -1,12 +1,12 @@
 <script setup>
-import { CATEGORIES_DETAILS_PATHS } from '~/constants/categoriesDetail';
+import { CATEGORIES_DETAILS } from '~/constants/categoriesDetail';
 
 const route = useRoute();
 const { category, detail } = route.params;
 
-const categoriesDetailsItems = CATEGORIES_DETAILS_PATHS[category].map((items) => {
-  const targetDetail = items.detail === detail;
-  return { ...items, targetDetail };
+const categoryDetailItems = CATEGORIES_DETAILS[category].map((categoryDetail) => {
+  const active = categoryDetail.detail === detail;
+  return { ...categoryDetail, active };
 });
 </script>
 
@@ -19,15 +19,13 @@ const categoriesDetailsItems = CATEGORIES_DETAILS_PATHS[category].map((items) =>
       <div
         class="col-span-10 md:col-span-2 flex md:sticky top-[7rem] lg:top-[8.6rem] overflow-y-auto max-h-[calc(100vh-220px)] justify-between"
       >
-        <!-- <component :is="sideBar[category]" /> -->
-        <!-- <slot name="codeLinkMd" /> -->
         <nav>
           <ul class="font-bold flex gap-x-4 md:block">
-            <li v-for="{ path, text, targetDetail } in categoriesDetailsItems" :key="path">
+            <li v-for="{ path, text, active } in categoryDetailItems" :key="path">
               <NuxtLink :to="path">
                 <div
                   class="hover:text-emerald-500 py-1.5"
-                  :class="targetDetail ? 'text-emerald-600' : 'text-black'"
+                  :class="active ? 'text-emerald-600' : 'text-black'"
                 >
                   {{ text }}
                 </div>

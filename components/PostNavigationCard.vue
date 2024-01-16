@@ -18,8 +18,6 @@ const props = defineProps({
   },
 });
 
-const router = useRouter();
-
 const iconName = computed(() =>
   props.direction === PREVIOUS ? 'icon-park:arrow-left' : 'icon-park:arrow-right',
 );
@@ -35,16 +33,12 @@ const directionJustify = computed(() =>
 const directionFlexRow = computed(() =>
   props.direction === PREVIOUS ? 'flex-row' : 'flex-row-reverse',
 );
-
-function movePost() {
-  router.push({ path: props.path });
-}
 </script>
 
 <template>
   <div
     class="w-full border rounded-xl py-2.5 px-3.5 cursor-pointer hover:ring-2 ring-emerald-400"
-    @click="movePost"
+    @click="navigateTo(props.path)"
   >
     <div class="flex items-center gap-x-5 md:gap-x-1.5" :class="directionFlexRow">
       <div class="md:w-2/12 flex" :class="directionJustify">

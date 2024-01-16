@@ -1,4 +1,6 @@
 <script setup>
+import { POST_CARD_SIZE } from '~/constants/postCardSize';
+
 const props = defineProps({
   path: {
     type: String,
@@ -20,50 +22,44 @@ const props = defineProps({
     required: true,
   },
 
-  isWide: {
-    type: Boolean,
-    default: false,
+  size: {
+    type: String,
+    required: true,
   },
 });
 
+const isPostCardSizeWide = computed(() => props.size === POST_CARD_SIZE.wide);
+
 const containerClass = computed(() => {
-  if (props.isWide) {
-    return 'border-b mb-4 flex flex-col max-h-[150px] min-h-[150px]';
+  if (isPostCardSizeWide.value) {
+    return 'border-b mb-2 max-h-[150px] min-h-[150px] px-1';
   }
-  return 'border-2 border-stone-500 hover:border-4 hover:p-[14px] min-h-[16rem] h-64 max-h-64 rounded-xl p-4';
+  return 'border-2 border-stone-500 hover:border-4 hover:px-[18px] hover:py-[10px] min-h-[16rem] h-64 max-h-64 rounded-xl px-5';
 });
 
-const titleClass = computed(() => {
-  if (props.isWide) {
-    return 'text-3xl py-1.5';
-  }
-  return 'text-2xl h-1/4 py-1';
-});
+const titleClass = computed(() => (isPostCardSizeWide.value ? 'md:text-3xl' : 'py-2.5'));
 
 const descriptionClass = computed(() => {
-  if (props.isWide) {
-    return 'text-lg truncate pt-4';
+  if (isPostCardSizeWide.value) {
+    return 'text-lg truncate py-2.5';
   }
-  return 'h-[70%] m-0 min-h-[70%] max-h-[70%] text-sm md:text-base overflow-hidden text-ellipsis break-words';
-});
-
-const dateClass = computed(() => {
-  if (props.isWide) {
-    return 'pt-5';
-  }
-  return 'justify-end overflow-hidden text-ellipsis';
+  return 'text-sm md:text-base';
 });
 </script>
 
 <template>
-  <div class="w-full cursor-pointer" :class="containerClass" @click="navigateTo(props.path)">
-    <div class="font-bold truncate" :class="titleClass">
+  <div
+    class="cursor-pointer flex flex-col py-3"
+    :class="containerClass"
+    @click="navigateTo(props.path)"
+  >
+    <div class="text-2xl font-bold truncate" :class="titleClass">
       {{ props.title }}
     </div>
-    <div class="text-zinc-600" :class="descriptionClass">
+    <div class="text-zinc-600 flex-1" :class="descriptionClass">
       {{ props.description }}
     </div>
-    <div class="text-sm text-zinc-400 flex" :class="dateClass">
+    <div class="flex text-sm text-zinc-400" :class="{ 'justify-end': !isPostCardSizeWide }">
       {{ props.date }}
     </div>
   </div>
