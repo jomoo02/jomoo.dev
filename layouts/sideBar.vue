@@ -34,7 +34,7 @@ const categoryDetailItems = CATEGORIES_DETAILS[category].map((categoryDetail) =>
           </ul>
         </nav>
       </div>
-      <div class="col-span-10 md:col-span-8">
+      <div class="col-span-10 md:col-span-8 scroll-mt-16 md:scroll-mt-20 scroll-smooth h-full">
         <slot />
       </div>
     </div>
