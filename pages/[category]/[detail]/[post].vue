@@ -20,7 +20,7 @@ const { data: surrounds } = await useAsyncData(
 
 <template>
   <NuxtLayout name="side-bar">
-    <div class="prose min-w-full md:px-2">
+    <div class="prose min-w-full md:px-2 min-h-screen scroll-mt-40">
       <ContentDoc />
     </div>
     <div v-if="surrounds?.length" class="flex flex-col md:flex-row w-full gap-2.5 justify-between">

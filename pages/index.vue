@@ -1,15 +1,28 @@
 <script setup>
-import { usePostStore } from '~/store/postStore';
-import { POST_CARD_SIZE } from '~/constants/postCardSize';
+const mainDescription = `nuxt3 프레임워크와 nuxt-content 모듈을 이용해 만든 블로그입니다.
+주로 토이 프로젝트와 학습한 내용에 대한 글을 작성합니다.`;
 
-const postStore = usePostStore();
-const details = ['programmers', 'algorithms', 'vocabularynote'];
-const totalPosts = ref();
-
-totalPosts.value = details.reduce((acc, detail) => {
-  acc.push({ detail, posts: postStore.pickPosts(detail) });
-  return acc;
-}, []);
+const { data: recentWritePosts } = await useAsyncData(
+  'recentWritePosts',
+  () => {
+    return queryContent('/')
+      .sort({ date: -1 })
+      .limit(5)
+      .only(['_path', 'title', 'description', 'date', 'category', 'detail'])
+      .find();
+  },
+  {
+    transform(recentWritePosts) {
+      return recentWritePosts.map((post) => {
+        const tags = [
+          { text: post.category, path: post.category },
+          { text: post.detail, path: `${post.category}/${post.detail}` },
+        ];
+        return { ...post, tags };
+      });
+    },
+  },
+);
 
 useHead({
   title: 'jomoo.dev',
@@ -23,28 +36,39 @@ useHead({
 </script>
 
 <template>
-  <div>
-    <div
-      v-for="{ detail, posts } in totalPosts"
-      :key="detail"
-      class="mt-14 first:mt-8 md:first:mt-4"
-    >
-      <div class="text-4xl text-zinc-900 font-extrabold mb-5">{{ detail }}</div>
-      <div class="flex gap-x-2.5 md:gap-x-4 w-full py-1 overflow-x-auto">
-        <div
-          v-for="post in posts.slice(0, 4)"
-          :key="post"
-          class="min-w-full xs:min-w-[187px] md:min-w-[288px] xs:max-w-[187px] md:max-w-[288px]"
-        >
-          <PostCard
-            :path="post._path"
-            :title="post.title"
-            :description="post.description"
-            :date="post.date"
-            :size="POST_CARD_SIZE.small"
-          />
+  <div class="flex flex-col gap-y-20">
+    <section class="h-52 flex justify-center items-center">
+      <p class="text-xl font-semibold whitespace-pre">
+        {{ mainDescription }}
+      </p>
+    </section>
+    <section>
+      <div class="flex flex-col gap-y-3 md:gap-y-4 py-4">
+        <h2 class="text-2xl md:text-3xl text-zinc-700 font-extrabold">최신 글</h2>
+        <div class="flex flex-col gap-y-2">
+          <PostCardV2
+            v-for="{ _path, title, description, date, tags } in recentWritePosts"
+            :key="title"
+            :date="date"
+            :title="title"
+            :path="_path"
+            :description="description"
+            class="min-h-[174px] max-h-[174px]"
+          >
+            <template #tags>
+              <div class="flex py-3.5 gap-x-2">
+                <NuxtLink v-for="{ path, text } in tags" :key="text" :to="path">
+                  <div
+                    class="flex bg-slate-200/60 rounded-xl px-[9px] py-[3px] hover:bg-gray-100 text-emerald-600/90 hover:text-emerald-700/90"
+                  >
+                    {{ text }}
+                  </div>
+                </NuxtLink>
+              </div>
+            </template>
+          </PostCardV2>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>

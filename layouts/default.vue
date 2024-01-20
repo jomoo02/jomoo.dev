@@ -47,7 +47,7 @@ provide('closeCategoriesMenu', closeCategoriesMenu);
         </nav>
       </header>
     </div>
-    <main class="pt-5 lg:pt-8 min-h-[calc(100vh-65px)]">
+    <main class="pt-3.5 lg:pt-4 mx-auto max-w-7xl px-6 sm:px-4 lg:px-8">
       <slot />
     </main>
     <footer class="mt-8 h-10 border-t-[1px] border-t-gray-300">

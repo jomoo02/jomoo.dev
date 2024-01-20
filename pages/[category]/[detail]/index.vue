@@ -1,6 +1,4 @@
 <script setup>
-import { POST_CARD_SIZE } from '~/constants/postCardSize';
-
 const route = useRoute();
 const { category, detail } = route.params;
 
@@ -28,14 +26,16 @@ useHead({
 
 <template>
   <NuxtLayout name="side-bar">
-    <PostCard
-      v-for="{ _path, description, title, date } in posts"
-      :key="title"
-      :path="_path"
-      :description="description"
-      :title="title"
-      :date="date"
-      :size="POST_CARD_SIZE.wide"
-    />
+    <div class="flex flex-col gap-y-1">
+      <PostCardV2
+        v-for="{ _path, description, title, date } in posts"
+        :key="title"
+        :path="_path"
+        :description="description"
+        :title="title"
+        :date="date"
+        class="border-b min-h-[130px] max-h-[130px] md:max-h-[140px] md:min-h-[140px] px-1"
+      />
+    </div>
   </NuxtLayout>
 </template>

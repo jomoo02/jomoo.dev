@@ -15,12 +15,12 @@ const categoryDetailItems = CATEGORIES_DETAILS[category].map((categoryDetail) =>
     <div class="flex justify-end md:h-6">
       <slot name="codeLink" />
     </div>
-    <div class="grid grid-cols-10 gap-7 md:gap-7 md:min-h-screen">
+    <div class="grid grid-cols-10 gap-4 md:gap-7">
       <div
-        class="col-span-10 md:col-span-2 flex md:sticky top-[7rem] lg:top-[8.6rem] overflow-y-auto max-h-[calc(100vh-220px)] justify-between"
+        class="col-span-10 md:col-span-2 flex md:sticky top-[6.5rem] lg:top-[8rem] overflow-y-auto max-h-[calc(100vh-220px)] justify-between"
       >
         <nav>
-          <ul class="font-bold flex gap-x-4 md:block">
+          <ul class="font-bold flex gap-x-4 md:block text-sm md:text-base">
             <li v-for="{ path, text, active } in categoryDetailItems" :key="path">
               <NuxtLink :to="path">
                 <div
@@ -34,7 +34,7 @@ const categoryDetailItems = CATEGORIES_DETAILS[category].map((categoryDetail) =>
           </ul>
         </nav>
       </div>
-      <div class="col-span-10 md:col-span-8 scroll-mt-16 md:scroll-mt-20 scroll-smooth h-full">
+      <div class="col-span-10 md:col-span-8 min-h-[calc(100vh-80px)]">
         <slot />
       </div>
     </div>

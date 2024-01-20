@@ -36,22 +36,21 @@ const flexRowDirectionClass = computed(() =>
 </script>
 
 <template>
-  <div
-    class="w-full border rounded-xl py-2.5 px-3.5 cursor-pointer hover:ring-2 ring-emerald-400"
-    @click="navigateTo(props.path)"
-  >
-    <div class="flex items-center gap-x-5 md:gap-x-1.5" :class="flexRowDirectionClass">
-      <div class="md:w-2/12 flex" :class="justifyContentClass">
-        <Icon :name="iconName" size="32" />
-      </div>
-      <div class="w-10/12">
-        <div class="flex text-sm font-semibold text-zinc-500" :class="justifyContentClass">
-          {{ directionText }}
+  <NuxtLink :to="props.path">
+    <div class="w-full border rounded-xl py-2.5 px-3.5 hover:ring-2 ring-emerald-400">
+      <div class="flex items-center gap-x-5 md:gap-x-1.5" :class="flexRowDirectionClass">
+        <div class="md:w-2/12 flex" :class="justifyContentClass">
+          <Icon :name="iconName" size="32" />
         </div>
-        <div class="flex items-center" :class="justifyContentClass">
-          <span class="text-lg font-bold text-zinc-700 truncate">{{ props.title }}</span>
+        <div class="w-10/12">
+          <div class="flex text-sm font-semibold text-zinc-500" :class="justifyContentClass">
+            {{ directionText }}
+          </div>
+          <div class="flex items-center" :class="justifyContentClass">
+            <span class="text-lg font-bold text-zinc-700 truncate">{{ props.title }}</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>

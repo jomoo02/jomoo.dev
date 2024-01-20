@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <NuxtPage class="mx-auto max-w-7xl px-6 sm:px-4 lg:px-8" />
+    <NuxtPage />
   </NuxtLayout>
 </template>
 
@@ -10,3 +10,9 @@ import { usePostStore } from '~~/store/postStore';
 const postStore = usePostStore();
 await callOnce(postStore.setPost);
 </script>
+
+<style>
+html {
+  scroll-padding-top: 7.5rem;
+}
+</style>
