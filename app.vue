@@ -4,15 +4,14 @@
   </NuxtLayout>
 </template>
 
-<script setup>
-import { usePostStore } from '~~/store/postStore';
-
-const postStore = usePostStore();
-await callOnce(postStore.setPost);
-</script>
-
 <style>
 html {
-  scroll-padding-top: 7.5rem;
+  scroll-padding-top: 5.8rem;
+}
+
+@media screen and (min-width: 768px) {
+  html {
+    scroll-padding-top: 6.8rem;
+  }
 }
 </style>

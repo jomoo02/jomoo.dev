@@ -1,6 +1,10 @@
 <script setup>
-const mainDescription = `nuxt3 프레임워크와 nuxt-content 모듈을 이용해 만든 블로그입니다.
-주로 토이 프로젝트와 학습한 내용에 대한 글을 작성합니다.`;
+const mainDescriptions = [
+  '안녕하세요! 이곳은 개발자의 성장 이야기와 코드의 흔적를 기록하는 곳입니다.',
+  'Nuxt3와 Nuxt-content 모듈을 활용하여 만들어진 이 블로그는 지식의 나눔을 추구합니다.',
+];
+
+const subDescription = `주요 주제로 코딩 테스트, 알고리즘, 자바스크립트 학습 내용과 진행했던 토이 프로젝트 관련 내용을 다룹니다!`;
 
 const { data: recentWritePosts } = await useAsyncData(
   'recentWritePosts',
@@ -29,7 +33,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Nuxt3로 만들어진 블로그. 프로그래머스, 알고리즘, 토이 프로젝트 등을 다룹니다',
+      content: subDescription,
     },
   ],
 });
@@ -37,16 +41,22 @@ useHead({
 
 <template>
   <div class="flex flex-col gap-y-20">
-    <section class="h-52 flex justify-center items-center">
-      <p class="text-xl font-semibold whitespace-pre">
-        {{ mainDescription }}
-      </p>
+    <section class="h-[calc(100vh-430px)] flex justify-center items-center flex-col gap-y-1">
+      <h1 class="text-xl font-semibold text-center text-slate-700 truncate">
+        <div v-for="mainDescription in mainDescriptions" :key="mainDescription">
+          {{ mainDescription }}
+        </div>
+      </h1>
+
+      <div class="text-base text-gray-500 font-medium">
+        {{ subDescription }}
+      </div>
     </section>
-    <section>
+    <section class="lg:mx-24">
       <div class="flex flex-col gap-y-3 md:gap-y-4 py-4">
         <h2 class="text-2xl md:text-3xl text-zinc-700 font-extrabold">최신 글</h2>
         <div class="flex flex-col gap-y-2">
-          <PostCardV2
+          <PostCard
             v-for="{ _path, title, description, date, tags } in recentWritePosts"
             :key="title"
             :date="date"
@@ -56,7 +66,7 @@ useHead({
             class="min-h-[174px] max-h-[174px]"
           >
             <template #tags>
-              <div class="flex py-3.5 gap-x-2">
+              <div class="flex gap-x-2 relative bottom-3">
                 <NuxtLink v-for="{ path, text } in tags" :key="text" :to="path">
                   <div
                     class="flex bg-slate-200/60 rounded-xl px-[9px] py-[3px] hover:bg-gray-100 text-emerald-600/90 hover:text-emerald-700/90"
@@ -66,7 +76,7 @@ useHead({
                 </NuxtLink>
               </div>
             </template>
-          </PostCardV2>
+          </PostCard>
         </div>
       </div>
     </section>

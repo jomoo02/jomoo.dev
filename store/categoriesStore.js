@@ -8,8 +8,8 @@ export const useCategoriesStore = defineStore('categories', () => {
   const isSelectedProjects = computed(() => categoriesState.value === PROJECTS);
   const activeCategories = computed(() => {
     return [
-      { active: isSelectedNote.value, category: NOTE, path: '/note/programmers' },
-      { active: isSelectedProjects.value, category: PROJECTS, path: '/projects/vocabularynote' },
+      { active: isSelectedNote.value, category: NOTE, path: '/note' },
+      { active: isSelectedProjects.value, category: PROJECTS, path: '/projects' },
     ];
   });
 
