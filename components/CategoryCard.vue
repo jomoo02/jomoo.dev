@@ -7,12 +7,12 @@ defineProps({
 
   description: {
     type: String,
-    default: '해당 category detail에 대한 설명',
+    default: 'category detail에 대한 설명',
   },
 
   iconName: {
     type: String,
-    default: '/projects/jomoodev/refactor-1/tt.png',
+    default: 'ion:accessibility',
   },
 
   path: {
