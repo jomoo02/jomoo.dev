@@ -2,8 +2,6 @@
 const route = useRoute();
 const { category, detail } = route.params;
 
-const closeCategoriesMenu = inject('closeCategoriesMenu');
-
 const { data: posts } = await useAsyncData(
   `${detail}-posts`,
   () => {
@@ -15,8 +13,6 @@ const { data: posts } = await useAsyncData(
     },
   },
 );
-
-onMounted(() => closeCategoriesMenu());
 
 useHead({
   title: detail,

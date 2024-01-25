@@ -1,13 +1,8 @@
 <script setup>
-import { CATEGORIES_DETAILS } from '~/constants/categoriesDetail';
-
 const route = useRoute();
-const { category, detail } = route.params;
+const currentDetail = route.params.detail;
 
-const categoryDetailItems = CATEGORIES_DETAILS[category].map((categoryDetail) => {
-  const active = categoryDetail.detail === detail;
-  return { ...categoryDetail, active };
-});
+const { categoryItems } = useCategory();
 </script>
 
 <template>
@@ -17,15 +12,15 @@ const categoryDetailItems = CATEGORIES_DETAILS[category].map((categoryDetail) =>
     </div>
     <div class="grid grid-cols-10 gap-4 md:gap-7">
       <div
-        class="col-span-10 md:col-span-2 flex md:sticky top-[6.5rem] lg:top-[8rem] overflow-y-auto max-h-[calc(100vh-220px)] justify-between"
+        class="col-span-10 md:col-span-2 flex md:sticky top-[6.5rem] lg:top-[8rem] overflow-y-auto max-h-[calc(100vh-220px)] p-1"
       >
         <nav>
           <ul class="font-bold flex gap-x-4 md:block text-sm md:text-base">
-            <li v-for="{ path, text, active } in categoryDetailItems" :key="path">
+            <li v-for="{ path, text, detail } in categoryItems" :key="path">
               <NuxtLink :to="path">
                 <div
                   class="hover:text-emerald-500 py-1.5"
-                  :class="active ? 'text-emerald-600' : 'text-black'"
+                  :class="currentDetail === detail ? 'text-emerald-600' : 'text-black'"
                 >
                   {{ text }}
                 </div>

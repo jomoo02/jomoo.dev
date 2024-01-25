@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  detail: {
+  detailText: {
     type: String,
     default: 'category detail',
   },
@@ -31,12 +31,10 @@ defineProps({
         <Icon :name="iconName" size="55" />
       </div>
       <div class="flex flex-col">
-        <h3 class="text-lg py-1 font-medium truncate text-slate-800">{{ detail }}</h3>
-        <div
-          class="text-[14px] leading-4 text-slate-700/80 text-ellipsis overflow-hidden capitalize"
-        >
+        <h3 class="text-lg py-1 font-medium truncate text-slate-800">{{ detailText }}</h3>
+        <p class="text-[14px] leading-4 text-slate-700/80 text-ellipsis overflow-hidden capitalize">
           {{ description }}
-        </div>
+        </p>
       </div>
     </div>
   </NuxtLink>
