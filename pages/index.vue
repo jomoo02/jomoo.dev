@@ -37,28 +37,26 @@ useHead({
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-20">
+  <div class="flex flex-col gap-y-10 xs:gap-y-20">
     <section
-      class="h-[calc(100vh-430px)] flex justify-center items-center flex-col gap-y-1 break-keep capitalize"
+      class="h-[calc(100vh-430px)] text-center flex flex-col justify-center items-center gap-y-1 break-keep capitalize"
     >
-      <h1 class="text-xl font-semibold text-center text-slate-700">
+      <h1 class="text-base xs:text-lg sm:text-xl font-semibold text-slate-700">
         {{ h1Text1 }}
         <br />
-        <NuxtLink to="https://nuxt.com/" target="_blank">
-          <span class="text-emerald-500">nuxt</span></NuxtLink
-        >와
-        <NuxtLink to="https://content.nuxt.com/" target="_blank"
-          ><span class="text-emerald-500">nuxt-content</span></NuxtLink
-        >
+        <NuxtLink to="https://nuxt.com/" target="_blank" class="text-emerald-500">nuxt</NuxtLink>와
+        <NuxtLink to="https://content.nuxt.com/" target="_blank" class="text-emerald-500">
+          nuxt-content
+        </NuxtLink>
         {{ h1Text2 }}
       </h1>
-      <p class="text-base text-gray-500 font-medium">
+      <p class="text-xs xs:text-base text-slate-500 font-medium">
         {{ pText }}
       </p>
     </section>
     <section class="lg:mx-24">
-      <div class="flex flex-col gap-y-3 md:gap-y-4 py-4">
-        <h2 class="text-2xl md:text-3xl text-zinc-700 font-extrabold">최신 글</h2>
+      <div class="flex flex-col gap-y-2 xs:gap-y-2.5 py-4">
+        <h2 class="text-xl xs:text-2xl text-slate-800/90 font-extrabold">최신 글</h2>
         <div class="flex flex-col gap-y-2">
           <PostCard
             v-for="{ _path, title, description, date, tags } in recentWritePosts"
@@ -67,13 +65,13 @@ useHead({
             :title="title"
             :path="_path"
             :description="description"
-            class="min-h-[174px] max-h-[174px]"
+            class="min-h-[145px] max-h-[145px] xs:min-h-[160px] xs:max-h-[160px] sm:min-h-[160px] sm:max-h-[160px] md:min-h-[174px] md:max-h-[174px]"
           >
             <template #tags>
-              <div class="flex gap-x-2 pt-1 pb-3.5">
+              <div class="flex pt-1 pb-2 md:pb-3.5 gap-x-2">
                 <NuxtLink v-for="{ path, text } in tags" :key="text" :to="path">
                   <div
-                    class="flex bg-slate-200/60 rounded-xl px-[9px] py-[3px] hover:bg-gray-100 text-emerald-600/90 hover:text-emerald-700/90"
+                    class="py-[2.5px] md:py-[3px] px-[9px] text-xs xs:text-sm font-semibold bg-slate-200/60 rounded-xl hover:bg-slate-200 text-emerald-600/90 hover:text-emerald-700/90"
                   >
                     {{ text }}
                   </div>
