@@ -1,13 +1,24 @@
-/** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme');
+import tailwindTypography from '@tailwindcss/typography';
 
-module.exports = {
-  content: ['content/**/*.md', 'pages/**/*.vue', 'layouts/**/*.vue', 'components/**/*.vue'],
+export default {
+  plugins: [tailwindTypography],
+  content: [
+    './components/**/*.{vue,js,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './composables/**/*.{js,ts}',
+    './plugins/**/*.{js,ts}',
+    './utils/**/*.{js,ts}',
+    './App.{js,ts,vue}',
+    './app.{js,ts,vue}',
+    './Error.{js,ts,vue}',
+    './error.{js,ts,vue}',
+    './app.config.{js,ts}',
+  ],
   theme: {
     extend: {
       screens: {
         xs: '281px',
-        ...defaultTheme.screens,
       },
       typography: {
         DEFAULT: {
@@ -34,5 +45,5 @@ module.exports = {
     },
   },
   // eslint-disable-next-line global-require
-  plugins: [require('@tailwindcss/typography')],
+  // plugins: [require('@tailwindcss/typography')],
 };

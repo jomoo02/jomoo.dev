@@ -3,6 +3,8 @@ const h1Text1 = '안녕하세요! 이곳은 개발자의 성장 이야기와 코
 const h1Text2 = '모듈을 활용하여 만들어진 이 블로그는 지식의 나눔을 추구합니다.';
 const pText = `주요 주제로 코딩 테스트, 알고리즘, 자바스크립트 학습 내용과 진행했던 토이 프로젝트 관련 내용을 다룹니다!`;
 
+const appConfig = useAppConfig();
+
 const { data: recentWritePosts } = await useAsyncData(
   'recentWritePosts',
   () => {
@@ -50,7 +52,7 @@ useHead({
         </NuxtLink>
         {{ h1Text2 }}
       </h1>
-      <p class="text-xs xs:text-base text-slate-500 font-medium">
+      <p class="text-xs xs:text-base text-slate-500/95 font-medium">
         {{ pText }}
       </p>
     </section>
@@ -65,7 +67,7 @@ useHead({
             :title="title"
             :path="_path"
             :description="description"
-            class="min-h-[145px] max-h-[145px] xs:min-h-[160px] xs:max-h-[160px] sm:min-h-[160px] sm:max-h-[160px] md:min-h-[174px] md:max-h-[174px]"
+            :class="appConfig.ui.main.postCard.height"
           >
             <template #tags>
               <div class="flex pt-1 pb-2 md:pb-3.5 gap-x-2">
