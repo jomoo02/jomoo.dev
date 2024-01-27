@@ -25,14 +25,17 @@ provide('closeCategoriesMenu', closeCategoriesMenu);
         :class="Object.values(header.container)"
       >
         <div class="col-span-1 flex justify-start md:hidden">
-          <button @click="toggleCategoriesMenu">
+          <button class="xs:hidden" @click="toggleCategoriesMenu">
+            <Icon :name="header.icon" size="26" />
+          </button>
+          <button class="hidden xs:block" @click="toggleCategoriesMenu">
             <Icon :name="header.icon" size="32" />
           </button>
         </div>
         <div class="col-span-4 md:col-span-1 flex justify-center md:justify-start">
           <NuxtLink
             to="/"
-            class="select-none text-xl sm:text-2xl font-extrabold text-stone-800"
+            class="text-lg xs:text-xl sm:text-2xl font-extrabold text-stone-800 select-none"
             @click="closeCategoriesMenu"
           >
             JOMOO.DEV

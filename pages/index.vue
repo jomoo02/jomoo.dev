@@ -39,9 +39,10 @@ useHead({
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-10 xs:gap-y-20">
+  <div class="flex flex-col gap-y-10">
     <section
-      class="h-[calc(100vh-430px)] text-center flex flex-col justify-center items-center gap-y-1 break-keep capitalize"
+      class="text-center flex flex-col justify-center items-center gap-y-1 break-keep capitalize"
+      :class="appConfig.ui.main.introduction.height"
     >
       <h1 class="text-base xs:text-lg sm:text-xl font-semibold text-slate-700">
         {{ h1Text1 }}
@@ -57,7 +58,7 @@ useHead({
       </p>
     </section>
     <section class="lg:mx-24">
-      <div class="flex flex-col gap-y-2 xs:gap-y-2.5 py-4">
+      <div class="flex flex-col gap-y-2 xs:gap-y-2.5">
         <h2 class="text-xl xs:text-2xl text-slate-800/90 font-extrabold">최신 글</h2>
         <div class="flex flex-col gap-y-2">
           <PostCard
