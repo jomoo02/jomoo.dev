@@ -12,26 +12,23 @@ useHead({
 
 <template>
   <NuxtLayout name="side-bar">
-    <div class="flex flex-col gap-y-5 py-3">
+    <div class="flex flex-col gap-y-5">
       <div class="flex flex-col gap-y-1.5">
-        <h1 class="text-xl font-bold capitalize">{{ category }}</h1>
-        <p class="text-slate-500/80 text-sm md:text-base font-medium">
+        <h2 class="text-lg xs:text-xl font-bold capitalize">{{ category }}</h2>
+        <p class="text-sm md:text-base font-medium text-slate-500/80">
           {{ categoryDescription }}
         </p>
       </div>
-      <div class="grid sm:grid-cols-2 gap-x-2 gap-y-8 xl:grid-cols-3">
-        <div
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-x-2 gap-y-8">
+        <CategoryDetailCard
           v-for="{ text, path, description, iconName } in categoryItems"
           :key="text"
-          class="sm:max-w-72 md:w-80 h-44 lg:min-w-80 xl:w-72 xl:min-w-72"
-        >
-          <CategoryDetailCard
-            :detail-text="text"
-            :path="path"
-            :description="description"
-            :icon-name="iconName"
-          />
-        </div>
+          class="sm:max-w-72 md:w-80 h-[7.8rem] xs:h-[10.5rem] sm:h-44 md:h-[10.5rem] lg:min-w-80 xl:w-72 xl:min-w-72"
+          :detail-text="text"
+          :path="path"
+          :description="description"
+          :icon-name="iconName"
+        />
       </div>
     </div>
   </NuxtLayout>

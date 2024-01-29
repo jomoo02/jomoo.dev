@@ -25,14 +25,19 @@ defineProps({
 <template>
   <NuxtLink :to="path">
     <div
-      class="ring-1 ring-slate-300 hover:ring-emerald-500 hover:ring-2 rounded-xl w-full h-full py-3 px-4"
+      class="ring-1 hover:ring-2 ring-slate-400/50 hover:ring-emerald-500 rounded-xl h-full py-2 px-4"
     >
-      <div class="w-full h-20 flex items-center">
+      <div class="xs:hidden flex items-center h-12">
+        <Icon :name="iconName" size="45" />
+      </div>
+      <div class="hidden xs:flex items-center h-20">
         <Icon :name="iconName" size="55" />
       </div>
       <div class="flex flex-col">
         <h3 class="text-lg py-1 font-medium truncate text-slate-800">{{ detailText }}</h3>
-        <p class="text-[14px] leading-4 text-slate-700/80 text-ellipsis overflow-hidden capitalize">
+        <p
+          class="text-xs leading-3 xs:text-[14px] xs:leading-4 text-slate-700/80 break-keep capitalize"
+        >
           {{ description }}
         </p>
       </div>

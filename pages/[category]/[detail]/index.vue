@@ -30,7 +30,7 @@ useHead({
         :description="description"
         :title="title"
         :date="date"
-        class="border-b min-h-[130px] max-h-[130px] md:max-h-[140px] md:min-h-[140px] px-1"
+        class="min-h-[130px] max-h-[130px] md:min-h-[140px] md:max-h-[140px] px-1 border-b"
       />
     </div>
   </NuxtLayout>

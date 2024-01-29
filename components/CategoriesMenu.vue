@@ -2,6 +2,9 @@
 import { storeToRefs } from 'pinia';
 import { useCategoriesStore } from '~~/store/categoriesStore';
 
+const appConfig = useAppConfig();
+const { link } = appConfig.ui.nav;
+
 const categoriesStore = useCategoriesStore();
 const { activeCategories } = storeToRefs(categoriesStore);
 
@@ -10,23 +13,20 @@ onUnmounted(() => document.documentElement.classList.remove('overflow-y-hidden')
 </script>
 
 <template>
-  <div class="fixed inset-0 z-[999] top-[65px] pt-3 w-full bg-white">
-    <nav class="flex flex-col px-4 gap-y-px col-span-4 font-semibold">
-      <div v-for="{ path, active, category } in activeCategories" :key="category" class="flex">
-        <NuxtLink class="link" :to="path" :class="{ link: path, link_active: active }">
-          {{ category }}
-        </NuxtLink>
-      </div>
-      <div class="flex p-1.5 cursor-not-allowed text-zinc-600 select-none">etc</div>
+  <div class="fixed inset-0 z-[999] top-[var(--header-height)] bg-white my-px">
+    <nav class="px-4 py-2">
+      <ul class="text-sm xs:text-base flex flex-col gap-y-px font-semibold">
+        <li v-for="{ path, active, category } in activeCategories" :key="category" class="flex">
+          <NuxtLink
+            class="p-1.5 select-none"
+            :to="path"
+            :class="active ? link.active : link.default"
+          >
+            {{ category }}
+          </NuxtLink>
+        </li>
+        <li class="p-1.5 cursor-not-allowed text-zinc-600 select-none">etc</li>
+      </ul>
     </nav>
   </div>
 </template>
-
-<style scoped>
-.link {
-  @apply flex p-1.5 text-zinc-600 hover:text-emerald-500 select-none;
-}
-.link_active {
-  color: #047857;
-}
-</style>

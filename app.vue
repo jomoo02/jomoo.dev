@@ -3,20 +3,3 @@
     <NuxtPage />
   </NuxtLayout>
 </template>
-
-<style>
-/* html {
-  scroll-padding-top: 5.8rem;
-}
-
-@media screen and (min-width: 768px) {
-  html {
-    scroll-padding-top: 6.8rem;
-  }
-} */
-a {
-  /* position: absolute; */
-  left: 0px;
-  top: -60px;
-}
-</style>

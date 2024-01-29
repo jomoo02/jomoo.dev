@@ -22,10 +22,6 @@ const iconName = computed(() =>
   props.direction === PREVIOUS ? 'icon-park:arrow-left' : 'icon-park:arrow-right',
 );
 
-const directionText = computed(() =>
-  props.direction === PREVIOUS ? PREVIOUS_POST_TEXT : NEXT_POST_TEXT,
-);
-
 const justifyContentClass = computed(() =>
   props.direction === PREVIOUS ? 'justify-start' : 'justify-end',
 );
@@ -37,17 +33,25 @@ const flexRowDirectionClass = computed(() =>
 
 <template>
   <NuxtLink :to="props.path">
-    <div class="w-full border rounded-xl py-2.5 px-3.5 hover:ring-2 ring-emerald-400">
+    <div
+      class="ring-1 hover:ring-2 ring-slate-400/50 hover:ring-emerald-400 rounded-xl py-2.5 px-3.5"
+    >
       <div class="flex items-center gap-x-5 md:gap-x-1.5" :class="flexRowDirectionClass">
         <div class="md:w-2/12 flex" :class="justifyContentClass">
           <Icon :name="iconName" size="32" />
         </div>
         <div class="w-10/12">
-          <div class="flex text-sm font-semibold text-zinc-500" :class="justifyContentClass">
-            {{ directionText }}
+          <div
+            class="flex text-xs xs:text-sm font-semibold text-zinc-500"
+            :class="justifyContentClass"
+          >
+            {{ props.direction === PREVIOUS ? PREVIOUS_POST_TEXT : NEXT_POST_TEXT }}
           </div>
-          <div class="flex items-center" :class="justifyContentClass">
-            <span class="text-lg font-bold text-zinc-700 truncate">{{ props.title }}</span>
+          <div
+            class="flex items-center text-base xs:text-lg font-bold text-zinc-700 truncate"
+            :class="justifyContentClass"
+          >
+            {{ props.title }}
           </div>
         </div>
       </div>
