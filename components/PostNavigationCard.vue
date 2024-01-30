@@ -1,6 +1,4 @@
 <script setup>
-import { PREVIOUS, PREVIOUS_POST_TEXT, NEXT_POST_TEXT } from '~/constants/postDirection';
-
 const props = defineProps({
   direction: {
     type: String,
@@ -18,16 +16,21 @@ const props = defineProps({
   },
 });
 
+const appConfig = useAppConfig();
+const { previous, next } = appConfig.postNavigation;
+
+const isPreviousDirection = computed(() => props.direction === previous.direction);
+
 const iconName = computed(() =>
-  props.direction === PREVIOUS ? 'icon-park:arrow-left' : 'icon-park:arrow-right',
+  isPreviousDirection.value ? 'icon-park:arrow-left' : 'icon-park:arrow-right',
 );
 
 const justifyContentClass = computed(() =>
-  props.direction === PREVIOUS ? 'justify-start' : 'justify-end',
+  isPreviousDirection.value ? 'justify-start' : 'justify-end',
 );
 
 const flexRowDirectionClass = computed(() =>
-  props.direction === PREVIOUS ? 'flex-row' : 'flex-row-reverse',
+  isPreviousDirection.value ? 'flex-row' : 'flex-row-reverse',
 );
 </script>
 
@@ -45,7 +48,7 @@ const flexRowDirectionClass = computed(() =>
             class="flex text-xs xs:text-sm font-semibold text-zinc-500"
             :class="justifyContentClass"
           >
-            {{ props.direction === PREVIOUS ? PREVIOUS_POST_TEXT : NEXT_POST_TEXT }}
+            {{ isPreviousDirection ? previous.text : next.text }}
           </div>
           <div
             class="flex items-center text-base xs:text-lg font-bold text-zinc-700 truncate"

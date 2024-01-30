@@ -1,10 +1,9 @@
 <script setup>
-import { PREVIOUS, NEXT } from '~/constants/postDirection';
-
 const route = useRoute();
 const { detail, post } = route.params;
-const directions = [PREVIOUS, NEXT];
+
 const appConfig = useAppConfig();
+const directions = Object.values(appConfig.postNavigation).map(({ direction }) => direction);
 
 const { data: surrounds } = await useAsyncData(
   `post-${post}-surrounds`,

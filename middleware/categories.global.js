@@ -1,16 +1,16 @@
 import { useCategoriesStore } from '~~/store/categoriesStore';
-import { NOTE, PROJECTS } from '../constants/categories';
 
 export default defineNuxtRouteMiddleware((to) => {
-  const categoriesStore = useCategoriesStore();
-  const { selectHome, selectNote, selectProject } = categoriesStore;
-  const category = to.path.split('/')[1];
+  const appConfig = useAppConfig();
+  const { home } = appConfig.category;
 
-  if (category === '') {
-    selectHome();
-  } else if (category === NOTE) {
-    selectNote();
-  } else if (category === PROJECTS) {
-    selectProject();
+  const categoriesStore = useCategoriesStore();
+  const { selectCategory } = categoriesStore;
+  const routeCategory = to.path.split('/')[1];
+
+  if (routeCategory) {
+    selectCategory(routeCategory);
+  } else {
+    selectCategory(home);
   }
 });

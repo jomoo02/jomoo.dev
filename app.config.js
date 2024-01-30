@@ -1,4 +1,22 @@
 export default defineAppConfig({
+  category: {
+    home: 'home',
+    note: 'note',
+    projects: 'projects',
+  },
+
+  postNavigation: {
+    previous: {
+      direction: 'previous',
+      text: '이전 포스트',
+    },
+
+    next: {
+      direction: 'next',
+      text: '다음 포스트',
+    },
+  },
+
   ui: {
     main: {
       postCard: {

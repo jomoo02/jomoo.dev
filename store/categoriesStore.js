@@ -1,28 +1,24 @@
 import { defineStore } from 'pinia';
-import { HOME, PROJECTS, NOTE } from '../constants/categories';
 
 export const useCategoriesStore = defineStore('categories', () => {
-  const categoriesState = ref(HOME);
+  const appConfig = useAppConfig();
+  const { home, note, projects } = appConfig.category;
 
-  const isSelectedNote = computed(() => categoriesState.value === NOTE);
-  const isSelectedProjects = computed(() => categoriesState.value === PROJECTS);
+  const categoriesState = ref(home);
+
+  const isSelectedNote = computed(() => categoriesState.value === note);
+
+  const isSelectedProjects = computed(() => categoriesState.value === projects);
+
   const activeCategories = computed(() => {
     return [
-      { active: isSelectedNote.value, category: NOTE, path: '/note' },
-      { active: isSelectedProjects.value, category: PROJECTS, path: '/projects' },
+      { active: isSelectedNote.value, category: note, path: `/${note}` },
+      { active: isSelectedProjects.value, category: projects, path: `/${projects}` },
     ];
   });
 
-  function selectHome() {
-    categoriesState.value = HOME;
-  }
-
-  function selectNote() {
-    categoriesState.value = NOTE;
-  }
-
-  function selectProject() {
-    categoriesState.value = PROJECTS;
+  function selectCategory(category = home) {
+    categoriesState.value = category;
   }
 
   return {
@@ -30,8 +26,6 @@ export const useCategoriesStore = defineStore('categories', () => {
     isSelectedNote,
     isSelectedProjects,
     activeCategories,
-    selectHome,
-    selectNote,
-    selectProject,
+    selectCategory,
   };
 });
