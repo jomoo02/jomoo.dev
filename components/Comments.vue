@@ -4,7 +4,7 @@ const utterancMap = [
   { attribute: 'src', value: 'https://utteranc.es/client.js' },
   { attribute: 'async', value: true },
   { attribute: 'crossorigin', value: 'anonymous' },
-  { attribute: 'issue-term', value: 'title' },
+  { attribute: 'issue-term', value: 'pathname' },
   { attribute: 'repo', value: 'jomoo02/jomoo.dev-comments' },
   { attribute: 'theme', value: 'github-light' },
 ];
