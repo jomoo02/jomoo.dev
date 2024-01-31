@@ -39,11 +39,14 @@ const flexRowDirectionClass = computed(() =>
     <div
       class="ring-1 hover:ring-2 ring-slate-400/50 hover:ring-emerald-400 rounded-xl py-2.5 px-3.5"
     >
-      <div class="flex items-center gap-x-5 md:gap-x-1.5" :class="flexRowDirectionClass">
-        <div class="md:w-2/12 flex" :class="justifyContentClass">
+      <div class="flex items-center gap-x-2 xs:gap-x-5 md:gap-x-3" :class="flexRowDirectionClass">
+        <div class="xs:hidden" :class="justifyContentClass">
+          <Icon :name="iconName" size="28" />
+        </div>
+        <div class="hidden xs:block w-auto" :class="justifyContentClass">
           <Icon :name="iconName" size="32" />
         </div>
-        <div class="w-10/12">
+        <div class="flex flex-col w-3/4">
           <div
             class="flex text-xs xs:text-sm font-semibold text-zinc-500"
             :class="justifyContentClass"
@@ -51,10 +54,10 @@ const flexRowDirectionClass = computed(() =>
             {{ isPreviousDirection ? previous.text : next.text }}
           </div>
           <div
-            class="flex items-center text-base xs:text-lg font-bold text-zinc-700 truncate"
+            class="flex items-center text-base xs:text-lg font-bold text-zinc-700"
             :class="justifyContentClass"
           >
-            {{ props.title }}
+            <span class="truncate">{{ props.title }}</span>
           </div>
         </div>
       </div>

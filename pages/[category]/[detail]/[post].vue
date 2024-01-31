@@ -36,5 +36,6 @@ const { data: surrounds } = await useAsyncData(
         />
       </div>
     </div>
+    <Comments />
   </NuxtLayout>
 </template>
