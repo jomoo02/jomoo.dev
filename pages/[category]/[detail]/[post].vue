@@ -20,11 +20,17 @@ const { data: surrounds } = await useAsyncData(
 
 <template>
   <NuxtLayout name="side-bar">
-    <div
-      class="prose min-w-full md:px-2 min-h-screen"
-      :class="Object.values(appConfig.ui.prose).join(' ')"
-    >
-      <ContentDoc />
+    <div class="grid grid-cols-6">
+      <div class="col-span-5">
+        <div
+          class="prose min-w-full md:px-2 min-h-screen"
+          :class="Object.values(appConfig.ui.prose).join(' ')"
+        >
+          <ContentDoc />
+        </div>
+      </div>
+
+      <TableOfContents class="col-span-1" />
     </div>
     <div v-if="surrounds?.length" class="flex flex-col md:flex-row gap-2.5 justify-between">
       <div v-for="(surround, index) in surrounds" :key="surround" class="md:w-1/3">
