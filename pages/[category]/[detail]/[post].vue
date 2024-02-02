@@ -5,6 +5,14 @@ const { detail, post } = route.params;
 const appConfig = useAppConfig();
 const directions = Object.values(appConfig.postNavigation).map(({ direction }) => direction);
 
+const { data: postData } = await useAsyncData(`post-${post}`, () => {
+  return queryContent(route.path).findOne();
+});
+
+const sections = computed(() =>
+  postData.value.body.children.filter(({ tag }) => tag === 'h3' || tag === 'h4'),
+);
+
 const { data: surrounds } = await useAsyncData(
   `post-${post}-surrounds`,
   () => {
@@ -20,26 +28,35 @@ const { data: surrounds } = await useAsyncData(
 
 <template>
   <NuxtLayout name="side-bar">
-    <div class="grid grid-cols-6">
-      <div class="col-span-5">
+    <div class="grid grid-cols-12 gap-x-9">
+      <section class="col-span-12 lg:col-span-10 md:py-10">
         <div
           class="prose min-w-full md:px-2 min-h-screen"
           :class="Object.values(appConfig.ui.prose).join(' ')"
         >
-          <ContentDoc />
+          <ContentRenderer :value="postData" />
         </div>
-      </div>
-
-      <TableOfContents class="col-span-1" />
+      </section>
+      <aside
+        class="hidden lg:block lg:col-span-2 py-10 md:sticky overflow-y-auto max-h-[calc(100vh-4rem)] top-[4rem]"
+      >
+        <TableOfContents :sections="sections" />
+      </aside>
     </div>
-    <div v-if="surrounds?.length" class="flex flex-col md:flex-row gap-2.5 justify-between">
-      <div v-for="(surround, index) in surrounds" :key="surround" class="md:w-1/3">
-        <PostNavigationCard
-          v-if="surround"
-          :direction="directions[index]"
-          :title="surround.title"
-          :path="surround._path"
-        />
+
+    <div class="grid grid-cols-12 lg:mt-14">
+      <div
+        v-if="surrounds?.length"
+        class="flex flex-col md:flex-row gap-2.5 justify-between col-span-12 lg:col-span-10"
+      >
+        <div v-for="(surround, index) in surrounds" :key="surround" class="md:w-1/3">
+          <PostNavigationCard
+            v-if="surround"
+            :direction="directions[index]"
+            :title="surround.title"
+            :path="surround._path"
+          />
+        </div>
       </div>
     </div>
     <Comments />
