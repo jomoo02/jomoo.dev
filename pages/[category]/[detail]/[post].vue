@@ -34,7 +34,7 @@ const { data: surrounds } = await useAsyncData(
           class="prose min-w-full md:px-2 min-h-screen"
           :class="Object.values(appConfig.ui.prose).join(' ')"
         >
-          <ContentRenderer :value="postData" />
+          <ContentRenderer id="content" :value="postData" />
         </div>
       </section>
       <aside

@@ -35,9 +35,8 @@ function useTableOfContents(sections) {
   sectionGroups.value = groupSections(mapSections(sections));
 
   const activeSectionGroup = (group) => {
-    currentSection.value.active = false;
-    currentSection.value = sectionGroups.value.find((sectionGroup) => sectionGroup.id === group);
-    currentSection.value.active = true;
+    const target = sectionGroups.value.find((sectionGroup) => sectionGroup.id === group);
+    target.active = true;
   };
 
   const activeSection = (group, id) => {
@@ -46,6 +45,11 @@ function useTableOfContents(sections) {
       .find((sectionGroup) => sectionGroup.id === group)
       .sub.find((section) => section.id === id);
     currentSection.value.active = true;
+  };
+
+  const unActiveSectionGroup = (group) => {
+    const target = sectionGroups.value.find((sectionGroup) => sectionGroup.id === group);
+    target.active = false;
   };
 
   const start = (id) => {
@@ -62,7 +66,7 @@ function useTableOfContents(sections) {
     }
   };
 
-  return { sectionGroups, activeSectionGroup, activeSection, start };
+  return { sectionGroups, activeSectionGroup, activeSection, start, unActiveSectionGroup };
 }
 
 export default useTableOfContents;

@@ -6,27 +6,46 @@ const props = defineProps({
   },
 });
 
-const { sectionGroups, activeSection, activeSectionGroup, start } = useTableOfContents(
+const { sectionGroups, activeSectionGroup, unActiveSectionGroup } = useTableOfContents(
   props.sections,
 );
 
+const test = ref();
+const nav = ref();
+
 onMounted(() => {
-  const { hash } = useRoute();
-  start(hash.slice(1));
+  const option = {
+    rootMargin: '-88px 0px 0px 0px',
+    threshold: 1.0,
+  };
+  const callback = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        activeSectionGroup(entry.target.id);
+      } else {
+        unActiveSectionGroup(entry.target.id);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(callback, option);
+
+  Array.from(document.getElementsByTagName('h3')).forEach((tag) => {
+    observer.observe(tag);
+  });
 });
 </script>
 
 <template>
   <div class="px-px">
     <div class="font-semibold text-slate-800/90">목차</div>
-    <nav class="text-slate-500/90">
-      <ul class="flex flex-col gap-y-2">
+    <nav ref="nav" class="text-slate-500/90">
+      <ul ref="test" class="flex flex-col gap-y-2">
         <li v-for="subHeading in sectionGroups" :key="subHeading" class="truncate">
           <NuxtLink
             :to="`#${subHeading.id}`"
             class="font-medium text-sm"
             :class="{ 'text-emerald-500': subHeading.active }"
-            @click="activeSectionGroup(subHeading.id)"
           >
             {{ subHeading.text }}
           </NuxtLink>
@@ -36,7 +55,6 @@ onMounted(() => {
                 :to="`#${sub.id}`"
                 class="text-sm font-medium"
                 :class="{ 'text-emerald-500': sub.active }"
-                @click="activeSection(subHeading.id, sub.id)"
               >
                 {{ sub.text }}
               </NuxtLink>
