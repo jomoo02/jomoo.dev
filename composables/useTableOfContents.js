@@ -10,8 +10,8 @@ const pickAllText = (children) => {
 };
 
 const mapSections = (sections) => {
-  return sections.map(({ props, children, tag }) => {
-    return { tag, id: props.id, text: pickAllText(children), sub: [], active: false };
+  return sections.map(({ props, children, tag }, index) => {
+    return { index, tag, id: props.id, text: pickAllText(children), sub: [], active: false };
   });
 };
 
@@ -30,12 +30,13 @@ const groupSections = (sections) => {
 
 function useTableOfContents(sections) {
   const sectionGroups = ref([]);
-  const currentSection = ref({});
+  const currentSection = ref(0);
 
   sectionGroups.value = groupSections(mapSections(sections));
 
   const activeSectionGroup = (group) => {
     const target = sectionGroups.value.find((sectionGroup) => sectionGroup.id === group);
+    currentSection.value = target;
     target.active = true;
   };
 
@@ -49,7 +50,12 @@ function useTableOfContents(sections) {
 
   const unActiveSectionGroup = (group) => {
     const target = sectionGroups.value.find((sectionGroup) => sectionGroup.id === group);
+    currentSection.value.active = false;
     target.active = false;
+  };
+
+  const isTarget = () => {
+    return currentSection.value !== 0;
   };
 
   const start = (id) => {
@@ -66,7 +72,27 @@ function useTableOfContents(sections) {
     }
   };
 
-  return { sectionGroups, activeSectionGroup, activeSection, start, unActiveSectionGroup };
+  const activeTest2 = (group) => {
+    const target = sectionGroups.value.find((sectionGroup) => sectionGroup.id === group);
+    // console.log(target);
+    // console.log(group, target.active);
+
+    target.active = true;
+    if (currentSection.value !== 0) {
+      currentSection.value.active = false;
+    }
+    currentSection.value = target;
+  };
+
+  return {
+    sectionGroups,
+    activeSectionGroup,
+    activeSection,
+    start,
+    unActiveSectionGroup,
+    isTarget,
+    activeTest2,
+  };
 }
 
 export default useTableOfContents;

@@ -6,34 +6,44 @@ const props = defineProps({
   },
 });
 
-const { sectionGroups, activeSectionGroup, unActiveSectionGroup } = useTableOfContents(
+const { sectionGroups, activeSectionGroup, unActiveSectionGroup, activeTest2 } = useTableOfContents(
   props.sections,
 );
+
+
 
 const test = ref();
 const nav = ref();
 
-onMounted(() => {
-  const option = {
-    rootMargin: '-88px 0px 0px 0px',
-    threshold: 1.0,
-  };
-  const callback = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        activeSectionGroup(entry.target.id);
-      } else {
-        unActiveSectionGroup(entry.target.id);
-      }
-    });
-  };
+useTableOfContentsV2(sectionGroups);
 
-  const observer = new IntersectionObserver(callback, option);
+  // const option = {
+  //   // rootMargin: '-104px 0px -50% 0px',
+  //   threshold: 1.0,
+  // };
 
-  Array.from(document.getElementsByTagName('h3')).forEach((tag) => {
-    observer.observe(tag);
-  });
-});
+  // const callback = (entries) => {
+  //   const temp = [];
+  //   entries.forEach((entry) => {
+  //     if (entry.isIntersecting) {
+  //       // console.log('root', entry.rootBounds.y);
+  //       console.log('clientRect', window.mouseMoveY + entry.boundingClientRect.top, entry.target.id);
+  //       // console.log(entry.target);
+  //       temp.push(entry.target);
+  //     }
+  //   });
+
+  //   if (temp.length > 0) {
+  //     const target = temp.sort((a, b) => a.index - b.index)[0];
+  //     // console.log(target);
+  //     activeTest2(target.id);
+  //   }
+  // };
+
+  // const observer = new IntersectionObserver(callback, option);
+// });
+
+// onUnmounted(() => window.removeEventListener('scroll', update));
 </script>
 
 <template>
@@ -43,6 +53,7 @@ onMounted(() => {
       <ul ref="test" class="flex flex-col gap-y-2">
         <li v-for="subHeading in sectionGroups" :key="subHeading" class="truncate">
           <NuxtLink
+            :id="`${subHeading.id}`"
             :to="`#${subHeading.id}`"
             class="font-medium text-sm"
             :class="{ 'text-emerald-500': subHeading.active }"
