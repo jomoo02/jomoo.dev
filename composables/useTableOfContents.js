@@ -20,9 +20,10 @@ const groupSections = (sections) => {
     if (section.tag === 'h3') {
       group.push(section);
     } else if (section.tag === 'h4') {
-      const lastGroup = group.pop();
-      lastGroup.sub.push(section);
-      group.push(lastGroup);
+      group.at(-1).sub.push(section);
+      // const lastGroup = group.pop();
+      // lastGroup.sub.push(section);
+      // group.push(lastGroup);
     }
     return group;
   }, []);

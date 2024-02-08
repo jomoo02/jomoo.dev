@@ -9,10 +9,6 @@ const { data: postData } = await useAsyncData(`post-${post}`, () => {
   return queryContent(route.path).findOne();
 });
 
-const sections = computed(() =>
-  postData.value.body.children.filter(({ tag }) => tag === 'h3' || tag === 'h4'),
-);
-
 const { data: surrounds } = await useAsyncData(
   `post-${post}-surrounds`,
   () => {
@@ -34,13 +30,13 @@ const { data: surrounds } = await useAsyncData(
           class="prose min-w-full md:px-2 min-h-screen"
           :class="Object.values(appConfig.ui.prose).join(' ')"
         >
-          <ContentRenderer id="content" :value="postData" />
+          <ContentRenderer :value="postData" />
         </div>
       </section>
       <aside
         class="hidden lg:block lg:col-span-2 py-10 md:sticky overflow-y-auto max-h-[calc(100vh-4rem)] top-[4rem]"
       >
-        <TableOfContents :sections="sections" />
+        <TableOfContents />
       </aside>
     </div>
 
