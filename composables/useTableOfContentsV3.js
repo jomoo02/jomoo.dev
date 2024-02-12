@@ -19,17 +19,18 @@ const groupSections = (sections) => {
 };
 
 const pickSections = () => {
-  const targetTgas = [
+  const targetTags = [
     { targetTag: 'h3', margin: 150 },
     { targetTag: 'h4', margin: 160 },
   ];
 
-  return targetTgas
+  return targetTags
     .reduce((array, { targetTag, margin }) => {
       const absoluteTops = Array.from(document.getElementsByTagName(targetTag)).map((tag) => {
-        const absoluteTop = window.screenY + tag.getBoundingClientRect().top - margin;
+        const absoluteTop = window.scrollY + tag.getBoundingClientRect().top - margin;
+        // console.log(tag.getBoundingClientRect().top, window.scrollY, absoluteTop);
         return {
-          absoluteTop,
+          absoluteTop: Math.round(absoluteTop),
           tag: targetTag,
           text: tag.innerText,
           id: tag.id,
@@ -42,7 +43,17 @@ const pickSections = () => {
     .sort((a, b) => a.absoluteTop - b.absoluteTop);
 };
 
-const findLocation = (y, sectionGroups) => {
+const pickPostEndLine = () => {
+  return Array.from(document.getElementsByTagName('hr')).map((tag) => {
+    return window.scrollY + tag.getBoundingClientRect().top - 120;
+  })[0];
+};
+
+const findLocation = (y, sectionGroups, postEndLine) => {
+  if (y > postEndLine) {
+    return -1;
+  }
+
   for (let location = 0; location < sectionGroups.length - 1; location += 1) {
     const curAbsoluteTop = sectionGroups[location].absoluteTop;
     const nextAbsoluteTop = sectionGroups[location + 1].absoluteTop;
@@ -59,8 +70,8 @@ const findLocation = (y, sectionGroups) => {
   return sectionGroups.length - 1;
 };
 
-const activeSection = (y, sectionGroups) => {
-  const location = findLocation(y, sectionGroups);
+const activeSection = (y, sectionGroups, postEndLine) => {
+  const location = findLocation(y, sectionGroups, postEndLine);
 
   if (location !== -1) {
     const targetSection = sectionGroups[location];
@@ -76,6 +87,7 @@ function useTableOfContentsV3() {
   const sectionGroups = ref([]);
   const mainSection = ref({ ...defaultSection });
   const subSection = ref({ ...defaultSection });
+  const postEndLine = ref();
 
   const ticking = ref(false);
 
@@ -88,11 +100,12 @@ function useTableOfContentsV3() {
       requestAnimationFrame(() => {
         mainSection.value.active = false;
         subSection.value.active = false;
+        mainSection.value = activeSection(y.value, sectionGroups.value, postEndLine.value);
 
-        mainSection.value = activeSection(y.value, sectionGroups.value);
         if (mainSection.value.sub.length > 0) {
-          subSection.value = activeSection(y.value, mainSection.value.sub);
+          subSection.value = activeSection(y.value, mainSection.value.sub, postEndLine.value);
         }
+
         ticking.value = false;
       });
       ticking.value = true;
@@ -101,6 +114,7 @@ function useTableOfContentsV3() {
 
   onMounted(() => {
     sectionGroups.value = groupSections(pickSections());
+    postEndLine.value = pickPostEndLine();
     window.addEventListener('scroll', update, { passive: true });
   });
 
