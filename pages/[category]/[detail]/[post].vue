@@ -24,14 +24,14 @@ const { data: surrounds } = await useAsyncData(
 
 <template>
   <NuxtLayout name="side-bar">
-    <div class="grid grid-cols-12 gap-x-10">
-      <div class="col-span-12 lg:col-span-10 mt-10">
+    <div class="grid grid-cols-12 lg:gap-x-10">
+      <div class="col-span-12 lg:col-span-10 md:mt-10">
         <section>
           <div
             class="prose min-w-full md:px-2 min-h-screen"
             :class="Object.values(appConfig.ui.prose).join(' ')"
           >
-            <ContentRenderer :value="postData" />
+            <ContentRenderer v-if="postData" :value="postData" />
           </div>
         </section>
         <div class="grid grid-cols-12 lg:mt-14">
@@ -54,8 +54,8 @@ const { data: surrounds } = await useAsyncData(
         </div>
       </div>
       <div class="hidden lg:block lg:col-span-2">
-        <aside class="pt-10 sticky overflow-y-auto max-h-[calc(100vh-4rem)] top-[4rem]">
-          <TableOfContents />
+        <aside class="py-10 sticky overflow-y-auto max-h-[calc(100vh-4rem)] top-[4rem]">
+          <ContentToc :link="postData.body?.toc?.links" />
         </aside>
       </div>
     </div>
