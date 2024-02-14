@@ -26,7 +26,7 @@ useHead({
       <PostCard
         v-for="{ _path, description, title, date } in posts"
         :key="title"
-        :path="`${_path}/`"
+        :path="_path"
         :description="description"
         :title="title"
         :date="date"
