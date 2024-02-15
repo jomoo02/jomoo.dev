@@ -34,12 +34,6 @@ export default defineNuxtConfig({
       theme: 'dracula-soft',
       langs: ['python', 'vue', 'md', 'js', 'html', 'css', 'ts'],
     },
-    markdown: {
-      toc: {
-        depth: 3,
-        searchDepth: 4,
-      },
-    },
   },
   plugins: [{ src: '~/plugins/vercel.js', mode: 'client' }],
 });

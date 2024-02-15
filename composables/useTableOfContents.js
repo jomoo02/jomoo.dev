@@ -20,7 +20,7 @@ function useTableOfContents() {
   onMounted(() => {
     observer.value = new IntersectionObserver(callback, { rootMargin: '-64px 0px'});
 
-    document.querySelectorAll('.prose h3, .prose h4').forEach((section) => {
+    document.querySelectorAll('.prose h2, .prose h3').forEach((section) => {
       observer.value.observe(section);
     });
   });
