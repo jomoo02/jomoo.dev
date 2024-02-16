@@ -29,6 +29,11 @@ export default defineNuxtConfig({
     },
   },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@pinia/nuxt', 'nuxt-icon'],
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth'
+    }
+  },
   content: {
     highlight: {
       theme: 'dracula-soft',

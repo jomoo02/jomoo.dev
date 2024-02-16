@@ -9,7 +9,7 @@ const { sectionGroups } = useTableOfContentsV3();
       <ul class="flex flex-col gap-y-2">
         <li v-for="{ id, active, text, sub } in sectionGroups" :key="id" class="truncate">
           <NuxtLink
-            :to="`#${id}`"
+            :to="{ hash: id }"
             class="font-medium text-sm"
             :class="{ 'text-emerald-500': active }"
           >
@@ -18,7 +18,7 @@ const { sectionGroups } = useTableOfContentsV3();
           <ul v-if="sub.length > 0" class="pt-2 pl-2.5 flex flex-col gap-y-1.5">
             <li v-for="subTitle in sub" :key="subTitle.id" class="truncate">
               <NuxtLink
-                :to="`#${subTitle.id}`"
+                :to="{ hash: subTitle.id }"
                 class="text-sm font-medium"
                 :class="{ 'text-emerald-500': subTitle.active }"
               >
