@@ -9,9 +9,9 @@ const defaultSection = {
 
 const groupSections = (sections) => {
   return sections.reduce((group, section) => {
-    if (section.tag === 'h3') {
+    if (section.tag === 'h2') {
       group.push(section);
-    } else if (section.tag === 'h4') {
+    } else if (section.tag === 'h3') {
       group.at(-1).sub.push(section);
     }
     return group;
@@ -20,8 +20,8 @@ const groupSections = (sections) => {
 
 const pickSections = () => {
   const targetTags = [
-    { targetTag: 'h3', margin: 150 },
-    { targetTag: 'h4', margin: 160 },
+    { targetTag: 'h2', margin: 150 },
+    { targetTag: 'h3', margin: 160 },
   ];
 
   return targetTags
@@ -111,11 +111,15 @@ function useTableOfContentsV3() {
       ticking.value = true;
     }
   };
-
+  
   onMounted(() => {
-    sectionGroups.value = groupSections(pickSections());
-    postEndLine.value = pickPostEndLine();
-    window.addEventListener('scroll', update, { passive: true });
+    setTimeout(() => {
+      sectionGroups.value = groupSections(pickSections());
+      postEndLine.value = pickPostEndLine();
+      window.addEventListener('scroll', update, { passive: true });
+    }, 1000)
+
+    console.log('onMounted');
   });
 
   onUnmounted(() => {

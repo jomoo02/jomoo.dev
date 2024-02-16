@@ -1,12 +1,12 @@
 <script setup>
 const props = defineProps({
-  link: {
+  links: {
     type: Array,
     default() {
       return [
         {
           id: 'id',
-          depth: 3,
+          depth: 2,
           text: 'intro',
           children: [],
         },
@@ -15,7 +15,11 @@ const props = defineProps({
   },
 });
 
-const { activeLink } = useTableOfContents();
+const { activeSections } = useSectionsObserve();
+
+function isActive(id) {
+  return activeSections.value.includes(id);
+}
 </script>
 
 <template>
@@ -23,11 +27,11 @@ const { activeLink } = useTableOfContents();
     <div class="font-semibold text-slate-800/90">목차</div>
     <nav class="text-slate-500/90">
       <ul class="space-y-2.5 px-px">
-        <li v-for="{ id, text, children } in props.link" :key="id">
+        <li v-for="{ id, text, children } in props.links" :key="id">
           <NuxtLink
             :to="`#${id}`"
             class="font-medium text-sm block truncate"
-            :class="{ 'text-emerald-500': activeLink.includes(id) }"
+            :class="{ 'text-emerald-500': isActive(id) }"
           >
             {{ text }}
           </NuxtLink>
@@ -36,7 +40,7 @@ const { activeLink } = useTableOfContents();
               <NuxtLink
                 :to="`#${childId}`"
                 class="font-medium text-sm block truncate"
-                :class="{ 'text-emerald-500': activeLink.includes(childId) }"
+                :class="{ 'text-emerald-500': isActive(childId) }"
               >
                 {{ childText }}
               </NuxtLink>

@@ -1,6 +1,6 @@
 function useTableOfContents() {
-  const visibleLink = ref([]);
-  const activeLink = ref([]);
+  const visibleSections = ref([]);
+  const activeSections = ref([]);
 
   const observer = ref(null);
 
@@ -9,16 +9,15 @@ function useTableOfContents() {
       const { id } = entry.target;
 
       if (entry.isIntersecting) {
-        visibleLink.value = [...visibleLink.value, id];
+        visibleSections.value = [...visibleSections.value, id];
       } else {
-        visibleLink.value = visibleLink.value.filter((target) => target !== id);
+        visibleSections.value = visibleSections.value.filter((target) => target !== id);
       }
     });
   };
 
-
   onMounted(() => {
-    observer.value = new IntersectionObserver(callback, { rootMargin: '-64px 0px'});
+    observer.value = new IntersectionObserver(callback);
 
     document.querySelectorAll('.prose h2, .prose h3').forEach((section) => {
       observer.value.observe(section);
@@ -29,16 +28,16 @@ function useTableOfContents() {
     observer.value.disconnect();
   });
 
-  watch(visibleLink, (newValue, oldValue) => {
+  watch(visibleSections, (newValue, oldValue) => {
     if (newValue.length === 0) {
-      activeLink.value = oldValue;
+      activeSections.value = oldValue;
     } else {
-      activeLink.value = newValue;
+      activeSections.value = newValue;
     }
   });
 
   return {
-    activeLink,
+    activeSections,
   };
 }
 

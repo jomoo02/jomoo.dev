@@ -55,7 +55,8 @@ const { data: surrounds } = await useAsyncData(
       </div>
       <div class="hidden lg:block lg:col-span-2">
         <aside class="py-10 sticky overflow-y-auto max-h-[calc(100vh-4rem)] top-[4rem]">
-          <ContentToc :link="postData.body?.toc?.links" />
+          <ContentToc :links="postData.body?.toc?.links" />
+          <!-- <TableOfContents /> -->
         </aside>
       </div>
     </div>
