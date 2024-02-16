@@ -37,6 +37,9 @@ export default defineAppConfig({
       p: 'prose-p:text-[0.9rem] prose-p:xs:text-[1rem]',
       li: 'prose-li:text-[0.9rem] prose-li:xs:text-[1rem]',
       pre: 'prose-pre:text-[0.75rem] prose-pre:xs:text-[0.875rem]',
+      h2: 'prose-h2:scroll-mt-[6.3rem]',
+      h3: 'prose-h3:scroll-mt-[6.4rem]',
+      code: 'prose-code:break-words',
     },
 
     nav: {

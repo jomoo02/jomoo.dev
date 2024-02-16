@@ -29,10 +29,15 @@ export default defineNuxtConfig({
     },
   },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@pinia/nuxt', 'nuxt-icon'],
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth'
+    }
+  },
   content: {
     highlight: {
-      preload: ['python', 'vue', 'md'],
       theme: 'dracula-soft',
+      langs: ['python', 'vue', 'md', 'js', 'html', 'css', 'ts'],
     },
   },
   plugins: [{ src: '~/plugins/vercel.js', mode: 'client' }],

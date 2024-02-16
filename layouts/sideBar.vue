@@ -27,7 +27,7 @@ const { categoryItems } = useCategory();
         </nav>
       </aside>
     </div>
-    <div class="col-span-10 md:col-span-8 min-h-[calc(100vh-4rem)] md:py-10">
+    <div class="col-span-10 md:col-span-8 min-h-[calc(100vh-4rem)]">
       <slot />
     </div>
   </div>

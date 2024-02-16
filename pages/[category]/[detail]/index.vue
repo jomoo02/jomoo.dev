@@ -22,7 +22,7 @@ useHead({
 
 <template>
   <NuxtLayout name="side-bar">
-    <div class="flex flex-col gap-y-1">
+    <div class="flex flex-col gap-y-1 md:py-10">
       <PostCard
         v-for="{ _path, description, title, date } in posts"
         :key="title"
