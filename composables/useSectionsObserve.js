@@ -1,4 +1,4 @@
-function useTableOfContents() {
+function useSectionsObserve() {
   const visibleSections = ref([]);
   const activeSections = ref([]);
 
@@ -41,4 +41,4 @@ function useTableOfContents() {
   };
 }
 
-export default useTableOfContents;
+export default useSectionsObserve;
