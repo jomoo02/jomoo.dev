@@ -6,14 +6,9 @@ const props = defineProps({
   },
 });
 
-const options = { year: 'numeric', month: 'long', day: 'numeric' };
-
-const formatDate = computed(() => {
-  const date = new Date(props.date);
-  return date.toLocaleDateString('ko-KR', options);
-});
+const formattedDate = computed(() => formatDate(props.date));
 </script>
 
 <template>
-  <div class="flex justify-end text-sm px-2">{{ formatDate }}</div>
+  <div class="flex justify-end text-sm px-2">{{ formattedDate }}</div>
 </template>

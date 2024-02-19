@@ -38,7 +38,7 @@ defineProps({
     </div>
     <slot name="tags" />
     <div class="text-xs xs:text-sm text-slate-400">
-      {{ date }}
+      {{ formatDate(date) }}
     </div>
   </div>
 </template>
