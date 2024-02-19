@@ -4,9 +4,14 @@ const closeCategoriesMenu = inject('closeCategoriesMenu');
 
 onMounted(() => closeCategoriesMenu());
 
-useHead({
-  title: category,
-  meta: [{ name: 'description', content: `${category}의 detail 항목들` }],
+const title = ref(category);
+const description = ref(`${category}의 detail 항목들`);
+
+useSeoMeta({
+  title,
+  description,
+  ogDescription: description,
+  ogTitle: title,
 });
 </script>
 

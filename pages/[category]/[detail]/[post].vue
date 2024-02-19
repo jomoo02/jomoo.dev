@@ -20,6 +20,16 @@ const { data: surrounds } = await useAsyncData(
     },
   },
 );
+
+const title = ref(post);
+const description = ref(postData.value.description);
+
+useSeoMeta({
+  title,
+  description,
+  ogDescription: description,
+  ogTitle: title,
+});
 </script>
 
 <template>

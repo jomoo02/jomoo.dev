@@ -18,6 +18,16 @@ useHead({
   title: detail,
   meta: [{ name: 'description', content: `${category} ${detail}` }],
 });
+
+const title = ref(detail);
+const description = ref(`${category} ${detail} posts`);
+
+useSeoMeta({
+  title,
+  description,
+  ogDescription: description,
+  ogTitle: title,
+});
 </script>
 
 <template>
