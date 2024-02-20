@@ -30,6 +30,7 @@ useSeoMeta({
   ogDescription: description,
   ogTitle: title,
 });
+
 </script>
 
 <template>
