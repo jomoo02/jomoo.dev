@@ -9,6 +9,10 @@ const { data: postData } = await useAsyncData(`post-${post}`, () => {
   return queryContent(route.path).findOne();
 });
 
+if (!postData.value) {
+  throw createError({ statusCode: 404 });
+}
+
 const { data: surrounds } = await useAsyncData(
   `post-${post}-surrounds`,
   () => {
@@ -30,7 +34,6 @@ useSeoMeta({
   ogDescription: description,
   ogTitle: title,
 });
-
 </script>
 
 <template>

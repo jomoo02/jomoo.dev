@@ -14,6 +14,10 @@ const { data: posts } = await useAsyncData(
   },
 );
 
+if (posts.value.length === 0) {
+  throw createError({ statusCode: 404 });
+}
+
 useHead({
   title: detail,
   meta: [{ name: 'description', content: `${category} ${detail}` }],
@@ -34,11 +38,11 @@ useSeoMeta({
   <NuxtLayout name="side-bar">
     <div class="flex flex-col gap-y-1 md:py-10">
       <PostCard
-        v-for="{ _path, description, title, date } in posts"
-        :key="title"
+        v-for="{ _path, description: postDescription, title: postTitle, date } in posts"
+        :key="postTitle"
         :path="_path"
-        :description="description"
-        :title="title"
+        :description="postDescription"
+        :title="postTitle"
         :date="date"
         class="min-h-[130px] max-h-[130px] md:min-h-[140px] md:max-h-[140px] px-1 border-b"
       />

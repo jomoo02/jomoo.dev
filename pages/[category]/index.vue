@@ -4,8 +4,12 @@ const closeCategoriesMenu = inject('closeCategoriesMenu');
 
 onMounted(() => closeCategoriesMenu());
 
-const title = ref(category);
-const description = ref(`${category}의 detail 항목들`);
+const title = ref(category.value);
+const description = ref(`${category.value}의 detail 항목들`);
+
+if (!categoryItems.value) {
+  throw createError({ statusCode: 404 });
+}
 
 useSeoMeta({
   title,
@@ -26,12 +30,12 @@ useSeoMeta({
       </div>
       <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-x-2 gap-y-8">
         <CategoryDetailCard
-          v-for="{ text, path, description, iconName } in categoryItems"
+          v-for="{ text, path, description: categoryItemDescription, iconName } in categoryItems"
           :key="text"
           class="sm:max-w-72 md:w-80 h-[7.8rem] xs:h-[10.5rem] sm:h-44 md:h-[10.5rem] lg:min-w-80 xl:w-72 xl:min-w-72"
           :detail-text="text"
           :path="path"
-          :description="description"
+          :description="categoryItemDescription"
           :icon-name="iconName"
         />
       </div>

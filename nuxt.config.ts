@@ -43,11 +43,7 @@ export default defineNuxtConfig({
     },
   },
   robots: {
-    rules: [
-      { UserAgent: '*' },
-      { Disallow: '' },
-      { Sitemap: (req) => `https://${req.headers.host}/sitemap.xml` },
-    ],
+    rules: [{ UserAgent: '*' }, { Disallow: '' }, { Sitemap: 'https://jomoo.dev/robots.txt' }],
   },
   plugins: [{ src: '~/plugins/vercel.js', mode: 'client' }],
 });

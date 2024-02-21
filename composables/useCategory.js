@@ -61,8 +61,8 @@ export function useCategory() {
   const route = useRoute();
 
   category.value = route.params.category;
-  categoryDescription.value = categoriesMap[category.value].description;
-  categoryItems.value = categoriesMap[category.value].itmes;
+  categoryDescription.value = categoriesMap[category.value]?.description;
+  categoryItems.value = categoriesMap[category.value]?.itmes;
 
   return { category, categoryDescription, categoryItems };
 }
