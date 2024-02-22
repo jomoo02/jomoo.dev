@@ -36,19 +36,30 @@ const languageIconType = {
   css: 'vscode-icons:file-type-css',
 };
 
+const copyIconType = {
+  default: 'icon-park-outline:copy',
+  copied: 'material-symbols:check-box-outline',
+};
+
 const copied = ref(false);
+const copyIcon = ref(copyIconType.default);
 
 function selectIcon() {
   return languageIconType[props.language];
 }
 
 function copyCode() {
-  window.navigator.clipboard.writeText(props.code);
+  if (!copied.value) {
+    window.navigator.clipboard.writeText(props.code);
 
-  copied.value = true;
-  setTimeout(() => {
-    copied.value = false;
-  }, 1000);
+    copied.value = true;
+    copyIcon.value = copyIconType.copied;
+
+    setTimeout(() => {
+      copied.value = false;
+      copyIcon.value = copyIconType.default;
+    }, 1000);
+  }
 }
 </script>
 
@@ -63,15 +74,12 @@ function copyCode() {
           {{ props.filename }}
         </span>
       </div>
-      <div v-if="copied" class="flex justify-center items-center gap-x-1">
-        <span class="text-sm hidden sm:inline text-slate-700">copied</span>
-        <div class="flex">
-          <Icon name="material-symbols:check-box-outline" size="1.1rem" style="color: #334155" />
-        </div>
+      <div class="flex justify-center items-center gap-x-1">
+        <span v-if="copied" class="text-sm hidden sm:inline text-slate-700">copied</span>
+        <button class="flex" @click="copyCode">
+          <Icon :name="copyIcon" size="1.1rem" style="color: #334155" />
+        </button>
       </div>
-      <button v-else class="flex" @click="copyCode">
-        <Icon name="icon-park-outline:copy" size="1.1rem" style="color: #334155" />
-      </button>
     </div>
     <pre
       class="my-0 py-4 rounded-t-none whitespace-pre-wrap break-words"
