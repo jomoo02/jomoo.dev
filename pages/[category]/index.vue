@@ -22,6 +22,7 @@ useSeoMeta({
 <template>
   <NuxtLayout name="side-bar">
     <div class="flex flex-col gap-y-5 md:py-10">
+      <Breadcrumbs />
       <div class="flex flex-col gap-y-1.5">
         <h2 class="text-lg xs:text-xl font-bold capitalize">{{ category }}</h2>
         <p class="text-sm md:text-base font-medium text-slate-500/80">

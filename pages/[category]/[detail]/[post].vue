@@ -40,9 +40,10 @@ useSeoMeta({
   <NuxtLayout name="side-bar">
     <div class="grid grid-cols-12 lg:gap-x-10">
       <div class="col-span-12 lg:col-span-10 md:mt-10">
+        <Breadcrumbs class="mb-5" />
         <section>
           <div
-            class="prose min-w-full md:px-2 min-h-screen"
+            class="prose min-w-full min-h-screen"
             :class="Object.values(appConfig.ui.prose).join(' ')"
           >
             <ContentRenderer v-if="postData" :value="postData" />

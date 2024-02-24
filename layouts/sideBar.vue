@@ -10,7 +10,7 @@ const { categoryItems } = useCategory();
 
 <template>
   <div class="grid grid-cols-10 gap-2 sm:gap-4 md:gap-7">
-    <div class="col-span-10 md:col-span-2">
+    <div class="hidden md:block md:col-span-2">
       <aside
         class="flex md:sticky md:top-[4rem] overflow-y-auto max-h-[calc(100vh-4rem)] py-3.5 sm:py-4 md:py-10"
       >
