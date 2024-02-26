@@ -33,7 +33,7 @@ useSeoMeta({
         <CategoryDetailCard
           v-for="{ text, path, description: categoryItemDescription, iconName } in categoryItems"
           :key="text"
-          class="sm:max-w-72 md:w-80 h-[7.8rem] xs:h-[10.5rem] sm:h-44 md:h-[10.5rem] lg:min-w-80 xl:w-72 xl:min-w-72"
+          class="sm:max-w-72 md:w-80 h-[7.8rem] xs:h-[10rem] sm:h-44 md:h-[10.5rem] lg:min-w-80 xl:w-72 xl:min-w-72"
           :detail-text="text"
           :path="path"
           :description="categoryItemDescription"

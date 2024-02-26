@@ -22,7 +22,7 @@ provide('closeCategoriesMenu', closeCategoriesMenu);
     <SpeedInsights />
     <header>
       <div
-        class="grid grid-cols-6 items-center justify-center mx-auto h-[var(--header-height)] max-w-7xl px-6 sm:px-4 lg:px-8"
+        class="grid grid-cols-6 items-center justify-center mx-auto h-[var(--header-height)] max-w-7xl px-3 xs:px-6 sm:px-4 lg:px-8"
       >
         <div class="col-span-1 flex justify-start md:hidden">
           <button class="xs:hidden" @click="toggleCategoriesMenu">

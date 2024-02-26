@@ -45,7 +45,7 @@ useSeoMeta({
         :description="postDescription"
         :title="postTitle"
         :date="date"
-        class="min-h-[118px] max-h-[118px] md:min-h-[128px] md:max-h-[128px] px-0.5 border-b pb-3"
+        class="min-h-[100px] max-h-[100px] xs:min-h-[118px] xs:max-h-[118px] md:min-h-[128px] md:max-h-[128px] px-0.5 border-b pb-3"
       />
     </div>
   </NuxtLayout>
