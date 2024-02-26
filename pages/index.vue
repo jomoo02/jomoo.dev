@@ -58,9 +58,9 @@ useHead({
       </p>
     </section>
     <section class="lg:mx-24">
-      <div class="flex flex-col gap-y-2 xs:gap-y-2.5">
+      <div class="flex flex-col gap-y-5">
         <h2 class="text-xl xs:text-2xl text-slate-800/90 font-extrabold">최신 글</h2>
-        <div class="flex flex-col gap-y-2">
+        <div class="flex flex-col gap-y-7">
           <PostCard
             v-for="{ _path, title, description, date, tags } in recentWritePosts"
             :key="title"

@@ -23,7 +23,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col py-3">
+  <div class="flex flex-col">
     <div class="flex flex-1">
       <NuxtLink :to="path" class="size-fit w-full">
         <h3
@@ -42,3 +42,12 @@ defineProps({
     </div>
   </div>
 </template>
+
+<style scoped>
+p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+</style>

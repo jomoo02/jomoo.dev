@@ -21,7 +21,7 @@ export default defineAppConfig({
     main: {
       postCard: {
         height:
-          'min-h-[140px] max-h-[140px] xs:min-h-[160px] xs:max-h-[160px] sm:min-h-[160px] sm:max-h-[160px] md:min-h-[174px] md:max-h-[174px]',
+          'min-h-[116px] max-h-[116px] xs:min-h-[136px] xs:max-h-[136px] sm:min-h-[136px] sm:max-h-[136px] md:min-h-[150px] md:max-h-[150px]',
       },
       introduction: {
         height: 'h-[calc(100vh-282px)] xs:h-[calc(100vh-304px)] md:h-[calc(100vh-318px)]',

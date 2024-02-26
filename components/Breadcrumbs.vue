@@ -18,7 +18,7 @@ const breadcrumbs = constructBreadcrumb(params);
 </script>
 
 <template>
-  <div class="flex gap-x-1.5 pt-3.5 sm:pt-4 md:pt-0 pb-0.5">
+  <div class="flex gap-x-1.5 pt-3.5 sm:pt-4 md:pt-10 pb-4 md:pb-5">
     <div
       v-for="({ param, link }, index) in breadcrumbs"
       :key="param"

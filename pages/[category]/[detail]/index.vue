@@ -36,8 +36,8 @@ useSeoMeta({
 
 <template>
   <NuxtLayout name="side-bar">
-    <div class="flex flex-col gap-y-1 md:py-10">
-      <Breadcrumbs class="mb-1" />
+    <Breadcrumbs />
+    <div class="flex flex-col gap-y-2">
       <PostCard
         v-for="{ _path, description: postDescription, title: postTitle, date } in posts"
         :key="postTitle"
@@ -45,7 +45,7 @@ useSeoMeta({
         :description="postDescription"
         :title="postTitle"
         :date="date"
-        class="min-h-[130px] max-h-[130px] md:min-h-[140px] md:max-h-[140px] px-0.5 border-b"
+        class="min-h-[118px] max-h-[118px] md:min-h-[128px] md:max-h-[128px] px-0.5 border-b pb-3"
       />
     </div>
   </NuxtLayout>
