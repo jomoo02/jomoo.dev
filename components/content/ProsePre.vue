@@ -36,13 +36,7 @@ const languageIconType = {
   css: 'vscode-icons:file-type-css',
 };
 
-const copyIconType = {
-  default: 'icon-park-outline:copy',
-  copied: 'material-symbols:check-box-outline',
-};
-
 const copied = ref(false);
-const copyIcon = ref(copyIconType.default);
 
 function selectIcon() {
   return languageIconType[props.language];
@@ -51,14 +45,11 @@ function selectIcon() {
 function copyCode() {
   if (!copied.value) {
     window.navigator.clipboard.writeText(props.code);
-
     copied.value = true;
-    copyIcon.value = copyIconType.copied;
 
     setTimeout(() => {
       copied.value = false;
-      copyIcon.value = copyIconType.default;
-    }, 1000);
+    }, 1500);
   }
 }
 </script>
@@ -75,9 +66,17 @@ function copyCode() {
         </span>
       </div>
       <div class="flex justify-center items-center gap-x-1">
-        <span v-if="copied" class="text-sm hidden sm:inline text-slate-700">copied</span>
+        <!-- <span v-if="copied" class="text-sm hidden sm:inline text-slate-700">copied</span> -->
         <button class="flex" @click="copyCode">
-          <Icon :name="copyIcon" size="1.1rem" style="color: #334155" />
+          <Transition mode="out-in">
+            <Icon
+              v-if="!copied"
+              name="icon-park-outline:copy"
+              size="1.1rem"
+              style="color: #334155"
+            />
+            <Icon v-else-if="copied" name="icon-park:check" size="1.1rem" style="color: #334155" />
+          </Transition>
         </button>
       </div>
     </div>
@@ -88,8 +87,18 @@ function copyCode() {
   </div>
 </template>
 
-<style>
+<style scoped>
 pre code .line {
   @apply block;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
